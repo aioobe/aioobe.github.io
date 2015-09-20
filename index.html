@@ -1,2 +1,91 @@
-<html><body>Hello world</body></html>
+---
+layout: default
+whatsup:
+  - title: "Created a new Meetup Group: <a href='http://www.meetup.com/Stockholm-Language-Runtime-VM-Meetup'>Stockholm Language Runtime & VM Meetup</a>"
+    date: "Sept 2015"
+  - title: "Launched <a href='http://stackrating.com'>StackRating.com</a> &ndash; an Elo based rating system for Stack Overflow users."
+    date: "May 2015"
+  - title: "Took over development of a tool called <a href='http://stackoverflow.com/q/26424759/276052'>sjavac</a>."
+    date: "Apr 2014"
+  - title: "Selected as one of Swedens top-10 developers under 30 in the <a href='30under30.io'>30under30</a> competition."
+    date: "Mar 2014"
+---
+<h2>What&rsquo;s up?</h2>
+<ul>
+    {% for item in page.whatsup %}
+        <li>
+            <span class="label" style="float: right">{{ item.date }}</span>
+            {{ item.title }}
+        </li>
+    {% endfor %}
+</ul>
 
+<h2>Contact</h2>
+<div class="tbl" style="margin-top: .8em">
+    <div>
+        <div>E-mail:</div>
+        <div><a href="mailto:andreas.lundblad@gmail.com">andreas.lundblad@&shy;gmail.com</a></div>
+    </div>
+    <div>
+        <div>Mobile:</div>
+        <div>+46 739 18 11 13</div>
+    </div>
+    <div>
+        <div>Skype:</div>
+        <div>andreas.lundblad</div>
+    </div>
+    <div>
+        <div>Networks:</div>
+        <div><a href="http://www.facebook.com/aioobe">Facebook</a>, <a href="https://plus.google.com/118193089730428326442">Google+</a>, <a href="http://se.linkedin.com/pub/andreas-lundblad/19/3b5/862">LinkedIn</a>, <a href="http://stackoverflow.com/users/276052/aioobe">Stack Overflow</a>, <a href="http://www.meetup.com/members/14411005/">Meetup</a></div>
+    </div>
+    <div>
+        <div style="padding-right: 1em">Home&nbsp;addr.:</div>
+        <div>
+            V&aring;tmarksv&auml;gen 23<br />
+            170&nbsp;62&nbsp;&nbsp;Solna, Sweden<br />
+            <small><a href="https://goo.gl/maps/lmjC6">Google Maps &raquo;</a></small>
+        </div>
+    </div>
+    <div>
+        <div>Work&nbsp;e-mail:</div>
+        <div><a href="mailto:andreas.lundblad@oracle.com">andreas.lundblad@&shy;oracle.com</a></div>
+    </div>
+    <div>
+        <div>Work&nbsp;addr.:</div>
+        <div>
+            S&ouml;der m&auml;larstrand 57b, 6th floor<br />
+            118 25&nbsp;&nbsp;Stockholm, Sweden<br />
+            <small><a href="http://goo.gl/maps/3nupZ">Google Maps &raquo;</a></small>
+        </div>
+    </div>
+</div>
+
+
+<h2>Bio &amp; R&eacute;sum&eacute;</h2>
+<p>Andreas Lundblad is a software developer with a passion for high quality code. He got his PhD in computer science in 2013 and has since then been developing the javac compiler and other language tools at Oracle. Currently his focus is on the sjavac wrapper that aims to bring incremental and parallel compilation to javac. Andreas is the 80th top user on StackOverflow.com and was recently selected as one of Swedens top 10 developers under 30 in the 30under30 competition.</p>
+
+<p>When he&rsquo;s not writing code he&rsquo;s going to programming meetups, practicing juggling or spending time with his wife and two daugters.</p>
+
+<p><a href="andreas_lundblad_resume.pdf">R&eacute;sum&eacute;</a> (updated June 22, 2015) and <a href="/papers/list.html">list of publications</a>.</p>
+<h2>Blog</h2>
+<p>Featured blog entries:</p>
+<ul>
+    {% for post in site.posts %}
+    <li>
+        <div class="label" style="float: right">{{ post.date | date: "%b %-d, %Y" }}</div>
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<p>Subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>.</p>
+
+
+<h2>Recommended talks and articles</h2>
+<ul>
+    <li><a href="mirrored/java-theory-and-practice-generics-gotchas.html">Java Generics gotchas</a>, article by Brian Goetz</li>
+    <li><a href="mirrored/the-c-is-efficient-language-fallacy.html">The "C is Efficient" Language Fallacy</a> article by Mark C. Chu-Carroll</li>
+    <li><a href="mirrored/coding-horror-paying-down-your-technical-debt.html">Paying Down Your Technical Debt</a> article by Jeff Atwood</li>
+    <li><a href="mirrored/10x-is-a-state-of-being-not-a-type-of-engineer.html">10x is a State of Being, Not a Type of Engineer</a> article by Jeff Dickey</li>
+    <li><a href="https://www.youtube.com/watch?v=TS1lpKBMkgg">Pacific Northwest Scala 2013 We're Doing It All Wrong</a> talk by Paul Phillips</li>
+</ul>

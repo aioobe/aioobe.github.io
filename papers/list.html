@@ -1,0 +1,89 @@
+---
+layout: page
+title: List of Publications
+
+publications:
+  - title: "ABS-NET: Fully Decentralized Runtime Adaptation for Distributed Objects"
+    bib: "abs-net.bib"
+    pdf: "abs-net.pdf"
+    whatWhere: "Proc. ICE 2013"
+    authors:
+      - "K. Palmskog"
+      - "M. Dam"
+      - "A. Lundblad"
+      - "A. Jafari"
+
+  - title: "Inlined Reference Monitors: Certification, Concurrency and Tree Based Monitoring"
+    bib: "lundblad-phd-thesis.bib"
+    pdf: "lundblad-phd-thesis.pdf"
+    whatWhere: "Ph.D. thesis, 2013"
+    authors:
+      - "A. Lundblad"
+
+  - title: "TreeDroid: A Tree Automaton Based Approach to Enforcing Data Processing Policies"
+    bib: "ccs12.bib"
+    pdf: "ccs12.pdf"
+    whatWhere: "Proc. CCS 2012"
+    authors:
+      - "M. Dam"
+      - "G. Le Guernic"
+      - "A. Lundblad"
+
+  - title: "Security Monitor Inlining and Certification for Multithreaded Java"
+    bib: "mscs11.bib"
+    pdf: "mscs11.pdf"
+    whatWhere: "MSCS 2011"
+    authors:
+      - "M. Dam"
+      - "B. Jacobs"
+      - "A. Lundblad"
+      - "F. Piessens"
+
+  - title: "Provably Correct Inline Monitoring for Multi-threaded Java-like Programs"
+    bib: "jcs10.bib"
+    pdf: "jcs10.pdf"
+    whatWhere: "JCS 2010"
+    authors:
+      - "M. Dam"
+      - "B. Jacobs"
+      - "A. Lundblad"
+      - "F. Piessens"
+
+  - title: "A Proof Carrying Code Framework for Inlined Reference Monitors in Java Bytecode"
+    bib: "jvm-irm-pcc.bib"
+    pdf: "jvm-irm-pcc.pdf"
+    whatWhere: "Technical Report"
+    authors:
+      - "M. Dam"
+      - "A. Lundblad"
+
+  - title: "Security monitor inlining for multithreaded Java"
+    bib: "ecoop09.bib"
+    pdf: "ecoop09.pdf"
+    whatWhere: "Proc. ECOOP 2009"
+    authors:
+      - "M. Dam"
+      - "B. Jacobs"
+      - "A. Lundblad"
+      - "F. Piessens"
+
+  - title: "Verification Condition Generation and Discharge in a Hoare Logic with Recursion"
+    bib: "lundblad-msc-thesis.bib"
+    pdf: "lundblad-msc-thesis.pdf"
+    whatWhere: "M.Sc. thesis, 2007"
+    authors:
+      - "A. Lundblad"
+---
+
+{% for pub in page.publications %}
+    <div style="margin: 1em 0em">
+        <span style='float: right'><a href="{{ pub.pdf }}">[pdf]</a> <a href="{{ pub.bib }}">[bibtex]</a></span>
+        <em>{{ pub.title }}</em><br />
+        <div>{{ pub.whatWhere }}</div>
+        <ul class="commaseplist">
+            {% for author in pub.authors %}
+                <li style="white-space: nowrap">{{ author }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endfor %}

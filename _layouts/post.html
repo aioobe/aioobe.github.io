@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<div class="post">
+
+  <header class="post-header">
+    <div class="label" style="float: right">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</div>
+    <h2 class="post-title">{{ page.title }}</h2>
+  </header>
+
+  <article>
+    {{ content }}
+  </article>
+
+</div>

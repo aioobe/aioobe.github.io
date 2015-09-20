@@ -1,0 +1,9 @@
+# Site settings
+title: Andreas Lundblad
+description: Andreas Lundblad is a software developer with a passion for high quality code. He got his PhD in computer science in 2013 and has since then been developing the javac compiler and other language tools at Oracle. Currently his focus is on the sjavac wrapper that aims to bring incremental and parallel compilation to javac. Andreas is the 80th top user on StackOverflow.com and was recently selected as one of Swedens top 10 developers under 30 in the 30under30 competition.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://aioo.be" # the base hostname & protocol for your site
+github_username: aioobe
+
+# Build settings
+markdown: kramdown

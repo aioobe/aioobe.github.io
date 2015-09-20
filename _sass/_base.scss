@@ -1,0 +1,145 @@
+
+
+html,body {
+    background: #EEEEEE;
+    height: 100%;
+    margin: 0em;
+    padding: 0em;
+    color: #3B3B3B;
+}
+
+#page {
+    max-width: 800px;
+    background: #FCFCFC;
+    margin: 0px auto;
+    padding: 0em;
+    height: 100%;
+}
+
+.bannerbox {
+    /*font-family: Verdana, Geneva, sans-serif;*/
+    font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
+    font-weight: 600;
+    background: rgba(87, 117, 128, 0.8);
+    font-size: 180%;
+    letter-spacing: 2px;
+
+    padding: .8em;
+    color: white;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 600px) {
+    #topbanner {
+        position: absolute;
+        top: 10%;
+        left: 0em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #topbanner {
+        position: relative;
+    }
+}
+
+#content {
+    width: 90%;
+    margin: 1em auto;
+    line-height: 140%;
+    font-family: "Calendas Plus","Crimson Text","Hoefler Text","Georgia",serif;
+}
+
+h2 {
+    font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
+    margin-top: 1em;
+    margin-bottom: .2em;
+}
+
+a {
+    color: #8AB9D1;
+    text-decoration: none;
+}
+
+.label {
+    font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
+    color: #D9D9D9;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 70%;
+    padding-left: 1em;
+}
+
+ul, ol {
+    padding-left: 2em;
+    list-style-type: square;
+}
+
+li {
+    padding: .3em 0;
+}
+
+.tbl {
+    display: table;
+}
+
+.tbl > div {
+    display: table-row;
+}
+
+.tbl > div > div {
+    display: table-cell;
+    padding: .3em;
+}
+
+/*
+pre > code {
+    border: 1px solid #CCCCCC;
+    background: #FCFCFF;
+    padding: .5em;
+    margin: 1em 0em;
+}
+*/
+
+
+/**
+ * Code formatting
+ */
+pre,
+code {
+    border: 1px solid $grey-color-light;
+    background-color: #FCFCFF;
+}
+
+code {
+    padding: 1px 5px;
+}
+
+pre {
+    padding: 8px 12px;
+
+    > code {
+        border: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+
+.commaseplist {
+    padding: 0px;
+    display: inline;
+    list-style: none;
+}
+
+.commaseplist li {
+    display: inline;
+}
+
+.commaseplist li:after {
+    content: ", ";
+}
+
+.commaseplist li:last-child:after {
+    content: "";
+}
