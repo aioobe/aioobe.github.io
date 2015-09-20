@@ -1,23 +1,26 @@
-
-
-html,body {
-    background: #EEEEEE;
+html {
+    margin: 0;
+    padding: 0;
     height: 100%;
-    margin: 0em;
-    padding: 0em;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     color: #3B3B3B;
+    background: #EEEEEE;
 }
 
 #page {
     max-width: 800px;
-    background: #FCFCFC;
-    margin: 0px auto;
-    padding: 0em;
-    height: 100%;
+    background: white;
+    margin: 0 auto;
+    padding: 0;
+    min-height: 100%;
 }
 
 .bannerbox {
-    /*font-family: Verdana, Geneva, sans-serif;*/
     font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
     font-weight: 600;
     background: rgba(87, 117, 128, 0.8);
@@ -33,7 +36,7 @@ html,body {
     #topbanner {
         position: absolute;
         top: 10%;
-        left: 0em;
+        left: 0;
     }
 }
 
@@ -50,10 +53,21 @@ html,body {
     font-family: "Calendas Plus","Crimson Text","Hoefler Text","Georgia",serif;
 }
 
+h1 {
+    font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
+    margin-top: 1em;
+    margin-bottom: .2em;
+    line-height: 110%;
+}
+
 h2 {
     font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
     margin-top: 1em;
     margin-bottom: .2em;
+}
+
+h3 {
+    font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
 }
 
 a {
@@ -70,9 +84,12 @@ a {
     padding-left: 1em;
 }
 
+ul {
+    list-style-type: square;
+}
+
 ul, ol {
     padding-left: 2em;
-    list-style-type: square;
 }
 
 li {
@@ -91,15 +108,6 @@ li {
     display: table-cell;
     padding: .3em;
 }
-
-/*
-pre > code {
-    border: 1px solid #CCCCCC;
-    background: #FCFCFF;
-    padding: .5em;
-    margin: 1em 0em;
-}
-*/
 
 
 /**
@@ -142,4 +150,11 @@ pre {
 
 .commaseplist li:last-child:after {
     content: "";
+}
+
+
+blockquote {
+    background: #F0F0F0;
+    padding: .2em 1.5em;
+    border-left: .5em solid #8AB9D1;
 }

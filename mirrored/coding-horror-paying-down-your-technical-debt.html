@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+<meta charset="utf-8">
+<title>Coding Horror: Paying Down Your Technical Debt</title> 
+<link rel="stylesheet" href="coding-horror-paying-down-your-technical-debt_files/styles-site.css" type="text/css"> 
+<link rel="stylesheet" href="coding-horror-paying-down-your-technical-debt_files/styles-site-mobile.css" type="text/css" media="handheld"> 
+<link rel="stylesheet" href="coding-horror-paying-down-your-technical-debt_files/styles-site-print.css" type="text/css" media="print"> 
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://feeds.feedburner.com/codinghorror/"> 
+<link rel="canonical" href="http://www.codinghorror.com/blog/2009/02/paying-down-your-technical-debt.html">
+<link rel="apple-touch-icon" href="http://www.codinghorror.com/.a/6a0120a85dcdae970b017615c1941f970c-pi">
+
+<script type="text/javascript" async="" src="coding-horror-paying-down-your-technical-debt_files/js"></script><script> 
+var TPApp = {};
+TPApp.app_uri = "http://www.typepad.com/";
+</script> 
+
+<link rel="shortcut icon" href="http://www.codinghorror.com/favicon.ico"> 
+
+<link rel="stylesheet" type="text/css" href="coding-horror-paying-down-your-technical-debt_files/nrelate-panels-all.css">
+
+</head>
+
+<body><div id="header"> 
+
+<div style="float:left; "> 
+<a href="http://www.codinghorror.com/blog/"><img src="coding-horror-paying-down-your-technical-debt_files/coding-horror-official-logo-small.png" alt="I &lt;3 Steve McConnell" height="91" width="100"></a>
+</div> 
+<div style="float:left; margin-top:10px;"> 
+<a href="http://www.codinghorror.com/blog/"><img alt="Coding Horror" src="coding-horror-paying-down-your-technical-debt_files/coding-horror-text.png" height="25" width="275"></a><br> 
+<span class="description">programming and human factors<br>by Jeff Atwood</span> 
+</div> 
+
+<div style="float:right; margin-top:20px;" id="searchbox"> 
+<form action="http://www.google.com" id="cse-search-box">
+  <div>
+    <input name="cx" value="partner-pub-6424649804324178:5453723522" type="hidden">
+    <input name="ie" value="UTF-8" type="hidden">
+    <input style="background: url(&quot;http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif&quot;) no-repeat scroll left center rgb(255, 255, 255);" name="q" size="55" type="text">
+    <input name="sa" value="Search" type="submit">
+  </div>
+<input value="www.codinghorror.com/blog/2009/02/paying-down-your-technical-debt.html" name="siteurl" type="hidden"><input name="ref" type="hidden"><input name="ss" type="hidden"></form>
+
+<script type="text/javascript" src="coding-horror-paying-down-your-technical-debt_files/brand"></script>
+
+</div> 
+
+</div> <!-- header -->
+
+<div id="container"> 
+<div class="blog"> 
+<div class="blogbody"> 
+
+<h2 class="title"><a href="http://www.codinghorror.com/blog/2009/02/paying-down-your-technical-debt.html" class="title-link">Paying Down Your Technical Debt</a></h2> 
+
+<h3 class="date">February 27, 2009</h3> 
+
+<p>
+Every software project I've ever worked on has <a href="http://martinfowler.com/bliki/TechnicalDebt.html">accrued technical debt</a> over time: 
+</p><p>
+</p><blockquote>
+Technical Debt is a wonderful metaphor <a href="http://www.c2.com/cgi/wiki?TechnicalDebt">developed by Ward Cunningham</a>
+ to help us think about this problem. In this metaphor, doing things the
+ quick and dirty way sets us up with a technical debt, which is similar 
+to a financial debt. Like a financial debt, the technical debt incurs 
+interest payments, which come in the form of the extra effort that we 
+have to do in future development because of the quick and dirty design 
+choice. We can choose to continue paying the interest, or we can pay 
+down the principal by refactoring the quick and dirty design into the 
+better design. Although it costs to pay down the principal, we gain by 
+reduced interest payments in the future.
+<p>
+The metaphor also explains why it may be sensible to do the quick and 
+dirty approach. Just as a business incurs some debt to take advantage of
+ a market opportunity developers may incur technical debt to hit an 
+important deadline. The all too common problem is that development 
+organizations let their debt get out of control and spend most of their 
+future development effort paying crippling interest payments.
+</p></blockquote>
+<p>
+No matter how talented and smart the software developers, all these tiny
+ deferments begin to add up and cumulatively weigh on the project, 
+dragging it down. My latest project is no different. After six solid 
+months working on the Stack Overflow codebase, this is <i>exactly</i> where we are. We're digging in our heels and retrenching for a major refactoring of our database.  We have to <b>stop working on new features for a while and pay down some of our technical debt</b>.
+</p><p>
+<img alt="credit cards" class="at-xid-6a0120a85dcdae970b0128777074ad970c" src="coding-horror-paying-down-your-technical-debt_files/6a0120a85dcdae970b0128777074ad970c-pi.jpeg" height="404" width="600" border="0">
+</p><p>
+I believe that accruing technical debt is unavoidable on any real software project. Sure, you <a href="http://c2.com/cgi/wiki?RefactorAsYouGo">refactor as you go</a>,
+ and incorporate improvements when you can -- but it's impossible to 
+predict exactly how those key decisions you made early on in the project
+ are going to play out. All you can do is roll with the punches, and 
+budget some time into the schedule to <b>periodically pay down your technical debt.</b>
+</p><p>
+The time you take out of the schedule to make technical debt payments 
+typically doesn't result in anything the customers or users will see. 
+This can sometimes be hard to justify. In fact, I had to defend our 
+decision with Joel, my business partner. He'd prefer we work on some 
+crazy thing he calls <i>revenue generation</i>, whatever that is. 
+</p><p>
+Steve McConnell has a <a href="http://blogs.construx.com/blogs/stevemcc/archive/2007/11/01/technical-debt-2.aspx">lengthy blog entry examining technical debt</a>. The perils of not ackowledging your debt are clear:
+</p><p>
+</p><blockquote>
+One of the important implications of technical debt is that it must be <i>serviced</i>, i.e., once you incur a debt there will be interest charges. <b>If
+ the debt grows large enough, eventually the company will spend more on 
+servicing its debt than it invests in increasing the value of its other 
+assets.</b> A common example is a legacy code base in which so much work
+ goes into keeping a production system running (i.e., "servicing the 
+debt") that there is little time left over to add new capabilities to 
+the system. With financial debt, analysts talk about the "debt ratio," 
+which is equal to total debt divided by total assets. Higher debt ratios
+ are seen as more risky, which seems true for technical debt, too. 
+</blockquote>
+<p>
+Beyond what Steve describes here, I'd also argue that <b>accumulated technical debt becomes a major disincentive to work on a project.</b>
+ It's a collection of small but annoying things that you have to deal 
+with every time you sit down to write code. But it's exactly these small
+ annoyances, this sand grinding away in the gears of your workday, that 
+eventually causes you to stop enjoying the project. <a href="http://www.codinghorror.com/blog/archives/001139.html">These small things matter</a>.
+</p><p>
+It can be scary to go in and <b>rebuild a lot of working code that has become crufty over time.</b> But <a href="http://en.wikipedia.org/wiki/Bene_Gesserit#Litany_against_fear">don't succumb to fear</a>.
+</p><p>
+</p><blockquote>
+I must not fear.
+Fear is the mind-killer.
+Fear is the little-death that brings total obliteration.
+I will face my fear.
+I will permit it to pass over me and through me.
+And when it has gone past I will turn the inner eye to see its path.
+Where the fear has gone there will be nothing.
+Only I will remain.
+</blockquote>
+<p>
+When it comes time to pay down your technical debt, <a href="http://www.codinghorror.com/blog/archives/000123.html">don't be afraid to break stuff</a>.
+ It's liberating, even energizing to tear down code in order to build it
+ up stronger and better than it was before. Be brave, and realize that 
+paying your technical debt every so often is a normal, necessary part of
+ the software development cycle to avert massive interest payments 
+later. After all, <a href="http://www.youtube.com/watch?v=VnTHypbLlkE#t=3m00s">who wants to live forever?</a>
+</p><p>
+
+</p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+
+
+ 
+<div class="posted">Posted by Jeff Atwood</div> 
+
+<div id="nrelate_related_placeholder"><div id="nrelate_related_0"><div class="nr_clear"></div><div class="nrelate nrelate_related nrelate_default nr_text nr_110"><div class="nrelate_related_col"><h3 class="nr_title">Related posts:</h3><div class="nr_inner"><ul><li><a class="nr_rc_link nr_link nr_internal" href="http://www.codinghorror.com/blog/2013/07/rule-of-three.html"><span class="nr_post_title">The Rule of Three</span></a></li><li><a class="nr_rc_link nr_link nr_internal" href="http://www.codinghorror.com/blog/2013/10/you-dont-need-millions-of-dollars.html"><span class="nr_post_title">You Don't Need Millions of Dollars</span></a></li><li><a class="nr_rc_link nr_link nr_internal" href="http://www.codinghorror.com/blog/2013/10/why-does-windows-have-terrible-battery-life.html"><span class="nr_post_title">Why Does Windows Have Terrible Battery Life?</span></a></li><li><a class="nr_rc_link nr_link nr_internal" href="http://www.codinghorror.com/blog/2013/10/updating-your-utility-belt.html"><span class="nr_post_title">Updating Your Utility Belt</span></a></li><li><a class="nr_rc_link nr_link nr_internal" href="http://www.codinghorror.com/blog/2013/09/the-2013-htpc-build.html"><span class="nr_post_title">The 2013 HTPC Build</span></a></li></ul></div><div style="clear:both;"></div></div></div><div class="nr_clear"></div></div></div> <script async="" type="text/javascript" src="coding-horror-paying-down-your-technical-debt_files/loader.js"></script>
+
+<div class="footernav">
+  
+  <div style="float:left;"><a rel="prev" href="http://www.codinghorror.com/blog/2009/02/whos-your-coding-buddy.html">«&nbsp;Who's Your Coding Buddy?</a></div> 
+  
+  
+  <div style="float:right;"><a rel="next" href="http://www.codinghorror.com/blog/2009/02/file-compression-in-the-multi-core-era.html">File Compression in the Multi-Core Era&nbsp;»</a></div> 
+  
+</div>
+
+</div> <!-- blogbody -->
+
+
+
+
+<div class="comments-head" id="comments">82 Comments</div> 
+
+
+  <div class="comments-body frist"> 
+  <p>ra ra ra ..</p>
+
+<p>oh wait .. it would have been more interesting to get insight into 
+refactoring SO rather than just handwaving. What are some lessons 
+learnt?</p>
+
+<p>thx</p>
+  <span class="comments-post" style="margin-left:20px">frist on February 27, 2009  5:07 AM</span> 
+  </div>
+
+  <div class="comments-body sea_cat"> 
+  <p>So what architectural design ideas would help to minimize the 
+accrual of technical debt? A modular, add future functionality like 
+snapping on Lego blocks approach?</p>
+  <span class="comments-post" style="margin-left:20px">Sea Cat on February 27, 2009  5:17 AM</span> 
+  </div>
+
+  <div class="comments-body andrei_rinea"> 
+  <p>I feel the technical debt painfully and I will rewrite a large 
+module of a survey site that I'm working on soon. However I will have to
+ prepare a good speech for the project manager and other managers...</p>
+
+<p>WIsh me luck.</p>
+  <span class="comments-post" style="margin-left:20px">Andrei Rinea on February 27, 2009  5:20 AM</span> 
+  </div>
+
+  <div class="comments-body andrei_rinea"> 
+  <p>I mean things like HTML response construction in code-behind by string concatenations and other coding horrors...</p>
+  <span class="comments-post" style="margin-left:20px">Andrei Rinea on February 27, 2009  5:20 AM</span> 
+  </div>
+
+  <div class="comments-body tietyt"> 
+  <p>When I have unit tests, I don't fear.  I am pretty confident that 
+if i broke something, I'll discover it automatically.  When I work with a
+ system that does not have unit tests, I do fear.  I'm afraid to make 
+things better because I may have inadvertently broke something else.  </p>
+  <span class="comments-post" style="margin-left:20px">tieTYT on February 27, 2009  5:22 AM</span> 
+  </div>
+
+  <div class="comments-body kevin_dente"> 
+  <p>These are the times when having a large battery of unit tests can be immensely useful. I'm just sayin'. :P</p>
+  <span class="comments-post" style="margin-left:20px">Kevin Dente on February 27, 2009  5:23 AM</span> 
+  </div>
+
+  <div class="comments-body dennis_gorelik"> 
+  <p>I agree that sometimes it make sense to accumulate technical debt in order to meet some important deadline.<br>
+However debt accumulation shouldn't last longer than couple of month. 
+With time developers forget how code functions and what business logic 
+that code implements. <br>
+It very hard to refactor old code, so repaying technical debt later in 
+time is significantly more expensive than repaying it immediately after 
+deadline is met.<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Dennis Gorelik on February 27, 2009  5:24 AM</span> 
+  </div>
+
+  <div class="comments-body dave_ward"> 
+  <p>I was always wary of fixing things back before I used source control.  Now, I plow right in without thinking twice.</p>
+
+<p>It took me years to realize how fundamentally and profoundly that one small change had unconsciously changed my behavior.</p>
+  <span class="comments-post" style="margin-left:20px">Dave Ward on February 27, 2009  5:38 AM</span> 
+  </div>
+
+  <div class="comments-body resd"> 
+  <p>I'd also argue that accumulated technical debt becomes a major disincentive to work on a project</p>
+
+<p>I have to totally agree with you on this one. I'm a Computer Science 
+master student, and worked with 2 fellow students on a pretty big 
+project in the Netherlands. We only had our university knowledge, and at
+ that moment thought we made a very good (object oriented) MVC 
+implementation that would surely be flexible enough for later changes. </p>
+
+<p>After a year, and a lot of more experience for myself and my fellow 
+students, the request for changes came. I had to look through all the 
+code we had written to see where the changes should be made, and I was 
+truly disgusted with our own code. To finish before our deadline we 
+wrote a lot of code that was not very good, but it worked and everybody 
+was happy. But now I had to make some changes I could not even find out 
+for myself where to start. I got so frustrated about our own work that I
+ eventually turned down the job, even when it paid a lot of money (for a
+ student that is).</p>
+
+<p>As a side note I have to add, that since that project, me and my 
+fellow students have had a lot more experience (real world experience 
+and not university experience) and that our latest projects are much 
+better than that one. So one question remains: wtf have I paid my 
+college tuition for :)</p>
+  <span class="comments-post" style="margin-left:20px">Resd on February 27, 2009  5:38 AM</span> 
+  </div>
+
+  <div class="comments-body el"> 
+  <p>Just tell Joel you'll have the revenue generation going in six to eight weeks....</p>
+
+<p>;-)</p>
+  <span class="comments-post" style="margin-left:20px">El on February 27, 2009  6:06 AM</span> 
+  </div>
+
+  <div class="comments-body paul_keeble"> 
+  <p>You reap what you sow. You have been planting crufty code and 
+avoiding writing unit tests. You have even be bragging about doing it on
+ your podcasts and everyone has been laughing at you.</p>
+
+<p>Funny how it comes around and bites you in the ass a few months later!</p>
+  <span class="comments-post" style="margin-left:20px">Paul Keeble on February 27, 2009  7:04 AM</span> 
+  </div>
+
+  <div class="comments-body peter_schwer"> 
+  <p>Nice Dune quote.</p>
+  <span class="comments-post" style="margin-left:20px">Peter Schwer on February 27, 2009  7:13 AM</span> 
+  </div>
+
+  <div class="comments-body jamtoday"> 
+  <p>Technical debt is an Abomination! I have spilled much water over deferments made early on in project. </p>
+  <span class="comments-post" style="margin-left:20px">JamToday on February 27, 2009  7:36 AM</span> 
+  </div>
+
+  <div class="comments-body lucas_mccoy"> 
+  <p>I think version 1.0 of my programs is like a brute force attempt to
+ get things to work, then 2.0 comes and it a little bit less brute force
+ and a little more elegance.</p>
+  <span class="comments-post" style="margin-left:20px">Lucas McCoy on February 27, 2009  7:50 AM</span> 
+  </div>
+
+  <div class="comments-body jeff_atwood"> 
+  <p> You reap what you sow.</p>
+
+<p>Unit testing, in this context, is irrelevant; you WILL make imperfect architectural decisions early on.</p>
+
+<p>Technical debt accumulates on every project, because we have not yet managed to invent the mind reading, prescient programmer. </p>
+
+<p>Now you could argue that having a lot of unit tests makes it easier 
+to make sweeping architectural changes. That's true. But I also suspect 
+if your changes are deep enough, you're going to break some tests, too 
+-- factor that time in as well.</p>
+  <span class="comments-post" style="margin-left:20px">Jeff Atwood on February 27, 2009  7:54 AM</span> 
+  </div>
+
+  <div class="comments-body omg"> 
+  <p>But I also suspect if your changes are deep enough, you're going to break some tests, too -- factor that time in as well.</p>
+
+<p>Right. It is better to let your users discover what you broke than to find out by tests going red, great point. </p>
+  <span class="comments-post" style="margin-left:20px">omg on February 27, 2009  9:01 AM</span> 
+  </div>
+
+  <div class="comments-body marcus"> 
+  <p>I love you, Jeff.</p>
+  <span class="comments-post" style="margin-left:20px">Marcus on February 27, 2009 10:31 AM</span> 
+  </div>
+
+  <div class="comments-body jerko"> 
+  <p>20</p>
+  <span class="comments-post" style="margin-left:20px">Jerko on February 27, 2009 11:49 AM</span> 
+  </div>
+
+  <div class="comments-body ole_eichhorn"> 
+  <p>This is an interesting concept, Jeff.  Going back to rewrite stuff 
+due to architecture is usually a bad sign (doing it because of changing 
+customer needs is different, or put another way, better understanding of
+ customer needs).  I find most of the time people have to go back and 
+fix stuff is because of performance, and a lot of the time that's 
+because they used the wrong tools in an effort to deliver functionality 
+faster.<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Ole Eichhorn on February 28, 2009  1:09 AM</span> 
+  </div>
+
+  <div class="comments-body kb_bartum"> 
+  <p>@ John Gallagher</p>
+
+<p>... because someone should call Atwood out for what he is -- a shill,
+ selling himself, effectively regurgitating more intelligent 
+individual's work (eg, in this case, Ward Cunningham  Martin Fowler).</p>
+
+<p>He's polluting the technical space with poorly thought out -- if not 
+just plain wrong -- ideas, and nearly anything good he publishes, he got
+ somewhere else.<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">KB Bartum on February 28, 2009  1:11 AM</span> 
+  </div>
+
+  <div class="comments-body kb_bartum"> 
+  <p>Or to misappropriate an unrelated (!) quote from Charlie Stross, 
+originally in regards to Kerzweil -- I believe this applies equally well
+ here.</p>
+
+<p>I rate him as being a publicity hound rather than a pioneer, and I 
+tend to assume that people who think he's got something useful to say 
+aren't familiar with the original sources he strip-mined.</p>
+  <span class="comments-post" style="margin-left:20px">KB Bartum on February 28, 2009  1:20 AM</span> 
+  </div>
+
+  <div class="comments-body nicholas"> 
+  <p>Wow. What a truly awesome take on things. This is the best way I've
+ heard it explained. This post not only notes the benefits of well 
+defined code for a large multi-coder project, but justifies the use of 
+quick, dirty code for small projects or one-time-run programs. You reap 
+what you sow on a large project, but on a small project you usually 
+don't make it to the reaping part more than once.</p>
+
+<p>Great article.</p>
+  <span class="comments-post" style="margin-left:20px">Nicholas on February 28, 2009  1:37 AM</span> 
+  </div>
+
+  <div class="comments-body console"> 
+  <p>This is an interesting topic! I think everyone working for some 
+time as a developer has had to (or ought to) pay off technical debt many
+ times.</p>
+
+<p>@Jeff, <br>
+Since Stack Overflow is a relatively open site and many of your readers 
+are somewhat familiar with it, this seems like a great opportunity for a
+ series of articles about this in more detail</p>
+
+<p>How did Stack Overflow handle this particular down payment. </p>
+
+<p>What symptoms did you notice to make you want to do it, what did you 
+conclude it was caused by, and how did you decide to address it?<br>
+What was the design like before and after, how did you practically carry it out to avoid downtime, and what was the result?</p>
+
+<p>What you guys have done with Stack Overflow is inspiring and 
+impressive, I'm sure you have material for a whole book by now. Dreaming
+ in code 2 - Stack overflow I'll pre-order! ;-)</p>
+  <span class="comments-post" style="margin-left:20px">Console on February 28, 2009  1:50 AM</span> 
+  </div>
+
+  <div class="comments-body daniel"> 
+  <p>Excellent post!</p>
+
+<p>On my last major project (18 months, 8 developers) I tried to 
+convince various influential people about the importance, relevance and 
+inevitability of technical debt but kept being told: refactor as you go.</p>
+
+<p>In practice, refactoring as you go is NOT sufficient to change major 
+early decisions.  And, even if it was, by constantly refactoring, you're
+ never able to benefit from accruing SOME technical debt.  It is a 
+perfect metaphor as far as I can tell.</p>
+
+<p>In the end the dev team forced through major changes to the database 
+and core entity model.  This broke just about everything so we had to 
+spend time making the system work again instead of implementing new 
+features.  Subsequent releases however almost certainly arrived quicker 
+and more feature rich as a result of vastly improved productivity 
+brought about by these major changes.  We discussed the situation at 
+great length and nobody could see how such changes could have been 
+achieved in an incremental, refactor as you go, way.  The impact on 
+developer morale should not be underestimated either - the entire team 
+was invigorated by this event.</p>
+
+<p>With a large database, even small structural changes can be difficult
+ to implement (think about complex data migration scripts).  But 
+technical debt accrues in the database design just as much as in the 
+code so can't be ignored.</p>
+
+<p>We did not do much unit testing and while I agree they can help with 
+the refactoring as you go approach, they would not have helped us during
+ this major change.  Well over 80% of any unit tests would have needed 
+to be substantially rewritten.  In fact, looking at the 18 month project
+ as a whole, I believe having a comprehensive unit test suite would have
+ _substantially_ reduced overall productivity without any significant 
+(and entirely unnecessary) increase in quality.</p>
+
+<p>I wonder if any controlled tests have been conducted to compare two 
+equivalently skilled teams making identical changes to a codebase where 
+one uses unit tests and the other doesn't.  It would be interesting to 
+see how the productivity/quality metrics compare between these teams as 
+they are asked to make different kinds of changes and where different 
+amounts of technical debt pre-exist.</p>
+  <span class="comments-post" style="margin-left:20px">Daniel on February 28, 2009  2:47 AM</span> 
+  </div>
+
+  <div class="comments-body tim_m"> 
+  <p>Very good post, I've always known about technical debt I just never knew a word for it so thnx for the word.</p>
+
+<p>Is this technical debt caused by a rush to get features out? I think 
+SO is very good which is the irony that maybe you must create this debt 
+to produce something good out of the code? I would hope not but it seems
+ that way sometimes.</p>
+
+<p>Keep all debts manageable.<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Tim M on February 28, 2009  3:09 AM</span> 
+  </div>
+
+  <div class="comments-body michael"> 
+  <p>This is why I'm proposing a new methodology called Revenue Driven 
+Development. What you do is you figure out the simple possible 
+functionality you can charge money for, you write a test to prove out 
+that functionality, you write the code to perform that function, you 
+release (either internally or externally), you move on to the next 
+simplest possible piece of functionality you can charge money for.</p>
+
+<p>There are supporting practices involved... but they all work just 
+like XP. The difference: under Revenue Driven Development they all have 
+monikers that make marketing and financing people drool.</p>
+
+<p>This way you figure out how to make more than the minimum monthly 
+payment on your technical debt before you max out your credibility card.
+ Stopping all new development on your project to do something other than
+ fix actual reported bugs is like taking a second mortgage on your house
+ to pay your credit card bill off. You still have the debt, perhaps on 
+better terms, but if you don't learn to prevent the debt from building 
+up in the first place... you're going to be in even more trouble later.</p>
+  <span class="comments-post" style="margin-left:20px">Michael on February 28, 2009  3:35 AM</span> 
+  </div>
+
+  <div class="comments-body mschmahl"> 
+  <p>As a counterpoint to those who have espoused the ideal of do it 
+right the first time, I still assert that Technical Debt accrues.  
+Languages improve; hardware improves; operating systems improve.  
+Space-Time tradeoffs change.  What may have been the provably best 
+solution in 1992 is likely to be sub-optimal given current theory and 
+technology.</p>
+
+<p>For a simple case, suppose a sort algorithm were discovered that ran 
+in O(n loglog n) time.  What would it take for you to rewrite everything
+ to take advantage of this theoretical improvement?  Would it be worth 
+it?  </p>
+  <span class="comments-post" style="margin-left:20px">MSchmahl on February 28, 2009  3:44 AM</span> 
+  </div>
+
+  <div class="comments-body jeff_r"> 
+  <p>Got technical debt?  Can't pay your software-quality mortgage?</p>
+
+<p>Call Washington NOW for YOUR bailout!</p>
+
+<p>Billions of LOC available!</p>
+
+<p>1-800-CONGRESS<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Jeff R. on February 28, 2009  3:51 AM</span> 
+  </div>
+
+  <div class="comments-body phil"> 
+  <p>ah yes, but Fowler and Cunningham want you to realise the technical
+ debt when it's staring you in the face, before you've made the decision
+ to suck. e.g. quick but messy versus clean but longer implementation.</p>
+
+<p>The idea is that you're not doing anyone a favor by cheating with the
+ quick and messy, and the analogy is using your credit card versus 
+paying cash. Use the card, you pay interest in addition to the effort, 
+and the net outcome is paying more. You think you're being clever, but 
+you're not. Pay with cash and you don't have to pay again. You're done.</p>
+
+<p>There's also a peculiar notion expressed by some of you that seems to
+ feel that refactoring is only to do with small code changes. 
+Refactoring can be anything. It just means spending the time to make 
+changes that are state-preserving. You change focus from adding features
+ to cleaning code. Refactoring your architecture is still refactoring.</p>
+  <span class="comments-post" style="margin-left:20px">Phil on February 28, 2009  3:54 AM</span> 
+  </div>
+
+  <div class="comments-body seanb"> 
+  <p>Great post Jeff. +1 :)</p>
+
+<p>Given the nature of some of the comments here, one could be forgiven 
+for thinking that some of the commenters were forced at gunpoint to read
+ and recite this post whilst their eyelids were stapled open, until it 
+was burned into their psyches.</p>
+
+<p>This experience being in stark contrast to their otherwise utopian 
+existences, where stakeholders and investors do give a shit about unit 
+testing and quality metrics, and never threatened to offshore a project 
+because they just want it to market, like yesterday.</p>
+
+<p>For a great many of us, getting to market fast, cheap and good enough
+ is the driving factor, and what puts food on the table. We will make 
+some bad decisions along the way, if the project is lucky enough to 
+still be running in 12 months time, they may be fixed, and fixing them 
+will quite possibly break some other shit,  there was no budget for unit
+ tests, because the investors couldn't see them as a valid deliverable. 
+  </p>
+
+<p>Ideal? Hell No. Would we prefer that to be different? Hell Yeah.</p>
+
+<p>But for a lot of developers that is the grim commercial reality of 
+life, if you want unit tests, you can write em on your weekends, but on 
+weekdays, investors want to see dem blinkenlights right now, and they 
+want their new, pretty, and probably imperfect blinkenlights on the 
+interwhatsit before their competitors. </p>
+
+<p>It becomes even more seat of the pants when you put your own assetts 
+on the line for a startup, as I dare say Jeff did to some extent. In 
+that case, willing to take technical debt in return for cashflow, 
+pagerank and less time to market anyday. </p>
+
+<p>If it floats, you may have a chance to fix it, if it sinks, move 
+along. Unless you make an absolute dog of a product, market factors and 
+bling on your UI will be much more a determinant of your initial success
+ than software quality. If it does make money, and no one really notices
+ the imperfections, they may never get fixed, because it's probably not a
+ weapon aiming system.  </p>
+
+<p>For those who don't exist in this sometimes dystopian place for 
+lesser mortals, that seemingly offends you so, why are you here? </p>
+
+<p>You're just increasing traffic and ranking for this blog... it's an imperfect blog, but maybe read more than yours. </p>
+  <span class="comments-post" style="margin-left:20px">seanb on February 28, 2009  3:58 AM</span> 
+  </div>
+
+  <div class="comments-body matt"> 
+  <p>I feel as you do, Jeff, but I have no problem believing that Joel balked at this.</p>
+
+<p>On the flip side of what you feel is this article by Joel:  <a href="http://www.joelonsoftware.com/articles/fog0000000069.html" rel="nofollow">http://www.joelonsoftware.com/articles/fog0000000069.html</a> -- that's the one titled Things You Should Never Do, Part I about how stupid Netscape was to rewrite their browser.</p>
+
+<p>Nothing is cut and dried, but how scary is it to tear down code that 
+you know _works_ and replace it with all new code?  Do you think you 
+might get into trouble at some point in your refactoring?</p>
+  <span class="comments-post" style="margin-left:20px">Matt on February 28, 2009  3:59 AM</span> 
+  </div>
+
+  <div class="comments-body fred"> 
+  <p> Technical debt accumulates on every project, because we have not yet managed to invent the mind reading, prescient programmer.</p>
+
+<p>Don't you mean architect/designer? At least in the case of Stack Overflow I fear you are correct!</p>
+  <span class="comments-post" style="margin-left:20px">fred on February 28, 2009  4:17 AM</span> 
+  </div>
+
+  <div class="comments-body rob_ryan"> 
+  <p>@Simon - In reality though if the performance gain from the 
+refactoring allowed the website to run efficiently on the current 
+hardware for longer without requiring upgrades as the website grew or if
+ it prevented hitting a wall in later development where more major 
+changes would need to be made it is enitely worth it.</p>
+
+<p>I think it is best to make these changes early, when there identified
+ rather than waiting for them to become a major performance issue.<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">rob ryan on February 28, 2009  4:20 AM</span> 
+  </div>
+
+  <div class="comments-body kb_bartum"> 
+  <p>Atwood == *YAWN*.</p>
+
+<p>Talk about flogging. You post, and you post, and you post some more, 
+and it quickly becomes apparent that 1) You talk too much (especially 
+about yourself), and 2) You're really not very good at this whole 
+'computer science' thing.</p>
+
+<p>You -are- pretty good at the self-promotion, though.</p>
+  <span class="comments-post" style="margin-left:20px">KB Bartum on February 28, 2009  4:33 AM</span> 
+  </div>
+
+  <div class="comments-body william_pietri"> 
+  <p>I think it's excellent that you're recognizing the technical debt 
+and taking time to pay it down. However, the level beyond where you are 
+at is where you continuously pay down technical debt. Once you reach 
+that level, having to separately schedule it is a sign you've let too 
+much pile up.</p>
+
+<p>Also, unit tests are a big help with managing technical debt. Fear is
+ one of the biggest factors keeping the teams I work with from changing 
+things they know they should change. If you are afraid of breaking 
+something, that means you don't trust your tests to catch you. </p>
+  <span class="comments-post" style="margin-left:20px">William Pietri on February 28, 2009  5:10 AM</span> 
+  </div>
+
+  <div class="comments-body john_gallagher"> 
+  <p>@kbbartum If Atwood bores you, and you don't have any constructive 
+criticism of his writing, why are you wasting your time commenting? Just
+ don't read his blog any more.</p>
+
+<p>@Atwood Fantastic article. This is something that's relevant to most 
+developers I would expect, but is particularly relevant to me right now 
+as I'm making the first prototype for my first proper software project. 
+Yikes, it's scary to be making a mess. But I'm making a mess knowing 
+that this will not be the actual project. And when I do get going with 
+the actual codebase, I'll know that technical debt is something to treat
+ as I would interest. It's a great analogy.</p>
+
+<p>One more thing - you included a link to a quote from Flash Gordon on 
+YouTube, therefore you rule. I can only aspire to such greatness.</p>
+  <span class="comments-post" style="margin-left:20px">John Gallagher on February 28, 2009  5:54 AM</span> 
+  </div>
+
+  <div class="comments-body steveo"> 
+  <p>This post pretty much boils down to we have to refactor/rewrite 
+some stuff on our software project - Big deal, so do I; and probably so 
+does the poster above me, and the one above him.</p>
+
+<p>Details Jeff, is what makes a technical article... technical. 
+Otherwise this could have been written by a 2nd year business major.</p>
+  <span class="comments-post" style="margin-left:20px">Steve-O on February 28, 2009  6:19 AM</span> 
+  </div>
+
+  <div class="comments-body paul_delhanty"> 
+  <p>Respect is due for having built such a useful site as Stack 
+Overflow.  (And for having stuck the boot into the much hated Experts 
+Exchange.)</p>
+
+<p>As other commenters have suggested on this post and others, Joel and 
+your position on automatic tests seems a little extreme though.  Sure, 
+tests do have a cost.  But as a code base matures, interfaces (in the 
+loose sense) to larger units should tend to stabilise.  (Unless there is
+ no architecture at all - ie. big ball of mud.)  So the ongoing cost of 
+testing at least some of the code should go down, and change the 
+cost-benefit equation.  Even if you don't buy into the 100% 
+test-infected stuff, I think you are probably missing out by rejecting 
+automatic testing so absolutely.</p>
+  <span class="comments-post" style="margin-left:20px">Paul Delhanty on February 28, 2009  7:04 AM</span> 
+  </div>
+
+  <div class="comments-body justin_chase"> 
+  <p>Way to rip off Martin Fowlers last blog post. At least you added some pretty pictures.</p>
+  <span class="comments-post" style="margin-left:20px">Justin Chase on February 28, 2009  7:47 AM</span> 
+  </div>
+
+  <div class="comments-body ling"> 
+  <p>Most of the time, you just need to get the guts to make the hard 
+decision than to fear the troubles and tolerate. Everything else will 
+just follow. Though some will be tough, you are going to make it, 
+because it is an equally hard decision to give up in the middle once you
+ start, especially when the action you are taking now is the result of a
+ prior taking-guts-to-make decision.</p>
+  <span class="comments-post" style="margin-left:20px">Ling on February 28, 2009  9:26 AM</span> 
+  </div>
+
+  <div class="comments-body chuck"> 
+  <p>It seems to me that most of the people criticizing the metaphor or 
+Jeff are only looking at the idea from a very narrow perspective.</p>
+
+<p>To pick on just one, the idea that most refactoring would be a waste 
+of time based on 10% being the average amount of technical debt on a 
+project seems ridiculous to me.  Even if 10% were the average, it is 
+representative of such a small slice of the projects going on out there 
+that it proves nothing about whether or not refactoring in general is 
+worth while.</p>
+
+<p>In the real world on projects of all sizes, technical debt can be 
+accrued for so many reasons outside of developer control, from customer 
+pressure for design changes to hardware and environment changes that the
+ technical debt can fluctuate dramatically within a single day.  
+Furthermore, it's impossible to predict *all* of these changes and 
+account for them in the architecture from day one or you would be 
+wasting an incredible amount of time not having a working 
+site/application that is bringing in no money.  </p>
+
+<p>The biggest take away from the article should not be whether you 
+think you are smart enough or more likely lucky enough that you haven't 
+run into the issue on your projects, but to be aware that it does happen
+ on a large number of real world projects.  I'm not saying that getting 
+into too much technical debt is an everyday occurrence or that it always
+ happens fast or that it is never the developers' fault.  Whatever the 
+reason, speed of accrual or where the blame lies, it does happen, you 
+should be aware that it happens, and you should be critical enough to 
+recognize when paying down the debt makes sense.</p>
+
+<p>Great article btw =)</p>
+  <span class="comments-post" style="margin-left:20px">Chuck on February 28, 2009  9:38 AM</span> 
+  </div>
+
+  <div class="comments-body patrick_wood"> 
+  <p>I have a severe back problem that, for almost a year, has left me 
+unemployed except for a little paid work programming. Programming, which
+ I had previously dabbled with as a hobby, has become my new career out 
+of necessity, but mainly love for the craft. </p>
+
+<p>Since I can't go to a University, I am learning all I can from the 
+internet.  I do not have the advantage of the give and take discussions 
+with Professors and fellow students.  </p>
+
+<p>I wrote all of tht to say this:  You and Steve, among others, provide
+ me with invaluable insights into the world of software development.  
+And the comments are also very helpful.</p>
+
+<p>Your battles with the Coding Horrors of programming encourage me 
+since I face the same battles, although on a much smaller scale. </p>
+
+<p>Criticism can be helpful but sometimes it goes too far.  To your 
+unreasonably harsh critics, I recommend they try taking on all the 
+burden of responsibilities and work that you do *and* write quality 
+articles about programming 3 or 4 times a week.  Let us see how well 
+they do it!  When they do all of that and get as many hits on their blog
+ as you do, then they may see things a little differently.</p>
+
+<p>Keep up the good work, Jeff.  <br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Patrick Wood on February 28, 2009  9:45 AM</span> 
+  </div>
+
+  <div class="comments-body keithray"> 
+  <p>Re - changing number of arguments to a function...</p>
+
+<p>(1) The eclipse refactoring for Java change method signature will 
+rewrite all the callers to the function for you, supplying a default 
+value, so that's not a lot a work.</p>
+
+<p> (2) if you have more than (approximately) 10 tests/test-setups 
+calling a particular method, you have too much duplication in your tests
+ and/or the function being tested is too large. </p>
+
+<p>Use mock objects, stubs, fakes, etc., to decouple classes so that a 
+single test only tests one interesting bit of behavior of one method of 
+one class, not testing the whole pyramid of behaviors invoked by a 
+high-level method. You still want _some_ integration and acceptance 
+tests, but not everything has to be tested that way.</p>
+
+<p>With test-driven development, refactoring, and paying attention to 
+code smells [like Large Class, Large Method, Duplicate Logic] and test 
+smells [like Expensive Setup, Duplicate Logic, Large Test], you don't 
+have the problem of one change making lots of tests fail.  </p>
+
+<p>Really.</p>
+  <span class="comments-post" style="margin-left:20px">keithray on February 28, 2009 11:50 AM</span> 
+  </div>
+
+  <div class="comments-body homer"> 
+  <p>There is also the technical tax that accumulates when your projects
+ rely on major components and underlying platforms you have no control 
+over.</p>
+
+<p>Vendors usually try to maintain backward compatibility, at least over
+ a short sequence of versions, but changes can creep up.  At some point 
+if you skip major releases you can find yourself in unsupported 
+territory and face a major rework that doesn't add any value in itself.</p>
+
+<p>Yet paying this tax as you go can be a drag on resources too.  Of 
+course the alternative means letting the taxes accumulate and compound.</p>
+
+<p>This is less of an issue for a product with a 5 year lifespan than one that must live 10 years or more though.</p>
+  <span class="comments-post" style="margin-left:20px">Homer on February 28, 2009 12:03 PM</span> 
+  </div>
+
+  <div class="comments-body internet_bubble"> 
+  <p>I tend to agree with this metaphore, but it raises a big issue:</p>
+
+<p>The developper have a company check book out of control....</p>
+
+<p>Make this metaphore widely adopted would create a strong movement<br>
+coming from finance to control the use of this hidden checkbook. Lot of headache in perspective ....</p>
+
+<p>In the current time, knowing that some group of people can create 
+debt out of control taking advantage that what they do is too technical 
+to be monitored will trigger very painfull memories that are very fresh.</p>
+
+<p>In addition, finding some else to blame, can be very appealing for those sitting on the grill today :)</p>
+
+<p>any idea how to explain to the company that what they expect costs 
+much more than they know ? And how to explain we need them to still fund
+ it because we need money to live :)</p>
+
+<p>or even worst, telling the truth:<br>
+We have no idea how much it will cost utlimatly, but for the fragmented 
+data we have the purposal you have in hand is the most appealing that we
+ can write.<br>
+Of course we can intend to collect enough data to have a more precise 
+idea of the real cost without technical debt, but that study alone will 
+likely cost more than the whole project that you have in mind....</p>
+
+<p>so let's be reasonable, let's admit that organizations are too 
+complex and irrational to know what we do. Going agile is not so bad in 
+that perspective, we throw away money in small chunk and add more if we 
+get a return that makes us happy...</p>
+
+<p><br>
+ </p>
+  <span class="comments-post" style="margin-left:20px">internet bubble on February 28, 2009 12:09 PM</span> 
+  </div>
+
+  <div class="comments-body steve"> 
+  <p>Paul, have you even seen the statistics for the site? 500k page 
+views per day. Millions of unique visitors per month. Yeah, sure, 
+everybody is laughing at the lack of unit tests. </p>
+  <span class="comments-post" style="margin-left:20px">steve on February 28, 2009 12:13 PM</span> 
+  </div>
+
+  <div class="comments-body schmoo"> 
+  <p>Sorry, have I wondered into YouTube by mistake? I'm looking at some
+ of the comments here, and I can barely tell the difference. I guess 
+you've reached some critical readership mass that tipped you over some 
+kind of wanker-attraction threshold... 'tis the price of useful 
+feedback, I guess, but it's most unwelcome.</p>
+
+<p>PS: Fake! That picture is faked! Real credit cards don't look blurry 
+at the edges like that, it's obviously photo-shopped. I speak from 
+authority because I once opened paint and looked at the toolbar, and my 
+IQ is more than 3 whole points above retarded. Maybe the CIA did it?</p>
+  <span class="comments-post" style="margin-left:20px">Schmoo on February 28, 2009 12:22 PM</span> 
+  </div>
+
+  <div class="comments-body cwis"> 
+  <p>See this story from the early mac days:</p>
+
+<p><a href="http://www.folklore.org/StoryView.py?project=Macintoshstory=Mea_Culpa.txt" rel="nofollow">http://www.folklore.org/StoryView.py?project=Macintoshstory=Mea_Culpa.txt</a></p>
+
+<p>They used the upper 8 bits of 32, because in the early days only 24 
+were used. That was a big burden, when the 68020 got reality ...</p>
+  <span class="comments-post" style="margin-left:20px">cwis on February 28, 2009 12:33 PM</span> 
+  </div>
+
+  <div class="comments-body metaphor_monster"> 
+  <p>No more metaphors! PLEASE</p>
+  <span class="comments-post" style="margin-left:20px">Metaphor Monster on February 28, 2009 12:38 PM</span> 
+  </div>
+
+  <div class="comments-body steve_w"> 
+  <p>A couple of interesting posts linked to here, but I feel it would 
+have been more valuable if you could have added some of your own 
+experience to them.</p>
+
+<p>For example,  with reference to Steve's article, what sort of debt 
+did StackOverflow aquire? Type I.A.1 or I.A.2? This would be interesting
+ to know as some of your recent posts might suggest you were going for 
+the bad sort of debt - lack of comments, generic variable names, not 
+following coding conventions. The linked article suggests this is never a
+ good strategy, even in the short term.</p>
+
+<p>By the way, I wish you had credited Martin Fowler for the first quote.</p>
+  <span class="comments-post" style="margin-left:20px">Steve W on March  1, 2009  3:50 AM</span> 
+  </div>
+
+  <div class="comments-body jonathan_hartley"> 
+  <p>Hey,<br>
+I love you Jeff, and all, but this continued aversion to testing makes you sound like an idiot.</p>
+
+<p>Testing massively reduces the fear associated with refactoring. Yes, 
+of course you break tests while making changes, and yes you have to fix 
+them. But that is part of the process of finding out and compensating 
+for the effects your changes have had across the system. The alternative
+ - to cover your eyes and hope for the best - is hopeless. You have a 
+responsibility not to lead people so far astray like this.</p>
+
+<p>Big hugs though, I really do love you and your stuff,</p>
+
+<p>  Jonathan<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Jonathan Hartley on March  1, 2009  4:40 AM</span> 
+  </div>
+
+  <div class="comments-body evgeny"> 
+  <p>Just now I read an article about how FriendFeed use a weird schema 
+to make their MySQL more responsive. And it looks like you have database
+ scaling issues as well. Perhaps it will give you ideas on how to handle
+ it :<br>
+<a href="http://bret.appspot.com/entry/how-friendfeed-uses-mysql" rel="nofollow">http://bret.appspot.com/entry/how-friendfeed-uses-mysql</a></p>
+
+<p><br>
+Even though personally I think they should not have chosen to use MySQL 
+in the first place, something more robust and scalable like PostgreSQL 
+would probably not lead them to the problems they are facing. But afaik 
+you have the M$ DB, so it might not be relevant for you at all.</p>
+  <span class="comments-post" style="margin-left:20px">Evgeny on March  1, 2009  4:55 AM</span> 
+  </div>
+
+  <div class="comments-body michael"> 
+  <p>To all the folks who say stuff like in the real world, Jeff is 100%
+ spot on and anyone who says differently is dreaming... This is either 
+an ad hominem attack or an inept appeal to authority. Jeff is making 
+some pretty vague claims here about both the scope and necessity of an 
+impending refactoring, and deserves to be questioned. Personally I think
+ it sounds like he is promoting having a permanent version 1.0 by taking
+ time off to refactor major parts of his software. I have never seen 
+that work well.</p>
+  <span class="comments-post" style="margin-left:20px">Michael on March  1, 2009  5:40 AM</span> 
+  </div>
+
+  <div class="comments-body james"> 
+  <p>I'd also argue that accumulated technical debt becomes a major disincentive to work on a project</p>
+
+<p>This is more important than it is usually given credit for. Good 
+programmers dislike dirty code. They want to get rid of it, they don't 
+want to be around it and they certainly don't want to be associated with
+ it.</p>
+
+<p>The point is that a technical debt is not just an undocumented hole 
+in the budget, it's an undocumented HR problem. It lowers moral and 
+raises staff turnover.</p>
+
+<p>If your project has a high level of technical debt it makes everyone 
+who works on it look inexplicably inefficient and weak. People 
+procrastinate rather than touch such painful code, they try to avoid the
+ project, their more tempted to make quick and dirty fixes just to get 
+away from it faster and in the worst case they'll leave the company to 
+leave the mess behind. Likewise attracting and retaining quality new 
+staff is going to be hampered by having a high technical debt.</p>
+
+<p>The point is to look at technical debt as both a financial burden and
+ an HR burden. Programmers working in a clean, powerful, elegant 
+development environment are more motivated, more interested in producing
+ more code of a similar standard and less interested in leaving the 
+company.</p>
+  <span class="comments-post" style="margin-left:20px">James on March  1, 2009  6:49 AM</span> 
+  </div>
+
+  <div class="comments-body thomas_hansen"> 
+  <p>Interesting, seems like you would benefit from SOLID in your designs ... ;)</p>
+  <span class="comments-post" style="margin-left:20px">Thomas Hansen on March  1, 2009  9:48 AM</span> 
+  </div>
+
+  <div class="comments-body john_doe"> 
+  <p>Many don't understand that sometimes, code needs to be rewritten 
+partially or almost completely to be able to go further. It's a shame, 
+but that's life, but don't blame me, blame my boss for his incompetence!
+ <br>
+</p>
+  <span class="comments-post" style="margin-left:20px">John Doe on March  1, 2009  9:56 AM</span> 
+  </div>
+
+  <div class="comments-body m_princz"> 
+  <p>The idea of technical debt is valid and the other assertions of, 
+Michael on February 28, making business people drool is also important. 
+Enabling software development to be taken seriously by business is 
+important because the majority see it as a cost. Whilst I hope to not 
+indulge in jargon bingo, development needs to create its own that 
+business people can understand and cost from both a productive and 
+efficiency led perspective.</p>
+
+<p>Living in the dark and hoping to achieve validation by not examining 
+your own profession is tantamount to crazy. Technical debt is one in a 
+series of phrases and measurements software development needs hold 
+itself accountable to because business cannot understand its value.</p>
+
+<p>As far as the sniping that has occurred I believe that Jeff has 
+raised an area of debate that can be used to initiate a debate to bring 
+together IT and Business to a common goal; good maintainable software 
+that is inexpensive to develop and easier to maintain. This is balanced 
+with an understanding of the process of development and the degeneration
+ of the product itself.</p>
+  <span class="comments-post" style="margin-left:20px">M Princz on March  1, 2009 11:08 AM</span> 
+  </div>
+
+  <div class="comments-body anonymous"> 
+  <p>I'm with Jeff and Joel on unit testing. I would rather have functional tests to make sure all the end user functionality works.</p>
+
+<p>Have façade interfaces that expose all the end user functionality to 
+the UI (ie. the UI is very thin wrapper around the façade). Then write 
+test against those interfaces.</p>
+  <span class="comments-post" style="margin-left:20px">Anonymous on March  2, 2009  4:08 AM</span> 
+  </div>
+
+  <div class="comments-body alex"> 
+  <p>Great post. I work for a Fortune 100 company. We face technical 
+debt in two ways. The first, we have a large legacy base (all that COBOL
+ stuff the business really runs on). Over 30 years additions, changes, 
+and hardcoding have been added to solve problems but rarely has anyone 
+refactored. A lot of this is because its hard to refactor COBOL into 
+anything but long complex COBOL programs with confusing global 
+variables. Today we have less than 5 or 6 people who would even be 
+qualified to touch the code, everyone else is scared. We've ignored it 
+so long the people best qualified to understand it have retired (or 
+died) and the people left are too busy keeping it working. We are 
+ultimately facing bankruptcy on the code and start over with a new 
+system.</p>
+
+<p>The second is on new projects that are run by non-technical MS 
+Project leaders. They want to stick to the project plan and meet their 
+timeline. This is admirable and I agree they are necessary to make sure 
+we actually deliver on time. But combine this with a large outsourced 
+Indian development work for the focus is on make it work now and ignore 
+the future. Once a feature is written which does basically what it 
+should do and with reasonable performance its marked done and not 
+touched again. </p>
+
+<p>I deal with both legacy and new code. My mantra is don't be afraid to
+ rewrite code. Its scary to do so, but the benefits are huge. Even if 
+you don't do it any better, you at least didn't blindly leave it as a 
+mess and will have a better understanding. I always try to have at least
+ one developer on the team that does code maintenance, they understand 
+the pain later by not being willing to rewrite code.</p>
+  <span class="comments-post" style="margin-left:20px">Alex on March  2, 2009  4:42 AM</span> 
+  </div>
+
+  <div class="comments-body ding_jiang_hao"> 
+  <p>I both subscribed martinfowler's and your blog. and most of us did so.</p>
+  <span class="comments-post" style="margin-left:20px">ding jiang hao on March  2, 2009  5:38 AM</span> 
+  </div>
+
+  <div class="comments-body jaime"> 
+  <p>I enjoyed this post (too) :-)<br>
+Thanks</p>
+  <span class="comments-post" style="margin-left:20px">Jaime on March  2, 2009 12:50 PM</span> 
+  </div>
+
+  <div class="comments-body jrgen_lundberg"> 
+  <p>@Lept Wikipedia is your friend:<br>
+<a href="http://en.wikipedia.org/wiki/Refactoring" rel="nofollow">http://en.wikipedia.org/wiki/Refactoring</a></p>
+
+<p><a href="http://www.refactoring.com/" rel="nofollow">http://www.refactoring.com/</a><br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Jörgen Lundberg on March  3, 2009  1:58 AM</span> 
+  </div>
+
+  <div class="comments-body matt_burns"> 
+  <p>I personally find metaphors very useful. Not only do they explain a
+ concept quickly (by reusing past experience) but they can also help you
+ pass the things you learn in life across all disciplines.</p>
+
+<p>Just as the lessons you learn in everyday life can be applied to 
+developing software, the lessons you learn in developing software can be
+ applied to everyday life.</p>
+
+<p>This time I *will* keep my filling knife clean...</p>
+
+<p><a href="http://www.mattburns.co.uk/blog/2009/03/02/keep-your-filling-knife-clean/" rel="nofollow">http://www.mattburns.co.uk/blog/2009/03/02/keep-your-filling-knife-clean/</a></p>
+  <span class="comments-post" style="margin-left:20px">Matt Burns on March  3, 2009  4:06 AM</span> 
+  </div>
+
+  <div class="comments-body lept"> 
+  <p>Jeff -</p>
+
+<p> What exactly do you mean by refactoring?  That is a buzzword I see 
+on a lot of PP charts.  If you mean rewriting code to embrace new 
+architectures, etc. (multi-core, openmp, etc), please say so.  If you 
+mean re-designing projects so they will score less on the stinkometer, 
+please say that too.</p>
+
+<p>(I'm chuckling quietly to myself, but I'm wondering:)how do I resolve
+ the focus on refactoring with your previous suggestion about avoiding  
+re-inventing the wheel?  </p>
+  <span class="comments-post" style="margin-left:20px">Lept on March  3, 2009  5:17 AM</span> 
+  </div>
+
+  <div class="comments-body jamie"> 
+  <p>I've not read more than just the first book, but my favourite Dune litany rip-off has always been the one based on the Mentats:</p>
+
+<p>  It is by caffeine alone I set my mind in motion. <br>
+  It is by the Beans of Java that thoughts acquire speed, <br>
+  the hands acquire shaking, the shaking becomes a warning. <br>
+  It is by caffeine alone I set my mind in motion.</p>
+  <span class="comments-post" style="margin-left:20px">Jamie on March  3, 2009  7:41 AM</span> 
+  </div>
+
+  <div class="comments-body kwisatz_haderach"> 
+  <p> Technical debt accumulates on every project, because we have not yet managed to invent the mind reading, prescient programmer.</p>
+
+<p>This is no longer strictly true, because after my spice-binge last weekend, I am the...</p>
+  <span class="comments-post" style="margin-left:20px">Kwisatz Haderach on March  3, 2009  9:14 AM</span> 
+  </div>
+
+  <div class="comments-body mac"> 
+  <p>Like the real-estate meltdown I forsee a software meltdown.<br>
+There will come a time when this stuff becomes so complex that no single
+ or probably dozen human minds will be able to comprehend it.</p>
+
+<p>That will probably be the time when the machines decide to refactor us...</p>
+
+<p>What does this have to do with technical debt? There is a hidden and 
+very real cost in complexity. I'm not at all sure that I am happier 
+today than when I was a boy.</p>
+
+<p>Sure, we did not have video games, computers, and all the gadgets and
+ gizmos of today. However; I do believe that I was happier then, the 
+world was less complex and less daunting.</p>
+
+<p>I see kids today going from zombies training for a future war in 
+front of an XBox to totally overloaded in certain school situations to 
+sometimes outright disaster with things like facebook.</p>
+
+<p>I've worked in this industry for the past 30 years and most of the time it's been relatively kind to me.</p>
+
+<p>So, what can I do without?<br>
+Cell phones: don't need it, don't want it.<br>
+GPS: I can get around just fine thank you very much.<br>
+DTV: People watch too much TV anyway. I might just go dark on June 12th.<br>
+Home Computer: This probably only applies to me; I work with one all day long, why do I want to see it in my house?<br>
+Internet: This is blasphemy I know but; I got by just fine before it 
+became all the rage, I make money on it now... Has it really changed my 
+life for the better? Yes because I work on it but, if I was not in this 
+industry would I really need it? Probably not.<br>
+What do I not want to do without:<br>
+Medical Machinery breakthroughs such as MRI and CT scans, dialysis 
+machines, pace makers, heart monitors, etc. Life saving applications are
+ among the greatest applications for technology.<br>
+Electronic Ignition: The best thing that ever happend to the internal combustion engine.<br>
+Automated alarm systems: Unfortunately, we still have crooks in the world.<br>
+And the ONE THING I HATE THE MOST:<br>
+ELECTRONIC VOTING: If we thought things got screwed up with the paper 
+ballot mess down in Fla. electrons take it to a whole new level...<br>
+</p>
+  <span class="comments-post" style="margin-left:20px">Mac on March  3, 2009 10:17 AM</span> 
+  </div>
+
+  <div class="comments-body joe"> 
+  <p>Amazing...I just finished reading Dune for the first time last week.  Nice tie-in :)</p>
+  <span class="comments-post" style="margin-left:20px">Joe on March  3, 2009 10:53 AM</span> 
+  </div>
+
+  <div class="comments-body imissmyjuno"> 
+  <p>Ok, where is the print view of this blog post? My boss urgently 
+needs to see this before he comes in and asks for another new feature 
+when I'm busy fixing spaghetti.</p>
+  <span class="comments-post" style="margin-left:20px">imissmyjuno on March  4, 2009 11:32 AM</span> 
+  </div>
+
+  <div class="comments-body angryfreeloader"> 
+  <p>Ahem!<br>
+I will use stack overflow. I will read joelonsoftware. I will read 
+codinghorror. If I find something nice, I will take it and use it. But 
+If I don't agree, I'll make sure that the whole wide world knows about 
+my strong opinion about what I think about Jeff's shortcomings. <br>
+I, ladies and gentlemen, am Master Troll! I rule the blogosphere, I am 
+king, Lord and Master of the Dark Side. I will never allow anything to 
+go unnoticed if I don't like it. I have the God given right to insult, 
+attack and defame anyone in the blogosphere. I am The Law. I will bite 
+and chew off every little nit in this article. I will spread doubt, fear
+ and poison in the minds of all the readers. I am the One they should 
+listen to, or face my words of wrath. There shall be no fame or respect 
+without my permission,</p>
+
+<p>I am the Lord of Trolls!</p>
+
+<p><br>
+----------------<br>
+How does that sound? Impressive? Or Insane?</p>
+
+<p>----------------<br>
+You reap what you sow. You have been planting crufty code and avoiding 
+writing unit tests. You have even be bragging about doing it on your 
+podcasts and everyone has been laughing at you.<br>
+Funny how it comes around and bites you in the ass a few months later!<br>
+Paul Keeble on February 27, 2009 07:04 PM<br>
+----------------<br>
+Atwood == *YAWN*.<br>
+Talk about flogging. You post, and you post, and you post some more, and
+ it quickly becomes apparent that 1) You talk too much (especially about
+ yourself), and 2) You're really not very good at this whole 'computer 
+science' thing.<br>
+You -are- pretty good at the self-promotion, though.<br>
+KB Bartum on February 28, 2009 04:33 AM<br>
+----------------<br>
+@ John Gallagher<br>
+... because someone should call Atwood out for what he is -- a shill, 
+selling himself, effectively regurgitating more intelligent individual's
+ work (eg, in this case, Ward Cunningham  Martin Fowler).<br>
+He's polluting the technical space with poorly thought out -- if not 
+just plain wrong -- ideas, and nearly anything good he publishes, he got
+ somewhere else.<br>
+KB Bartum on February 28, 2009 01:11 PM<br>
+----------------<br>
+I rate him as being a publicity hound rather than a pioneer, and I tend 
+to assume that people who think he's got something useful to say aren't 
+familiar with the original sources he strip-mined.<br>
+KB Bartum on February 28, 2009 01:20 PM<br>
+----------------</p>
+
+<p>What do you get from this display of small mindedness? Is it 
+jealousy?  Does Jeff order you around? Plot things in your life? Try to 
+get you fired? Or try to steal your customers and contracts? </p>
+
+<p>Anyone stopping you from starting a blog of your own?<br>
+If you're traced anywhere on the blogosphere in the future, you are 
+going to be remembered by lots of people. People remember others even if
+ they genuinely protest, having a decent case to present. </p>
+
+<p>And you here, are trying this! Whatever makes you think that this 
+will go unnoticed or be forgotten? Do you have any idea of how many 
+multiple copies of this content exist on the expanded web (public web + 
+private docs on net-connected PCs) ?</p>
+
+<p>One announcement by Joel and Jeff to ask readers to volunteer to 
+point out routine trolls by identifying their posting pattern will 
+finish the whole race of trolls. That they don't exercise that option is
+ a quality of theirs, not a fear of you. </p>
+
+<p>In the case of less scrupled community leaders, even a genuine 
+protest brings a much harder response. And you think that Jeff cannot 
+ask users to finish the entire race of you trolls? </p>
+
+<p>Deleting your posts is NOT the painful thing. Keeping them marked as 
+Sick F**king Troll for permanent public display is much worse. If you've
+ posted under influence, I'm sorry, as much as you would be. But if not,
+ then I think you might need to change your online nickname.<br>
+Trolling is counterproductive and cruel. Give it a peaceful thought.</p>
+  <span class="comments-post" style="margin-left:20px">angryfreeloader on March  5, 2009 12:15 PM</span> 
+  </div>
+
+  <div class="comments-body john_zbo_zabroski"> 
+  <p>Evgeny,</p>
+
+<p>FriendFeed's problems are just weird.</p>
+
+<p><a href="http://bret.appspot.com/entry/how-friendfeed-uses-mysql" rel="nofollow">http://bret.appspot.com/entry/how-friendfeed-uses-mysql</a>
+ says, In particular, making schema changes or adding indexes to a 
+database with more than 10 - 20 million rows completely locks the 
+database for hours at a time.</p>
+
+<p>My jaw just dropped.  10-20 million rows is SMALL.  Any database smaller than 50 gigs is small these days.</p>
+
+<p>They want advice on how to deal with performance issues, then they 
+should probably contact a consulting company who understands 
+high-performance MySQL.  For instance, Proven Scaling LLC. <a href="http://provenscaling.com/" rel="nofollow">http://provenscaling.com/</a></p>
+  <span class="comments-post" style="margin-left:20px">John Z-Bo Zabroski on March  7, 2009  4:06 AM</span> 
+  </div>
+
+  <div class="comments-body john_zbo_zabroski"> 
+  <p>Alex,</p>
+
+<p>@Great post. I work for a Fortune 100 company. We face technical debt
+ in two ways. The first, we have a large legacy base (all that COBOL 
+stuff the business really runs on). Over 30 years additions, changes, 
+and hardcoding have been added to solve problems but rarely has anyone 
+refactored. A lot of this is because its hard to refactor COBOL into 
+anything but long complex COBOL programs with confusing global 
+variables.</p>
+
+<p>Sorry but this isn't true.  COBOL refactoring tools do exist.  Netron
+ Fusion is an example.  It won't solve all your problems and may not 
+even realistically be worth it for you, but there is a book that talks 
+about properly factored COBOL code (if such a thing exists!): Framing 
+Software Reuse by Paul G. Bassett.</p>
+  <span class="comments-post" style="margin-left:20px">John Z-Bo Zabroski on March  7, 2009  4:13 AM</span> 
+  </div>
+
+  <div class="comments-body andrew_stuart"> 
+  <p>There's a fine line between not incurring technical debt (i.e. coding until the job is done properly), and gold plating.</p>
+  <span class="comments-post" style="margin-left:20px">Andrew Stuart on March  8, 2009  1:10 AM</span> 
+  </div>
+
+  <div class="comments-body mitch_wheat"> 
+  <p>Love the Dune quote!</p>
+  <span class="comments-post" style="margin-left:20px">Mitch Wheat on March  8, 2009  8:46 AM</span> 
+  </div>
+
+  <div class="comments-body anon"> 
+  <p>Post the DB schema, and write up the changes.</p>
+  <span class="comments-post" style="margin-left:20px">anon on February  6, 2010 11:12 PM</span> 
+  </div>
+
+  <div class="comments-body leon_sodhi"> 
+  <p>Breaking tests doesn't have to mean your code has a bug.</p>
+
+<p>It could just be for example that function A now takes 3 parameters 
+instead of 2. All those units tests will then need to be modified to 
+take that into account.</p>
+  <span class="comments-post" style="margin-left:20px">Leon Sodhi on February  6, 2010 11:12 PM</span> 
+  </div>
+
+  <div class="comments-body simon_johnson"> 
+  <p>Let me start by saying I know nothing about your project. However, let's take the technical debt analogy and run with it.</p>
+
+<p>How much are the interest repayments on that technical debt? 25%, 15%%, 10%, 5%, 2%, 1%?</p>
+
+<p>However, for most projects I think that 10% is typical for most 
+projects. Let's say you do two weeks (10 working days) of refactoring to
+ get the technical debt interest rate down to 1%.</p>
+
+<p>Before the refactoring you were working at 90% effectiveness and 
+after the refactoring you're operating 99% effectiveness. A 
+straightforward calculation shows that it would take 124 working days 
+(or 29 weeks) to be ahead where you would have been if you hadn't have 
+refactored at all.</p>
+
+<p>This is why your business partner wasn't convinced. If you'd spent 
+that two weeks adding or improving pre-existing features, it's obviously
+ going to add a lot more value to the project than the time spent 
+refactoring.</p>
+
+<p>I find that the technical debt analogy actually proves the opposite 
+of what the proponents of term what to demonstrate: that refactoring is 
+typically a really bad use of project time!</p>
+  <span class="comments-post" style="margin-left:20px">Simon Johnson on February  6, 2010 11:12 PM</span> 
+  </div>
+
+  <div class="comments-body cameron_booth"> 
+  <p> Unit testing, in this context, is irrelevant; you WILL make imperfect architectural decisions early on.</p>
+
+<p>Very true Jeff. Having unit tests does nothing to eliminate technical
+ debt. In fact unit tests themselves, being more code, can have their 
+own technical debt too.</p>
+
+<p> Now you could argue that having a lot of unit tests makes it easier to make sweeping architectural changes.</p>
+
+<p>Yes!!!! And this is the key argument for writing tests. It's not just a side benefit of having them.</p>
+
+<p>For any kind of refactoring - including eliminating technical debt - 
+ having unit tests, and as importantly, having functional or full stack 
+tests can be a _huge_ help. More than enough to make it worth having 
+taken the time to write the tests in the first place.</p>
+  <span class="comments-post" style="margin-left:20px">Cameron Booth on February  6, 2010 11:12 PM</span> 
+  </div>
+
+  <div class="comments-body jason_cohen"> 
+  <p>I call this the software quality mortgage:</p>
+
+<p><a href="http://blog.asmartbear.com/blog/software-quality-mortgage.html" rel="nofollow">http://blog.asmartbear.com/blog/software-quality-mortgage.html</a></p>
+
+<p>See that link for why IT IS GOOD to have accumulated technical debt, 
+and techniques for convincing non-technical management to allocate time 
+to clean it up later.</p>
+  <span class="comments-post" style="margin-left:20px">Jason Cohen on February  6, 2010 11:12 PM</span> 
+  </div>
+
+  <div class="comments-body peter_roome"> 
+  <p>I also like the metaphor.  Has anyone tried to measure technical 
+debt (incurring debt and paying it off), and if so, what's your 
+approach? I realize that it's difficult to measure in any accurate way; 
+however, understanding trends would be important.  A directional 
+indicator of whether the technical loan is being paid off (or getting 
+worse) would be useful.   </p>
+
+<p>Thanks! </p>
+  <span class="comments-post" style="margin-left:20px"><a rel="nofollow" target="_blank" title="http://profile.typepad.com/roomepeter" href="http://profile.typepad.com/roomepeter">Peter Roome</a> on February 26, 2011  1:44 PM</span> 
+  </div>
+
+  <div class="comments-body daniel_e_graham"> 
+  <p>There is a big difference between refactoring your own code and 
+refactoring someone else's code. It is too easy to try to rewrite 
+"legacy" code only because a newcomer doesn't understand it. Our own 
+abstractions are more familiar to us than someone else's.</p>
+  <span class="comments-post" style="margin-left:20px"><a rel="nofollow" target="_blank" title="http://profile.typepad.com/danielegraham" href="http://profile.typepad.com/danielegraham">Daniel E Graham</a> on March 25, 2011  9:59 PM</span> 
+  </div>
+
+  <div class="comments-body daniel_e_graham"> 
+  <p>For a major refactoring effort, such as completely rewriting 
+something in another language - it would appear that it could result in 
+adding technical debt during the refactoring. That's something to 
+consider. Also, the refactoring shouldn't result in less features. But, 
+if a new team can clearly identify bad design decisions or lower level 
+code issues, then incremental refactoring is good. But, to just assume 
+that the new people are "smarter" than the old people and just rewrite 
+everything, is not as good.</p>
+  <span class="comments-post" style="margin-left:20px"><a rel="nofollow" target="_blank" title="http://profile.typepad.com/danielegraham" href="http://profile.typepad.com/danielegraham">Daniel E Graham</a> on March 25, 2011 10:48 PM</span> 
+  </div>
+	
+
+
+
+<div id="endcomments"></div> 
+
+
+
+	<p class="comments-closed">
+		The comments to this entry are closed.
+	</p>
+
+
+
+</div> <!-- blog -->
+
+<div id="footer">Content © 2013 <a rel="author" href="https://profiles.google.com/codinghorror1">Jeff Atwood</a>.  Logo image used with permission of the author. © 1993 Steven C. McConnell. All Rights Reserved.</div>  
+
+</div> <!-- container -->
+
+<div id="links"> 
+
+
+<div class="side">
+<div class="sidetitle">Newer »</div>
+<a href="http://www.codinghorror.com/blog/2009/02/file-compression-in-the-multi-core-era.html">File Compression in the Multi-Core Era</a>
+</div>
+
+
+
+<div class="side">
+<div class="sidetitle" style="padding-top:5px">« Older</div>
+<a href="http://www.codinghorror.com/blog/2009/02/whos-your-coding-buddy.html">Who's Your Coding Buddy?</a>
+</div> 
+
+ 
+<p></p> 
+
+<div class="side"> 
+<!-- 
+
+<a href="http://www.codinghorror.com/blog/">Home</a> &nbsp; &nbsp; <a href="http://www.codinghorror.com/blog/archives.html">Browse All Posts</a> 
+<p></p> 
+
+-->
+
+<!--
+<div style="margin-bottom:15px">
+<a href="http://www.slickedit.com/go.php?c=codinghorror&d=se_product" rel="nofollow"><img alt="Celebrate SlickEdit's 25th Anniversary with 25% off SlickEdit 2013 Purchases"  src="http://www.codinghorror.com/.a/6a0120a85dcdae970b019affb67f79970d-800wi" width="208" height="177" /></a><br/>
+<div style="text-align:center"><a href="http://www.slickedit.com/go.php?c=codinghorror&d=se_product" rel="nofollow">Trial download</a> SlickEdit today!</div>
+</div>
+-->
+ 
+<!--
+<div id="influads_block" class="influads_block" style="width:208px !important; align:center;"> </div> 
+
+<script async>
+(function(){var acc='acc_843d584_pub';var st='css';var or='130';var e=document.getElementsByTagName('script')[0];var d=document.createElement('script');d.src=('https:' == document.location.protocol ?'https://' : 'http://') +'engine.influads.com/show/'+or+'/'+st+'/'+acc;d.type='text/javascript';d.async=true;d.defer=true; e.parentNode.insertBefore(d,e);})();
+</script>
+-->
+
+<div id="hireme" class="hireme codinghorror" style="min-height:220px"></div>
+<script async="">
+    setTimeout(function () {
+        var a = document.createElement("script");
+        var b = document.getElementsByTagName('script')[0];
+        a.src = "http://careers.stackoverflow.com/ad/js";
+        a.async = true; 
+        a.type = "text/javascript"; 
+        b.parentNode.insertBefore(a, b);
+    }, 5);
+</script>
+
+
+
+
+<p></p> 
+<div class="sidetitle">Resources</div> 
+<a href="http://www.codinghorror.com/blog/2004/02/about-me.html">About Me</a><br>
+<a href="http://twitter.com/codinghorror">@codinghorror</a><br>
+<a href="http://www.discourse.org/">discourse.org</a><br>
+<a href="http://stackexchange.com/">stackexchange.com</a><br>
+<a href="http://www.codinghorror.com/blog/2004/02/recommended-reading-for-developers.html">Recommended Reading</a>
+<p></p>
+<div class="syndicate"> 
+<a href="http://feeds.feedburner.com/codinghorror" rel="alternate" type="application/rss+xml"><img src="coding-horror-paying-down-your-technical-debt_files/feed-icon16x16.png" alt="" style="vertical-align:middle;border:0" height="16" width="16">&nbsp;Subscribe in a reader</a> 
+<br> 
+<a href="http://feedburner.google.com/fb/a/mailverify?uri=codinghorror&amp;loc=en_US"><img src="coding-horror-paying-down-your-technical-debt_files/mail.png" alt="" style="vertical-align:middle;border:0" height="16" width="16">&nbsp;Subscribe via email</a> 
+<p></p>
+<div class="side"> 
+Coding Horror has been continuously published since 2004. Browse the <b><a href="http://www.codinghorror.com/blog/archives.html">complete post archives</a></b>.
+</div> 
+<p></p> 
+<table style="border-spacing:0px">
+<tbody><tr>
+<td style="padding-right:10px">
+<img src="coding-horror-paying-down-your-technical-debt_files/codinghorror.gif" style="border:0" alt="Count of RSS readers" height="26" width="88"> 
+</td>
+<td style="padding-bottom:8px">
+<a href="http://my.statcounter.com/project/standard/stats.php?project_id=2600027&amp;guest=1">Traffic Stats</a> 
+</td>
+</tr>
+</tbody></table>
+</div> 
+
+
+</div>
+
+</div> <!-- links -->
+ 
+<script> 
+x=window.document.getElementsByTagName('div'); for(var i = 0; i < x.length; i++) { if (x[i].className == "comments-body") { if (x[i].innerHTML.search(/jeff atwood<\/a>/i) != -1) { x[i].style.backgroundColor = "#FFECC7"; } } }
+</script>
+
+<script>
+var sc_project=2600027; 
+var sc_invisible=0; 
+var sc_partition=25; 
+var sc_security="dcff5548"; 
+</script> 
+ 
+<script async="" src="coding-horror-paying-down-your-technical-debt_files/counter.js"></script> 
+<noscript><a href="http://www.statcounter.com/"><img  src="http://c26.statcounter.com/counter.php?sc_project=2600027&amp;java=0&amp;security=dcff5548&amp;invisible=0" alt="web metrics"></a> </noscript> 
+
+<!-- Begin comScore Tag -->
+<script>
+document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js'%3E%3C/script%3E"));
+</script><script src="coding-horror-paying-down-your-technical-debt_files/beacon.js"></script>
+<script>
+COMSCORE.beacon({
+  c1: 2,
+  c2: "6035669",
+  c3: "",
+  c4: "http://www.codinghorror.com/blog/2009/02/paying-down-your-technical-debt.html",
+  c5: "",
+  c6: "",
+  c15: ""
+});
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/b?c1=2&c2=6035669&c3=&c4=http%3A%2F%2Fwww.codinghorror.com%2Fblog%2F2009%2F02%2Fpaying-down-your-technical-debt.html&c5=&c6=&c15=&cv=1.3&cj=1" style="display:none" width="0" height="0" alt="" />
+</noscript>
+<!-- End comScore Tag -->
+<!-- ph=1 -->
+<div style="display: none;"><iframe frameborder="0"></iframe></div></body></html>

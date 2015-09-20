@@ -2,13 +2,34 @@
 layout: default
 whatsup:
   - title: "Created a new Meetup Group: <a href='http://www.meetup.com/Stockholm-Language-Runtime-VM-Meetup'>Stockholm Language Runtime & VM Meetup</a>"
-    date: "Sept 2015"
+    date: "Sep 2, 2015"
   - title: "Launched <a href='http://stackrating.com'>StackRating.com</a> &ndash; an Elo based rating system for Stack Overflow users."
-    date: "May 2015"
+    date: "May 2, 2015"
   - title: "Took over development of a tool called <a href='http://stackoverflow.com/q/26424759/276052'>sjavac</a>."
-    date: "Apr 2014"
+    date: "Apr 22, 2014"
   - title: "Selected as one of Swedens top-10 developers under 30 in the <a href='30under30.io'>30under30</a> competition."
-    date: "Mar 2014"
+    date: "Mar 26, 2014"
+
+featured:
+  - title: "Why is executing Java code in comments with certain Unicode characters allowed?"
+    url: http://stackoverflow.com/q/30727515/276052
+    date: "Jun 9, 2015"
+  - title: "How to convert byte size into human readable format in java?"
+    url: http://stackoverflow.com/q/3758606/276052
+    date: "Sep 21, 2010"
+  - title: "Handling InterruptedException in Java"
+    url: http://stackoverflow.com/q/3976344/276052
+    date: "Oct 20, 2010"
+  - title: "Why must wait() always be in synchronized block"
+    url: http://stackoverflow.com/q/2779484/276052
+    date: "May 6, 2010"
+  - title: "Do interfaces inherit from Object class in Java"
+    url: http://stackoverflow.com/q/6056124/276052
+    date: "Jun 3, 2011"
+  - title: "What is sjavac, who is it for and how do I use it?"
+    url: http://stackoverflow.com/q/26424759/276052
+    date: "Oct 17, 2014"
+  - posttitle: "QR"
 ---
 <h2>What&rsquo;s up?</h2>
 <ul>
@@ -67,25 +88,36 @@ whatsup:
 <p>When he&rsquo;s not writing code he&rsquo;s going to programming meetups, practicing juggling or spending time with his wife and two daugters.</p>
 
 <p><a href="andreas_lundblad_resume.pdf">R&eacute;sum&eacute;</a> (updated June 22, 2015) and <a href="/papers/list.html">list of publications</a>.</p>
-<h2>Blog</h2>
-<p>Featured blog entries:</p>
+
+<h2>Blog&thinsp;/&thinsp;Stack Overflow</h2>
+<p>Featured blog entries and Stack Overflow answers.</p>
 <ul>
-    {% for post in site.posts %}
-    <li>
-        <div class="label" style="float: right">{{ post.date | date: "%b %-d, %Y" }}</div>
-        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-    </li>
+    {% for featured in page.featured %}
+        <li>
+            {% if featured.title %}
+                <span class="label" style="float: right">{{ featured.date }}</span>
+                <a href="{{ featured.url }}">{{ featured.title }}</a>
+            {% else %}
+                {% for post in site.posts %}
+                    {% if post.title contains featured.posttitle %}
+                        <span class="label" style="float: right">{{ post.date | date: "%b %-d, %Y" }}</span>
+                        <a href="{{ post_url post.url }}">{{ post.title }}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </li>
     {% endfor %}
 </ul>
+<p>View <a href="http://stackoverflow.com/users/276052/aioobe?tab=answers">all my answers</a> on Stack Overflow, view <a href="blog/">all blog entries</a> or subscribe to blog <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>.</p>
 
-<p>Subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>.</p>
 
 
-<h2>Recommended talks and articles</h2>
-<ul>
+
+<h2>My favorite talks&thinsp;/&thinsp;articles</h2>
+<ol>
+    <li><a href="https://www.youtube.com/watch?v=TS1lpKBMkgg">Pacific Northwest Scala 2013 We're Doing It All Wrong</a>, talk by Paul Phillips</li>
+    <li><a href="mirrored/coding-horror-paying-down-your-technical-debt.html">Paying Down Your Technical Debt</a>, article by Jeff Atwood</li>
     <li><a href="mirrored/java-theory-and-practice-generics-gotchas.html">Java Generics gotchas</a>, article by Brian Goetz</li>
-    <li><a href="mirrored/the-c-is-efficient-language-fallacy.html">The "C is Efficient" Language Fallacy</a> article by Mark C. Chu-Carroll</li>
-    <li><a href="mirrored/coding-horror-paying-down-your-technical-debt.html">Paying Down Your Technical Debt</a> article by Jeff Atwood</li>
-    <li><a href="mirrored/10x-is-a-state-of-being-not-a-type-of-engineer.html">10x is a State of Being, Not a Type of Engineer</a> article by Jeff Dickey</li>
-    <li><a href="https://www.youtube.com/watch?v=TS1lpKBMkgg">Pacific Northwest Scala 2013 We're Doing It All Wrong</a> talk by Paul Phillips</li>
-</ul>
+    <li><a href="mirrored/the-c-is-efficient-language-fallacy.html">The "C is Efficient" Language Fallacy</a>, article by Mark C. Chu-Carroll</li>
+    <li><a href="mirrored/10x-is-a-state-of-being-not-a-type-of-engineer.html">10x is a State of Being, Not a Type of Engineer</a>, article by Jeff Dickey</li>
+</ol>

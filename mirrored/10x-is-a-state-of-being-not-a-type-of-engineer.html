@@ -1,0 +1,973 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html class="js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/auth016.js" type="text/javascript"></script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/widgets.js" type="text/javascript"></script><link media="all" href="10x-is-a-state-of-being-not-a-type-of-engineer_files/widget118.css" type="text/css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <link rel="canonical" href="http://architects.dzone.com/articles/10x-state-being-not-type">
+    
+    <!-- Start of DART Code -->
+    <script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/client.js" async="" type="text/javascript" id="LR1"></script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/all_002.js" id="facebook-jssdk"></script><script async="" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/cbgapi.loaded_2"></script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/widgets.js" id="twitter-wjs"></script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/widgets_002.js" async="" type="text/javascript"></script><script async="" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/cbgapi.loaded_1"></script><script async="" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/cbgapi.loaded_0"></script><script gapi_processed="true" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/plusone.js" async="" type="text/javascript"></script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/ga.js" async="" type="text/javascript"></script><script async="" type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/woopra.js"></script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/514a05817a82440002000406.js" async="" type="text/javascript"></script><script type="text/javascript">
+	// This is a bad little hack for things that execute reliance on Drupals JS before its been fully loaded
+	var Drupal = Drupal || { 'settings': {}, 'behaviors': {}, 'themes': {}, 'locale': {} };
+	Drupal.behaviors = Drupal.behaviors || {};
+        (function() {
+            var useSSL = 'https:' == document.location.protocol;
+            var src = (useSSL ? 'https:' : 'http:') +
+                '//www.googletagservices.com/tag/js/gpt.js';
+            document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+        })();
+        </script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/gpt.js"></script>
+
+<script type="text/javascript">
+  (function() {
+    window._pa = window._pa || {};
+    var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+    pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/514a05817a82440002000406.js";
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+  })();
+</script>
+
+    <script type="text/javascript">
+        googletag.defineSlot('/2916070/zones_bottomblurb_650x122', [650, 122], 'div-gpt-ad-1350569504085-0').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_masthead_728x90_default', [728, 90], 'div-gpt-ad-1350569504085-1').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_sidebar_336x280_default', [300, 250], 'div-gpt-ad-1350569504085-2').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_superboard_980x200', [980, 280], 'div-gpt-ad-1350569504085-3').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-40').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-41').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_239x90', [239, 90], 'div-gpt-ad-1350569504085-42').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_textad_800x20', [800, 20], 'div-gpt-ad-1350569504085-5').addService(googletag.pubads());
+        googletag.defineSlot('/2916070/zones_topblurb_650x61', [650, 61], 'div-gpt-ad-1350569504085-6').addService(googletag.pubads());
+        googletag.pubads().enableSyncRendering();
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+        googletag.pubads().setTargeting("tag", "123873-agile");
+    </script><script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/pubads_impl_31.js"></script>
+    <!-- End of DART Code -->
+
+
+    <!-- Start of Woopra Code -->
+    <script type="text/javascript">
+        function woopraReady(tracker) {
+            tracker.setDomain('dzone.com');
+            tracker.setIdleTimeout(300000);
+
+            
+            tracker.trackPageview({
+                url: window.location.pathname + window.location.search,
+                title: document.title,
+                                    author: 'dickeytk',
+                                zone:'Architects Zone',
+                microzone:'1'
+            });
+
+            return false;
+        }
+        (function() {
+            var wsc = document.createElement('script');
+            wsc.src = document.location.protocol+'//static.woopra.com/js/woopra.js';
+            wsc.type = 'text/javascript';
+            wsc.async = true;
+            var ssc = document.getElementsByTagName('script')[0];
+            ssc.parentNode.insertBefore(wsc, ssc);
+        })();
+    </script>
+    <!-- End of Woopra Code -->
+
+    <!-- Use this code block to activate a prestitial if there's one to load -->
+    <!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+    <script language="JavaScript" type="text/javascript">
+        <!--
+        document.write('<SCR'+'IPT src="http://avpa.dzone.com/servlet/view/dynamic/javascript/zone?zid=159&pid=0&random='+Math.floor(89999999*Math.random()+10000000)+'&millis='+new Date().getTime()+'" language="JavaScript" type="text/javascript"></SCR'+'IPT>');
+        //-->
+    </script><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/zone" language="JavaScript" type="text/javascript"></script>
+
+    <!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+
+            <title>10x is a State of Being, Not a Type of Engineer | Architects Zone</title>
+    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="alternate" type="application/rss+xml" title="Comments for &quot;10x is a State of Being, Not a Type of Engineer&quot;" href="http://architects.dzone.com/crss/node/157051">
+
+<link rel="shortcut icon" href="http://architects.dzone.com/misc/favicon.ico" type="image/x-icon">
+<script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/16518638.js"></script>
+            <link rel="alternate" type="application/rss+xml" title="Architects Zone RSS" href="http://feeds.dzone.com/zones/architects">
+                <link type="text/css" rel="stylesheet" media="all" href="10x-is-a-state-of-being-not-a-type-of-engineer_files/css_f0e92dd4f4c2caa739ba8a7407040b0c.css">
+<link type="text/css" rel="stylesheet" media="print" href="10x-is-a-state-of-being-not-a-type-of-engineer_files/css_65d637aa7eddfbf57e33f4da826e30ad.css">
+                <meta name="Description" content="
+The idea of a 10x developer is nothing new, and has been contested deeply. But the idea is simply:
+
+10x developers are 10x as productive as their...">
+            
+        <meta name="google-site-verification" content="">
+    
+    <!-- RSS link -->
+    
+        <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-410289-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script><img class="ohpldovssrkajcdvrbom" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/seg.gif" height="1" width="1" border="0"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/a.gif" height="1" width="1" border="0">                        <script type="text/javascript">
+                _gaq.push(['_trackEvent', 'acoin\'s Pageviews', 'Reprint', '10x is a State of Being, Not a Type of Engineer']);
+                <!--                pageTracker._trackEvent('--><!--\'s Pageviews', '--><!--', "--><!--");-->
+            </script>
+                        
+
+<script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/nonSecureAnonymousFramework"></script><style type="text/css">* html #li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link{height:1% !important;}#li_ui_li_gen_1384606259799_0{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link:link, #li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link:visited, #li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link:hover, #li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1384606259799_0 a#li_ui_li_gen_1384606259799_0-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-logo{background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-logo, #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-logo{}#li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-moz-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#ECECEC !important;background-image:-moz-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-moz-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title, #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-moz-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title{}.IN-shadowed #li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title{}.IN-shadowed #li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title, .IN-shadowed #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title{}#li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title-text, #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title-text em{font-style:italic !important;}#li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title-text, #li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title-text *{color:#000 !important;}#li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title-text, #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title-text, #li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title-text *, #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title-text *{color:#666 !important;}#li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title #li_ui_li_gen_1384606259799_0-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-moz-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title-text, .success #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1384606259799_0 #li_ui_li_gen_1384606259799_0-title{}.success #li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-moz-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title-text, .success #li_ui_li_gen_1384606259799_0.hovered #li_ui_li_gen_1384606259799_0-title-text *{color:#000 !important;}.success #li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title, .success #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-moz-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title-text, .success #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title-text, .success #li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title-text *, .success #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1384606259799_0.clicked #li_ui_li_gen_1384606259799_0-title, .IN-shadowed .success #li_ui_li_gen_1384606259799_0.down #li_ui_li_gen_1384606259799_0-title{}#li_ui_li_gen_1384606259829_1-container.IN-right {display:inline-block !important;float:left !important;overflow:visible !important;position:relative !important;height:18px !important;padding-left:2px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1384606259829_1.IN-right {display:block !important;float:left !important;height:18px !important;margin-right:4px !important;padding-right:4px !important;background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) right -100px no-repeat !important;}#li_ui_li_gen_1384606259829_1-inner.IN-right {display:block !important;float:left !important;padding-left:8px !important;text-align:center !important;background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -60px no-repeat !important;}#li_ui_li_gen_1384606259829_1-content.IN-right {display:inline !important;font-size:11px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:18px !important;padding:0 5px 0 5px !important;}#li_ui_li_gen_1384606259829_1-container.IN-hovered #li_ui_li_gen_1384606259829_1.IN-right, #li_ui_li_gen_1384606259829_1-container.IN-clicked #li_ui_li_gen_1384606259829_1.IN-right, #li_ui_li_gen_1384606259829_1-container.IN-down #li_ui_li_gen_1384606259829_1.IN-right {background-position-y:-120px !important;}#li_ui_li_gen_1384606259829_1-container.IN-hovered #li_ui_li_gen_1384606259829_1-inner.IN-right, #li_ui_li_gen_1384606259829_1-container.IN-clicked #li_ui_li_gen_1384606259829_1-inner.IN-right, #li_ui_li_gen_1384606259829_1-container.IN-down #li_ui_li_gen_1384606259829_1-inner.IN-right {background-position-y:-80px !important;}#li_ui_li_gen_1384606259829_1-container.IN-empty {display:none !important;}#li_ui_li_gen_1384606259829_1-container.IN-hidden #li_ui_li_gen_1384606259829_1 {display:none !important;}* html #li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link{height:1% !important;}#li_ui_li_gen_1384606261674_2{position:relative !important;overflow:visible !important;display:block !important;}#li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link{border:0 !important;height:20px !important;text-decoration:none !important;padding:0 !important;margin:0 !important;display:inline-block !important;}#li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link:link, #li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link:visited, #li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link:hover, #li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link:active{border:0 !important;text-decoration:none !important;}#li_ui_li_gen_1384606261674_2 a#li_ui_li_gen_1384606261674_2-link:after{content:"." !important;display:block !important;clear:both !important;visibility:hidden !important;line-height:0 !important;height:0 !important;}#li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-logo{background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -276px no-repeat !important;cursor:pointer !important;border:0 !important;text-indent:-9999em !important;overflow:hidden !important;padding:0 !important;margin:0 !important;position:absolute !important;left:0px !important;top:0px !important;display:block !important;width:20px !important;height:20px !important;float:right !important;}#li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-logo{background-position:-20px -276px !important;}#li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-logo, #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-logo{background-position:-40px -276px !important;}.IN-shadowed #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-logo{}#li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title{color:#333 !important;cursor:pointer !important;display:block !important;white-space:nowrap !important;float:left !important;margin-left:1px !important;vertical-align:top !important;overflow:hidden !important;text-align:center !important;height:18px !important;padding:0 4px 0 23px !important;border:1px solid #000 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;border-left:0 !important;text-shadow:#FFFFFF -1px 1px 0 !important;line-height:20px !important;border-radius:0 !important;-moz-border-radius:0 !important;border-top-right-radius:2px !important;border-bottom-right-radius:2px !important;-moz-border-radius-topright:2px !important;-moz-border-radius-bottomright:2px !important;background-color:#ECECEC !important;background-image:-moz-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}#li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title{border:1px solid #000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;border-left:0 !important;background-color:#EDEDED !important;background-image:-moz-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}#li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title, #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title{color:#666 !important;border:1px solid #000 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;border-left:0 !important;background-color:#DEDEDE !important;background-image:-moz-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.IN-shadowed #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title{}.IN-shadowed #li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title{}.IN-shadowed #li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title, .IN-shadowed #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title{}#li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title-text, #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title-text *{color:#333 !important;font-size:11px !important;font-family:Arial, sans-serif !important;font-weight:bold !important;font-style:normal !important;display:inline-block !important;background:transparent none !important;vertical-align:top !important;height:18px !important;line-height:20px !important;float:none !important;}#li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title-text strong{font-weight:bold !important;}#li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title-text em{font-style:italic !important;}#li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title-text, #li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title-text *{color:#000 !important;}#li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title-text, #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title-text, #li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title-text *, #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title-text *{color:#666 !important;}#li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title #li_ui_li_gen_1384606261674_2-mark{display:inline-block !important;width:0px !important;overflow:hidden !important;}.success #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title{color:#333 !important;border-top-color:#E2E2E2 !important;border-right-color:#BFBFBF !important;border-bottom-color:#B9B9B9 !important;border-left-color:#E2E2E2 !important;background-color:#ECECEC !important;background-image:-moz-linear-gradient(top, #FEFEFE 0%, #ECECEC 100%) !important;}.success #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title-text, .success #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title-text *{color:#333 !important;}.IN-shadowed .success #li_ui_li_gen_1384606261674_2 #li_ui_li_gen_1384606261674_2-title{}.success #li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title{color:#000 !important;border-top-color:#ABABAB !important;border-right-color:#9A9A9A !important;border-bottom-color:#787878 !important;border-left-color:#04568B !important;background-color:#EDEDED !important;background-image:-moz-linear-gradient(top, #EDEDED 0%, #DEDEDE 100%) !important;}.success #li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title-text, .success #li_ui_li_gen_1384606261674_2.hovered #li_ui_li_gen_1384606261674_2-title-text *{color:#000 !important;}.success #li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title, .success #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title{color:#666 !important;border-top-color:#B6B6B6 !important;border-right-color:#B3B3B3 !important;border-bottom-color:#9D9D9D !important;border-left-color:#49627B !important;background-color:#DEDEDE !important;background-image:-moz-linear-gradient(top, #E3E3E3 0%, #EDEDED 100%) !important;}.success #li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title-text, .success #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title-text, .success #li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title-text *, .success #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title-text *{color:#666 !important;}.IN-shadowed .success #li_ui_li_gen_1384606261674_2.clicked #li_ui_li_gen_1384606261674_2-title, .IN-shadowed .success #li_ui_li_gen_1384606261674_2.down #li_ui_li_gen_1384606261674_2-title{}#li_ui_li_gen_1384606261681_3-container.IN-top {display:inline-block !important;overflow:visible !important;position:relative !important;height:42px !important;line-height:1px !important;cursor:pointer !important;}#li_ui_li_gen_1384606261681_3.IN-top {display:inline-block !important;height:42px !important;width:57px !important;text-align:center !important;background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) -150px top no-repeat !important;}#li_ui_li_gen_1384606261681_3-content.IN-top {display:inline !important;font-size:16px !important;color:#04558B !important;font-weight:bold !important;font-family:Arial, sans-serif !important;line-height:34px !important;}#li_ui_li_gen_1384606261681_3-container.IN-hovered #li_ui_li_gen_1384606261681_3.IN-top, #li_ui_li_gen_1384606261681_3-container.IN-clicked #li_ui_li_gen_1384606261681_3.IN-top, #li_ui_li_gen_1384606261681_3-container.IN-down #li_ui_li_gen_1384606261681_3.IN-top {background-position-x:-210px !important;}#li_ui_li_gen_1384606261681_3-container.IN-empty #li_ui_li_gen_1384606261681_3-inner.IN-top {background:url(http://s.c.lnkd.licdn.com/scds/common/u/img/sprite/sprite_connect_v13.png) 0px -20px no-repeat !important;overflow:hidden !important;margin:5px auto 0 auto !important;width:26px !important;height:26px !important;display:block !important;}#li_ui_li_gen_1384606261681_3-container.IN-empty #li_ui_li_gen_1384606261681_3-content.IN-top {text-indent:-999px !important;display:inline-block !important;}#li_ui_li_gen_1384606261681_3-container.IN-hidden #li_ui_li_gen_1384606261681_3 {display:none !important;}</style><link href="10x-is-a-state-of-being-not-a-type-of-engineer_files/woopra.css" type="text/css" rel="stylesheet"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_reset > div{overflow:hidden}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+.fbpluginrecommendationsbarleft{left:10px}
+.fbpluginrecommendationsbarright{right:10px}</style></head>
+<body data-twttr-rendered="true" class="sidebar-right"><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/hub.html" style="position: absolute; top: -9999em; width: 10px; height: 10px;" name="twttrHubFrameSecure" tabindex="0" allowtransparency="true" id="twttrHubFrameSecure" scrolling="no" frameborder="0"></iframe><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/hub_002.html" style="position: absolute; top: -9999em; width: 10px; height: 10px;" name="twttrHubFrame" tabindex="0" allowtransparency="true" id="twttrHubFrame" scrolling="no" frameborder="0"></iframe>
+
+<div id="page_wrapper">
+
+
+<div class="global_menu">
+    <div class="menu_wrapper">
+        <div id="menu_login">
+                        <a href="http://architects.dzone.com/user">LOG IN</a> or <a href="http://architects.dzone.com/user/register?clean=true">JOIN</a>
+                    </div>
+                <ul class="nice-menu nice-menu-down" id="nice-menu-1"><li id="menu-211" class="menu-path-www.dzone.com"><a href="http://www.dzone.com/" title="">Home</a></li>
+<li id="menu-167" class="menu-path-refcardz.dzone.com-"><a href="http://refcardz.dzone.com/">Refcardz</a></li>
+<li id="menu-4979" class="menuparent menu-path-www.dzone.com-mz"><a href="http://www.dzone.com/mz" title="">Microzones</a><ul><li id="menu-5713" class="menu-path-dzone.com-mz-agile"><a href="http://dzone.com/mz/agile" title="">Agile Zone</a></li>
+<li id="menu-5029" class="menu-path-domain-cloud.dzone.com"><a href="http://architects.dzone.com/domain/cloud.dzone.com" title="Go to cloud.dzone.com">Cloud Zone</a></li>
+<li id="menu-5613" class="menu-path-dzone.com-mz-big-data"><a href="http://dzone.com/mz/big-data" title="">Big Data/BI Zone</a></li>
+<li id="menu-5081" class="menu-path-dzone.com-mz-devops"><a href="http://dzone.com/mz/devops" title="">DevOps Zone</a></li>
+<li id="menu-5451" class="menu-path-dzone.com-mz-enterprise-integration"><a href="http://dzone.com/mz/enterprise-integration" title="">Enterprise Integration</a></li>
+<li id="menu-5187" class="menu-path-dzone.com-mz-html5"><a href="http://dzone.com/mz/html5" title="">HTML5 Zone</a></li>
+<li id="menu-4987" class="menu-path-dzone.com-mz-mobile"><a href="http://dzone.com/mz/mobile" title="">Mobile Zone</a></li>
+<li id="menu-5293" class="menu-path-dzone.com-mz-dotnet"><a href="http://dzone.com/mz/dotnet" title="">.NET Zone</a></li>
+<li id="menu-5221" class="menu-path-dzone.com-mz-nosql"><a href="http://dzone.com/mz/nosql" title="">NoSQL Zone</a></li>
+<li id="menu-5607" class="menu-path-dzone.com-mz-performance"><a href="http://dzone.com/mz/performance" title="">Performance Zone</a></li>
+<li id="menu-5721" class="menu-path-dzone.com-mz-social-business"><a href="http://dzone.com/mz/social-business" title="">Social Business</a></li>
+<li id="menu-5723" class="menu-path-dzone.com-mz-tech-marketing"><a href="http://dzone.com/mz/tech-marketing" title="">Tech Marketing</a></li>
+<li id="menu-5725" class="menu-path-www.dzone.com-mz-sdn"><a href="http://www.dzone.com/mz/sdn" title="">SDN Focus</a></li>
+</ul>
+</li>
+<li id="menu-125" class="menuparent menu-path-domain"><a href="http://architects.dzone.com/domain">Zones</a><ul><li id="menu-426" class="menu-path-domain-java.dzone.com"><a href="http://architects.dzone.com/domain/java.dzone.com" title="Go to java.dzone.com">Javalobby</a></li>
+<li id="menu-454" class="menu-path-domain-css.dzone.com"><a href="http://architects.dzone.com/domain/css.dzone.com" title="Go to css.dzone.com">Web Builder Zone</a></li>
+<li id="menu-4991" class="menuparent menu-path-front"><a href="http://architects.dzone.com/" title="">IDEs and Tools</a><ul><li id="menu-413" class="menu-path-domain-eclipse.dzone.com"><a href="http://architects.dzone.com/domain/eclipse.dzone.com" title="Go to eclipse.dzone.com">Eclipse Zone</a></li>
+<li id="menu-317" class="menu-path-domain-jetbrains.dzone.com"><a href="http://architects.dzone.com/domain/jetbrains.dzone.com" title="Go to jetbrains.dzone.com">JetBrains Zone</a></li>
+<li id="menu-431" class="menu-path-domain-netbeans.dzone.com"><a href="http://architects.dzone.com/domain/netbeans.dzone.com" title="Go to netbeans.dzone.com">NetBeans Zone</a></li>
+</ul>
+</li>
+<li id="menu-4999" class="menuparent menu-path-front"><a href="http://architects.dzone.com/" title="">Languages</a><ul><li id="menu-5295" class="menu-path-php.dzone.com"><a href="http://php.dzone.com/" title="Go to php.dzone.com">PHP Zone</a></li>
+<li id="menu-5001" class="menu-path-groovy.dzone.com"><a href="http://groovy.dzone.com/" title="">Groovy Zone</a></li>
+<li id="menu-5003" class="menu-path-python.dzone.com"><a href="http://python.dzone.com/" title="">Python Zone</a></li>
+<li id="menu-5457" class="menu-path-ruby.dzone.com"><a href="http://ruby.dzone.com/" title="">Ruby Zone</a></li>
+</ul>
+</li>
+<li id="menu-189" class="menu-path-domain-architects.dzone.com"><a href="http://architects.dzone.com/domain/architects.dzone.com" title="Go to architects.dzone.com">Architects Zone</a></li>
+<li id="menu-400" class="menu-path-domain-books.dzone.com"><a href="http://architects.dzone.com/domain/books.dzone.com" title="Go to books.dzone.com">Book Zone</a></li>
+<li id="menu-287" class="menu-path-domain-server.dzone.com"><a href="http://architects.dzone.com/domain/server.dzone.com">Server Zone</a></li>
+</ul>
+</li>
+<li id="menu-367" class="menu-path-library.dzone.com"><a href="http://library.dzone.com/">Library</a></li>
+<li id="menu-1349" class="menu-path-dzone.com-snippets-"><a href="http://dzone.com/snippets/" title="">Snippets</a></li>
+<li id="menu-5617" class="menu-path-www.dzone.com-tutorials-"><a href="http://www.dzone.com/tutorials/" title="">Tutorials</a></li>
+</ul>
+        <div id="search_bar">
+            <form action="/search/google" accept-charset="UTF-8" method="get" id="google-cse-searchbox-form">
+<div><input name="cx" id="edit-cx" value="010821965829155306098:ogyaz_5nsc8" type="hidden">
+<input name="cof" id="edit-cof" value="FORID:11" type="hidden">
+<div class="form-item" id="edit-query-wrapper">
+ <input style="background: url(&quot;http://www.google.com/coop/intl/en/images/google_custom_search_watermark.gif&quot;) no-repeat scroll left center rgb(255, 255, 255);" maxlength="128" name="query" id="edit-query" size="15" title="Enter the terms you wish to search for." class="form-text" type="text">
+</div>
+<input name="op" id="edit-sa" value="Search" class="form-submit" type="submit">
+<input name="form_build_id" id="form-912259b00254925512d1f3dc3657afab" value="form-912259b00254925512d1f3dc3657afab" type="hidden">
+<input name="form_id" id="edit-google-cse-searchbox-form" value="google_cse_searchbox_form" type="hidden">
+
+</div></form>
+        </div>
+    </div>
+</div>
+
+    
+
+
+<div class="siteHeader">
+</div>
+
+
+<div id="header-region" class="clear-block">
+</div>
+
+<div id="wrapper" class="fewerAds">
+<div id="container" class="clear-block">
+<div id="header">
+    <div id="masthead">
+
+        <div id="site_id">
+                        <a href="http://www.dzone.com/mz/agile" title="DZone: Your Personal Tech Universe"><img class="dz_logo" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/mh_dzone_logo.png" alt="DZone: Your Personal Tech Universe" title="DZone: Your Personal Tech Universe"></a>
+                            <!--                    <div class="site_name" style="margin-top:16px;"><a  href="--><!--" title="--><!--">--><!--</a></div>-->
+                <!--                    <a href="--><!--" title="--><!--"><img class="site_logo" src="http://cdn.dzone.com/--><!--"-->
+                <!--                         alt="--><!--" title="--><!--" /></a>-->
+                            <!--                <span class="site_slogan">--><!--</span>-->
+                    </div>
+
+        
+                <div class="mh_leader">
+            <div class="leaderboard">
+                <!-- BEGIN DART CODE BLOCK -->
+                        <!-- zones_textad_239x90 -->
+                    <!--<div id='div-gpt-ad-1350569504085-4' class="top-textad">
+                        <script type='text/javascript'>
+                            googletag.display('div-gpt-ad-1350569504085-40');
+                        </script>
+                    </div>
+                    <div id='div-gpt-ad-1333726564216-41' class="top-textad">
+                        <script type='text/javascript'>
+                            googletag.display('div-gpt-ad-1350569504085-41');
+                        </script>
+                    </div>
+                    <div id='div-gpt-ad-1333726564216-42' class="top-textad">
+                        <script type='text/javascript'>
+                            googletag.display('div-gpt-ad-1350569504085-42');
+                        </script>
+                    </div>-->
+                <div id="div-gpt-ad-1350569504085-1">
+                    <script type="text/javascript">
+                        googletag.display('div-gpt-ad-1350569504085-1');
+                    </script><script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/ads"></script>
+                </div>
+                <!-- END DART CODE BLOCK -->
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<div id="siteBar">
+            <div class="site_name"><a href="http://www.dzone.com/mz/agile" title="Agile Zone">Agile Zone</a></div>
+    <div class="textads">
+        <!-- zones_textad_800x20 -->
+        <div id="div-gpt-ad-1350569504085-5" style="width:800px; height:20px;">
+            <script type="text/javascript">
+                googletag.display('div-gpt-ad-1350569504085-5');
+            </script>
+        </div>
+    </div>
+    </div>
+
+<!--    <div class="topics-trending fancyfont">-->
+<!--    --><!--    </div>-->
+
+    
+<div id="superboard">
+    <span class="superboard_sponsor_info">Agile Zone is brought to you in partnership with:</span>    <!-- zones_superboard_980x200 -->
+    <div id="div-gpt-ad-1350569504085-3" style="width:980px;">
+        <script type="text/javascript">
+            googletag.display('div-gpt-ad-1350569504085-3');
+        </script>
+    </div>
+    <!-- End DART Code-->
+</div>
+    
+
+
+<!-- end of header -->
+<div id="center" class=""><div id="squeeze">
+    <div id="article">         <!-- Snippets Message Header -->
+                <div style="clear:both;"></div>
+                                                                        
+            <!--Author Block-->
+                            <div class="meta">
+
+                    
+                                        <div class="submitted">
+                        <div id="author">
+                            <a href="http://architects.dzone.com/users/dickeytk"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/picture-959939.jpg" style="width:43px; float:left; margin-right: 10px;"></a>
+                                                        <a href="http://www.dzone.com/page/mvbs" onclick="_gaq.push(['_trackEvent', 'MVB Badge', 'dickeytk']);"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/mvb_badge.png" style="vertical-align:bottom;"></a>
+                                                        <a href="http://architects.dzone.com/users/dickeytk"><b id="authorname">Jeff Dickey</b> </a>
+                            <ul class="authorMetaData">
+                                                                                                <li><a href="http://dickey.xxx/">Website</a></li>
+                                                                                                <li><a href="https://twitter.com/dickeyxxx" class="author-twitter-button">@dickeyxxx</a></li>
+                                                                                                <li class="author-facebook">
+                                    <a href="http://www.facebook.com/dickeyj" onclick="_gaq.push(['_trackEvent', 'Social Button Click', 'Author Facebook', 'dickeytk']);"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/facebook_icon.png" width="20"></a>
+                                </li>
+                                                                                                <li class="author-googleplus">
+                                    <a href="http://plus.google.com/JeffDickeyxxx/" onclick="_gaq.push(['_trackEvent', 'Social Button Click', 'Author Google+', 'dickeytk']);"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/googleplus_icon.png" width="20"></a>
+                                </li>
+                                                                                                <li class="author-linkedin">
+                                    <a href="http://www.linkedin.com/in/dickeyxxx" onclick="_gaq.push(['_trackEvent', 'Social Button Click', 'Author LinkedIn', 'dickeytk']);"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/linkedin_icon.png" width="20"></a>
+                                </li>
+                                                                                                <li class="author-github">
+                                    <a href="http://www.github.com/dickeyxxx" onclick="_gaq.push(['_trackEvent', 'Social Button Click', 'Author GitHub', 'dickeytk']);"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/github_icon.png" width="20"></a>
+                                </li>
+                                                            </ul>
+
+                        </div>
+
+                    </div><div style="clear:both;"></div>
+                    
+                                        <div id="author_block" style=" padding: 5px; padding-right: 10px; margin-top: 7px; margin-bottom:10px;">
+                        <!--                                 -->                        <p style="padding-left: 80px; padding-top: 0; margin-top: 0;">
+                             Jeff is a DZone MVB and is not an employee 
+of DZone and has posted 14 posts at DZone. You can read more from them 
+at <a href="http://dickey.xxx/">their website.</a><a href="http://architects.dzone.com/users/dickeytk"> View Full User Profile</a></p></div>
+                                    </div>
+                            <!--End Author Block-->
+
+                        <div id="articleHead">
+                <!-- Print Breadcrumb for Tutorials -->
+                                <h1>10x is a State of Being, Not a Type of Engineer</h1>            </div>
+                            <div class="under_the_title">
+                    <div id="date">11.14.2013                    </div>
+                    <span style="margin:0 8px;color:#ddd;">|</span>
+                    <span style="padding: 5px; vertical-align: middle; font-size:14px;">
+                        2171 views                    </span>
+                    <span style="margin:0 8px;color:#ddd;">|</span>
+
+                    <!-- AddThis Button BEGIN -->
+<!--                    <a href="/forward?path=node/--><!--" style="vertical-align: middle;"><img style="margin: 8px 5px 0 5px; vertical-align: top;" width="20" height="20" src="http://cdn.dzone.com/links/themes/reader/images/actions/email-32x32.png" border="0"> Email</a>-->
+                    <div class="addthis_toolbox addthis_default_style " style="display:inline-block; vertical-align:middle;margin-top:8px;">
+                        <a class="addthis_button_facebook_like at300b" fb:like:layout="button_count"><div fb-xfbml-state="rendered" data-send="false" data-href="http://architects.dzone.com/articles/10x-state-being-not-type" data-font="arial" data-width="90" data-action="like" data-show_faces="false" data-layout="button_count" class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-ref=".UodqM7yEw68.like"><span style="height: 21px; width: 73px;"><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/like.html" class="fb_ltr" title="Like this content on Facebook." style="border: medium none; overflow: hidden; height: 21px; width: 73px;" name="f126300f1cccee" id="f117ac7a68e4866" scrolling="no"></iframe></span></div></a>
+                        <a class="addthis_button_tweet at300b"><iframe style="width: 106px; height: 20px;" data-twttr-rendered="true" title="Twitter Tweet Button" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/tweet_button.html" allowtransparency="true" id="twitter-widget-2" scrolling="no" frameborder="0"></iframe></a>
+                        <a class="addthis_button_google_plusone at300b" g:plusone:size="medium"><div id="___plusone_1" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px;"><iframe title="+1" data-gapiattached="true" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/fastbutton.html" name="I0_1384606261738" id="I0_1384606261738" vspace="0" tabindex="0" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" marginwidth="0" marginheight="0" hspace="0" scrolling="no" width="100%" frameborder="0"></iframe></div></a>
+                        <script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/in.js" type="text/javascript"></script>
+                        <span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1384606259799_0"><a id="li_ui_li_gen_1384606259799_0-link" href="javascript:void(0);"><span id="li_ui_li_gen_1384606259799_0-logo">in</span><span id="li_ui_li_gen_1384606259799_0-title"><span id="li_ui_li_gen_1384606259799_0-mark"></span><span id="li_ui_li_gen_1384606259799_0-title-text">Share</span></span></a></span></span><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1384606259829_1-container" class="IN-right"><span id="li_ui_li_gen_1384606259829_1" class="IN-right"><span id="li_ui_li_gen_1384606259829_1-inner" class="IN-right"><span id="li_ui_li_gen_1384606259829_1-content" class="IN-right">1</span></span></span></span></span></span><script type="IN/Share+init" data-counter="right"></script>
+                    <div class="atclear"></div></div>
+                    <script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/sh142.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px none; left: 0px; top: 0px;" title="AddThis utility frame" id="_atssh341"></iframe></div><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/core109.js" type="text/javascript"></script>
+                </div>
+
+                <!-- AddThis Button END -->
+                                                    <div id="articleText" class="articleReset">
+                        
+            <ul id="sharebar" style="background: none repeat scroll 0% 0% rgb(255, 255, 255); border-color: rgb(204, 204, 204); margin-top: 0px; width: 75px; float: left; margin-right: 10px; margin-left: -110px; display: none; top: 180px;"><li><script type="text/javascript">var dzone_url = 'http://architects.dzone.com/articles/10x-state-being-not-type';</script>
+<script type="text/javascript">var dzone_title = '10x is a State of Being, Not a Type of Engineer';</script>
+<script language="javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/zoneit.js"></script><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/zoneit.html" height="70" scrolling="no" width="50" frameborder="0"></iframe></li><li><iframe style="width: 55px; height: 62px;" data-twttr-rendered="true" title="Twitter Tweet Button" class="twitter-share-button twitter-tweet-button twitter-count-vertical" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/tweet_button_002.html" allowtransparency="true" id="twitter-widget-0" scrolling="no" frameborder="0"></iframe><script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/widgets.js"></script></li><li><!-- Place this tag where you want the +1 button to render -->
+<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 50px; height: 60px;"><iframe title="+1" data-gapiattached="true" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/fastbutton_002.html" name="I0_1384606259588" id="I0_1384606259588" vspace="0" tabindex="0" style="position: static; top: 0px; width: 50px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 60px;" marginwidth="0" marginheight="0" hspace="0" scrolling="no" width="100%" frameborder="0"></iframe></div>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script></li><li><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/like_002.html" style="border:none; width:58px; height:62px;" allowtransparency="true" scrolling="no" frameborder="0"></iframe></li><li><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/in.js" type="text/javascript"></script>
+<span class="IN-widget" style="line-height: 1; vertical-align: baseline; display: inline-block; text-align: center;"><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1384606261681_3-container" class="IN-top"><span id="li_ui_li_gen_1384606261681_3" class="IN-top"><span id="li_ui_li_gen_1384606261681_3-inner" class="IN-top"><span id="li_ui_li_gen_1384606261681_3-content" class="IN-top">1</span></span></span></span></span><br><span style="padding: 0px ! important; margin: 0px ! important; text-indent: 0px ! important; display: inline-block ! important; vertical-align: baseline ! important; font-size: 1px ! important;"><span id="li_ui_li_gen_1384606261674_2"><a id="li_ui_li_gen_1384606261674_2-link" href="javascript:void(0);"><span id="li_ui_li_gen_1384606261674_2-logo">in</span><span id="li_ui_li_gen_1384606261674_2-title"><span id="li_ui_li_gen_1384606261674_2-mark"></span><span id="li_ui_li_gen_1384606261674_2-title-text">Share</span></span></a></span></span></span><script type="IN/Share+init" data-counter="top"></script></li><li><script src="10x-is-a-state-of-being-not-a-type-of-engineer_files/hostedbadge.html"></script><iframe id="iframe-stmblpn-widget-1" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/a.html" style="overflow: hidden; margin: 0px; padding: 0px; border: 0px none;" allowtransparency="true" height="60" scrolling="no" width="50" frameborder="0"></iframe> <script type="text/javascript">   (function() {     var li = document.createElement('script'); li.type = 'text/javascript'; li.async = true;     li.src = window.location.protocol + '//platform.stumbleupon.com/1/widgets.js';     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(li, s);   })(); </script></li><li><a href="http://www.reddit.com/r/programming/submit" onclick="window.location = 'http://www.reddit.com/r/programming/submit?url=' + encodeURIComponent(window.location); return false"> <img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/spreddit7.gif" alt="submit to reddit" width="64" border="0"> </a></li></ul>
+
+<div id="node-157051" class="node node-page node-article">
+
+
+
+            <div class="microzoneShortDescription">
+            <!-- zones_topblurb_650x61 -->
+            <div id="div-gpt-ad-1350569504085-6" style="width:650px;">
+                <script type="text/javascript">
+                    googletag.display('div-gpt-ad-1350569504085-6');
+                </script>
+            </div>
+        </div>
+    
+  <div class="content" style="margin-bottom: 5px;">      		<div class="related_library_content" style="float: right;"><h3>Recommended Links</h3><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_white_acrobat.png) no-repeat 0 0;" class="whitepaper "><a href="http://library.dzone.com/assets/request/whitepaper/138917?oid=rel157051">Perspectives: How do you estimate on an Agile project?</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=3081&amp;cid=511&amp;mid=1189">What's the Point of Scrum Team Structure?</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=3095&amp;cid=511&amp;mid=1203">Git Repository Management: Try Stash</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2927&amp;cid=477&amp;mid=1035">Share, Learn, Discuss Agile</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=3089&amp;cid=511&amp;mid=1197">Git Branching and Forking</a></h4>    <p style="font-size: 10px; color: #999; margin-bottom: 0; padding-bottom: 0;">Like this piece?  Share it with your friends:</p>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style">
+    <a href="#" title="Facebook" class="addthis_button_facebook at300b"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a>
+    <a href="#" title="Tweet" class="addthis_button_twitter at300b"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a>
+    <a title="LinkedIn" target="_blank" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=xa-4f34528f655fc4f0&amp;source=tbx-300&amp;lng=en-US&amp;s=linkedin&amp;url=http%3A%2F%2Farchitects.dzone.com%2Farticles%2F10x-state-being-not-type&amp;title=10x%20is%20a%20State%20of%20Being%2C%20Not%20a%20Type%20of%20Engineer%20%7C%20Architects%20Zone&amp;ate=AT-xa-4f34528f655fc4f0/-/-/52876a337647b422/2&amp;frommenu=1&amp;uid=52876a33136e0013&amp;ufbl=1&amp;ct=1&amp;tt=0&amp;captcha_provider=nucaptcha" class="addthis_button_linkedin at300b"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a>
+    <a title="Google" target="_blank" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=xa-4f34528f655fc4f0&amp;source=tbx-300&amp;lng=en-US&amp;s=google&amp;url=http%3A%2F%2Farchitects.dzone.com%2Farticles%2F10x-state-being-not-type&amp;title=10x%20is%20a%20State%20of%20Being%2C%20Not%20a%20Type%20of%20Engineer%20%7C%20Architects%20Zone&amp;ate=AT-xa-4f34528f655fc4f0/-/-/52876a337647b422/3&amp;frommenu=1&amp;uid=52876a337f8574e8&amp;ufbl=1&amp;ct=1&amp;tt=0&amp;captcha_provider=nucaptcha" class="addthis_button_google at300b"><span class="at16nc at300bs at15nc at15t_google at16t_google"><span class="at_a11y">Share on google</span></span></a>
+    <a title="StumbleUpon" target="_blank" href="http://www.addthis.com/bookmark.php?v=300&amp;winname=addthis&amp;pub=xa-4f34528f655fc4f0&amp;source=tbx-300&amp;lng=en-US&amp;s=stumbleupon&amp;url=http%3A%2F%2Farchitects.dzone.com%2Farticles%2F10x-state-being-not-type&amp;title=10x%20is%20a%20State%20of%20Being%2C%20Not%20a%20Type%20of%20Engineer%20%7C%20Architects%20Zone&amp;ate=AT-xa-4f34528f655fc4f0/-/-/52876a337647b422/4&amp;frommenu=1&amp;uid=52876a33f0f340fe&amp;ufbl=1&amp;ct=1&amp;tt=0&amp;captcha_provider=nucaptcha" class="addthis_button_stumbleupon at300b"><span class="at16nc at300bs at15nc at15t_stumbleupon at16t_stumbleupon"><span class="at_a11y">Share on stumbleupon</span></span></a>
+    <a href="#" title="Email" target="_blank" class="addthis_button_email at300b"><span class="at16nc at300bs at15nc at15t_email at16t_email"><span class="at_a11y">Share on email</span></span></a>
+    <span class="addthis_separator">|</span>
+    <a title="View more services" target="_blank" href="http://addthis.com/bookmark.php?v=250&amp;username=dzone1" class="addthis_button_expanded at300m"><span class="at16nc at300bs at15nc at15t_expanded at16t_expanded"><span class="at_a11y">More Sharing Services</span></span>More</a>
+    <div class="atclear"></div></div>
+    <script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/addthis_widget_002.js"></script>
+    <!-- AddThis Button END --></div>		<span class="print-link"></span><div class="post-field body"><div class="section-inner">
+<p name="acc2">The idea of a 10x developer is nothing new, and has been contested deeply. But the idea is simply:</p>
+
+<p name="20b1"><strong>10x developers are 10x as productive as their peers.</strong></p>
+
+<p name="f6c4">This was even mentioned in one of the most famous project management books ever written:</p>
+
+<blockquote name="d97e">In one of their studies, Sackman, Erikson, and 
+Grant were measuring performances of a group of experienced programmers.
+ Within just this group the ratios between best and worst performances 
+averaged about 10:1 on productivity measurements and an amazing 5:1 on 
+program speed and space measurements! — The Mythical Man Month</blockquote>
+<h2 name="d8a4">Is it true?</h2>
+
+<p name="a019">Traditionally, I’ve believed it to be true. On most 
+projects I’ve been on, the majority of the code has been written by a 
+select few. That person has often times been myself. I’ve kept around a 
+few graphs that represent how well I felt I performed:</p><p name="a019" align="center"><img style="cursor: default; width: 552px; height: 120px;" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/github%2520contributions.png"></p>
+
+<div align="center"><figure name="ee4a"><figcaption class="image-caption" data-image-id="399344690774"><i>GitHub contributions from me to the second highest performing developer on a project (there were others)</i></figcaption></figure></div>
+
+<p name="f804">Lines of code (as we know) is not a great metric for productivity, I understand. So let me use a different one:</p><p name="f804" align="center"><img style="cursor: default; width: 543.508px; height: 384px;" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/jira%2520issues.png"></p>
+
+<div align="center"><figure name="a7d3"><figcaption class="image-caption" data-image-id="608976706385"><i>JIRA issues completed by developer</i></figcaption></figure></div>
+
+<p name="c070">These were metrics and graphs I saved into my Dropbox 
+without a clear reason why. Maybe I kept them around to stroke my own 
+ego, I’m not sure. I think though, that I wanted to validate the idea of
+ 10x developers. I also wanted to prove that <strong>I am one.</strong></p>
+<h2 name="a4f7">But I am not always this good.</h2>
+
+<p name="9e47">I also can honestly say that on these projects, during 
+these time frames, I was the 10x developer. However, there have been 
+projects were I was very unhappy and was most certainly a 1x developer 
+(if that). Needless to say, I didn’t save any graphs representing this.</p>
+
+<p name="02a4">I have wanted to prove for a while that I was a 10x 
+developer (if only to myself) but have found that I was asking the wrong
+ question. The question I should have been asking is:</p>
+
+<blockquote name="7bdb">What made me a 10x developer?</blockquote>
+
+<p name="f25b">Here are things I’ve noticed at 10x:</p>
+
+<ul>
+	<li name="0a1e">I felt directly connected to the product and its users</li>
+	<li name="0d37">I felt like I had power to architect the solution</li>
+	<li name="e3bd">I was experimenting with new tools</li>
+	<li name="cfd4">I was able to take a chance in order to prove myself</li>
+	<li name="2bcd">There were few barriers to jump over</li>
+</ul>
+<p name="6ccc">Here are things I’ve noticed at 1x:</p>
+
+<ul>
+	<li name="09b5">I felt that politics were driving my day</li>
+	<li name="b9e4">I would debate about architecture rather than implement it</li>
+	<li name="029a">I thought of our users as adversaries</li>
+	<li name="e42c">I sometimes dreaded even coming into work</li>
+</ul>
+<p name="3c52">So how can we do better?</p>
+<h2 name="a75d">Developers need to architect</h2>
+
+<p name="e16c">Developers are driven when they can architect their own 
+solutions to problems. Nobody wants to implement someone else’s idea, 
+especially one they may disagree with. Even if it’s a mutual discussion,
+ the developer that does the implementation wants to feel like it’s <strong>his</strong>
+ idea. The reason for this is simple: architecture is always a risk, and
+ when it works out, the person that designed it gets the credit.</p>
+
+<p name="79a7"><strong>Give your engineers (even the junior guys) the ability to get a say into how something is designed.</strong></p>
+<h2 name="0575">Developers need to feel connected to the users</h2>
+
+<p name="3e49">If a developer doesn’t feel a connection with their 
+users, the only reason they will write code is to collect a paycheck. 
+You want them to be internally motivated to really solve problems. 
+Creative solutions require this sort of motivation.</p>
+
+<p name="ee91">I can think of a few times in my life that I would be 
+very dismissive about a bug, but when I actually sat down with a user 
+and saw it happen to them (and witnessed true frustration). I 
+immediately wanted to fix that bug more than anything. <strong>Empathy is an important driver, even in tech.</strong></p>
+</div>
+<div class="section-inner">
+<p name="e034">I think my natural mode is actually operating at 10x. 
+That is how projects usually start. Only once I started to detach from 
+the project and feel like my work has less meaning, that’s when my 
+productivity drops. For this reason, I propose we shift to think in 
+terms of 1x and 1/10x (even though it’s not as pithy of a term).</p>
+
+<p name="8ec2"><strong>We should consider 1/10x as a bad state to avoid putting our engineers in. </strong>Not 1x (or 10x) as a hero state.</p>
+
+<p name="e23e">I also feel that I’ve seen this with my peers. Look at 
+your GitHub contributions and I bet you’ll see it very spiky for a lot 
+of your engineers. I think this is attributed to cycling between 1x and 
+1/10x.</p>
+
+<p name="e5a7">If you’ve ever asked the question,</p>
+
+<blockquote name="bfc6">“How can I hire more 10x engineers?”</blockquote>
+
+<p name="3c0c">try instead asking,</p>
+
+<blockquote name="75f3">“How can I prevent my engineers from performing at 1/10x?”</blockquote>
+
+<p name="060b">There are other solutions as well, if you have some of your own, I’d appreciate it in the comments.</p><p name="060b"><br></p><p name="060b"><br></p>
+</div>
+</div>	
+	<div style="clear: both;"></div>
+
+    </div>
+
+<span class="acknowledgement">Published at DZone with permission of <a href="http://architects.dzone.com/users/dickeytk">Jeff Dickey</a>, author and DZone MVB. (<a href="http://dickeyxxx.com/10x-is-a-state-of-being" target="_blank">source</a>)</span><br><p style="font-size: 11px; padding-left: 0px; color: #666;" class="disclaimer"><em>(Note:
+ Opinions expressed in this article and its replies are the opinions of 
+their respective authors and not those of DZone, Inc.)</em></p><div id="terms" class="tags-on-articles fancyfont">Tags: <ul class="links inline"><li class="taxonomy_term_97353 first"><a href="http://architects.dzone.com/category/tags/10x" rel="tag" title="">10x</a></li>
+<li class="taxonomy_term_58297"><a href="http://architects.dzone.com/category/content-form/tips-and-tricks" rel="tag" title="">Tips and Tricks</a></li>
+<li class="taxonomy_term_4465 last"><a href="http://architects.dzone.com/category/dzone-taxonomy/tools-methods/agile" rel="tag" title="">Agile</a></li>
+</ul></div>
+            <!-- zones_bottomblurb_650x122 -->
+            <div id="div-gpt-ad-1350569504085-0" style="width:650px;">
+            <script type="text/javascript">
+            googletag.display('div-gpt-ad-1350569504085-0');
+            </script>
+            </div></div><div id="comments"><h2 class="comments">Comments</h2><a id="comment-106959"></a>
+<div class="comment odd">
+		
+		  	   		<a href="http://architects.dzone.com/users/drianmitchell"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/picture-896787.jpg" alt="" title="" class="avatar" height="48" width="48"></a> 
+    <div class="comment-wrap">
+      <div class="tl"><!-- --></div>  
+	    	<h3>Ian Mitchell replied on Thu, 2013/11/14 - 11:48am</h3>
+  	   	
+	<div class="comment-content">
+		   <!--paging_filter--><p>I agree, it's a state of being. I've dropped
+ to 1x (even 0x) when I've seen technical debt spiralling out of 
+control, and there is no team or stakeholder interest in fixing it.</p>		       			<div class="actions"><ul class="links"><li class="comment_forbidden first last"><span><a href="http://architects.dzone.com/user/login?destination=node%2F157051%23comment-form">Login</a> or <a href="http://architects.dzone.com/user/register?destination=node%2F157051%23comment-form">register</a> to post comments</span></li>
+</ul></div>
+  				</div>
+ </div>
+</div><form action="/articles/10x-state-being-not-type" accept-charset="UTF-8" method="post" id="comment-controls">
+<div><div class="box">
+
+  <h2>Comment viewing options</h2>
+
+  <div class="content"><div class="container-inline"><input name="form_build_id" id="form-bf816984fca5118c37d0c5f1722d640b" value="form-bf816984fca5118c37d0c5f1722d640b" type="hidden">
+<input name="form_id" id="edit-comment-controls" value="comment_controls" type="hidden">
+<div class="form-item" id="edit-mode-wrapper">
+ <select name="mode" class="form-select" id="edit-mode"><option value="1">Flat list - collapsed</option><option value="2" selected="selected">Flat list - expanded</option><option value="3">Threaded list - collapsed</option><option value="4">Threaded list - expanded</option></select>
+</div>
+<div class="form-item" id="edit-order-wrapper">
+ <select name="order" class="form-select" id="edit-order"><option value="1">Date - newest first</option><option value="2" selected="selected">Date - oldest first</option></select>
+</div>
+<div class="form-item" id="edit-comments-per-page-wrapper">
+ <select name="comments_per_page" class="form-select" id="edit-comments-per-page"><option value="10">10 comments per page</option><option value="30" selected="selected">30 comments per page</option><option value="50">50 comments per page</option><option value="70">70 comments per page</option><option value="90">90 comments per page</option><option value="150">150 comments per page</option><option value="200">200 comments per page</option><option value="250">250 comments per page</option><option value="300">300 comments per page</option></select>
+</div>
+<input name="op" id="edit-submit" value="Save settings" class="form-submit" type="submit">
+</div><div class="description">Select your preferred way to display the comments and click "Save settings" to activate your changes.</div></div>
+</div>
+
+</div></form>
+</div></div>
+    </div>
+</div></div>
+<!-- end of squeeze, center (main content) -->
+        <div id="sidebar-right" class="sidebar">
+        
+        <style>
+
+
+        </style>
+
+    <div id="social-box">
+        <div class="social-box-header">
+            Connect with DZone
+        </div>
+
+        <div class="content-buttons-wrapper">
+            <div class="content-buttons">
+                <div class="article-button">
+                    <a href="http://architects.dzone.com/node/add"><i class="icon-file"></i>  Publish an Article</a>
+                </div>
+
+                <div class="tip-button">
+                    <a href="mailto:newsdesk@dzone.com"><i class="icon-envelope"></i> Share a Tip</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="social-box-wrapper">
+            <ul>
+                <div id="___plus_0" style="text-indent: 0px; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 282px; height: 106px;"><iframe title="Badge v2" data-gapiattached="true" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/badge.html" name="I0_1384606260593" id="I0_1384606260593" vspace="0" tabindex="0" style="position: static; top: 0px; width: 282px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 106px;" marginwidth="0" marginheight="0" hspace="0" scrolling="no" width="100%" frameborder="0"></iframe></div>
+                <li class="facebookbtn"><div fb-xfbml-state="rendered" class="fb-like fb_edge_widget_with_comment fb_iframe_widget" data-href="http://www.facebook.com/pages/DZone/259639764711" data-send="false" data-layout="button_count" data-width="285" data-show-faces="false" data-font="lucida grande"><span style="height: 20px; width: 84px;"><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/like_003.html" class="fb_ltr" title="Like this content on Facebook." style="border: medium none; overflow: hidden; height: 20px; width: 84px;" name="ff0553091389f" id="f14a5792ba6139" scrolling="no"></iframe></span></div></li>
+                <li class="twitterbtn"><iframe style="width: 158px; height: 20px;" data-twttr-rendered="true" title="Twitter Follow Button" class="twitter-follow-button twitter-follow-button" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/follow_button.html" allowtransparency="true" id="twitter-widget-1" scrolling="no" frameborder="0"></iframe></li>
+                <li class="rssbtn">
+                                            <a href="http://dzone.com/mz/agile/rss" onclick="_gaq.push(['_trackEvent','Social Button Click', 'DZone RSS']);"><i class="icon-rss"></i></a>
+                                    </li>
+            </ul>
+
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+            <script gapi_processed="true" type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/plusone.js"></script>
+        </div>
+    </div>
+
+    <div style="clear:both"></div>
+
+    <ul class="dzone-social-buttons" style="display:none;">
+            <li><a href="mailto:newsdesk@dzone.com" class="got_a_tip" onclick="_gaq.push(['_trackEvent','Social Button Click', 'Tip Button']);">Got a story? Tell us!</a></li>
+            <li>
+                                 <a href="http://dzone.com/mz/agile/rss" class="dzone-social-rss" onclick="_gaq.push(['_trackEvent','Social Button Click', 'DZone RSS']);"></a>
+                            </li>
+            <li><a href="https://plus.google.com/+dzone/posts" class="dzone-social-google" onclick="_gaq.push(['_trackEvent','Social Button Click', 'DZone Google+']);" "=""></a></li>
+            <li><a href="http://www.facebook.com/pages/DZone/259639764711" class="dzone-social-facebook" onclick="_gaq.push(['_trackEvent','Social Button Click', 'DZone Facebook']);" "=""></a></li>
+            <li><a href="https://twitter.com/#%21/Dzone" class="dzone-social-twitter" onclick="_gaq.push(['_trackEvent','Social Button Click', 'DZone Twitter']);" "=""></a></li>
+            <li><a href="http://www.linkedin.com/groups/DZone-696877" class="dzone-social-linkedin" onclick="_gaq.push(['_trackEvent','Social Button Click', 'DZone LinkedIn']);" "=""></a></li>
+            <!--                  <li><a href="#" class="careers-button" onClick= "pageTracker._trackEvent('Social Button Click', 'Careers Button');">Careers</a></li>-->
+
+        </ul>
+
+
+        <!--        Popular Snippets Sidebar Box-->
+        
+
+        <div class="related_library_content2"><h3>Recommended Links</h3><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_white_acrobat.png) no-repeat 0 0;" class="whitepaper "><a href="http://library.dzone.com/assets/request/whitepaper/138917?oid=rel157051">Perspectives: How do you estimate on an Agile project?</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=2931&amp;cid=477&amp;mid=1039">Share, Learn, Discuss Project Mngmt</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=3091&amp;cid=511&amp;mid=1199">Choose the right Git workflow for your team</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=3085&amp;cid=511&amp;mid=1193">Agile Delivery: Testing, Triage &amp; Releases</a></h4><h4 style="background: url(/sites/all/modules/dzone/dzone_library/icons/page_external.png) no-repeat 0 0;" class=""><a href="http://txt.couchware.com/medias/jump?hid=3083&amp;cid=511&amp;mid=1191">Common Pitfalls in Kanban</a></h4></div>
+                    <div id="mh_rectangle">
+
+                <!-- zones_sidebar_336x280_default -->
+                <div id="div-gpt-ad-1350569504085-2" style="width:300px; height:250px;">
+                    <script type="text/javascript">
+                        googletag.display('div-gpt-ad-1350569504085-2');
+                    </script>
+                </div>
+                <!-- End DART Ad -->
+
+            </div>
+            
+
+        
+        
+                        <div id="block-block-5" class="block block-block">
+
+  <div class="content">
+    <div id="sidebar_features"><h2 class="header">Spotlight Features</h2>				      	  	<div>
+	  		<a href="http://architects.dzone.com/click/140829/1" class="sidebar_image_link"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/Screen%2520Shot%25202013-04-16%2520at%25203.png"></a>
+	  		<h2><a href="http://architects.dzone.com/click/140829/1">Continuous Delivery and Long-Term Requirements</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://architects.dzone.com/click/144389/1" class="sidebar_image_link"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/INSANEprogrammer_0.jpg"></a>
+	  		<h2><a href="http://architects.dzone.com/click/144389/1">A Programmer's Fear</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://architects.dzone.com/click/152991/1" class="sidebar_image_link"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/Screen%2520Shot%25202013-09-25%2520at%25203.png"></a>
+	  		<h2><a href="http://architects.dzone.com/click/152991/1">AskDZ: How Do You Motivate Yourself on Development Projects?</a></h2>
+	  	</div>
+                    	  	<div>
+	  		<a href="http://architects.dzone.com/click/139271/1" class="sidebar_image_link"><img src="10x-is-a-state-of-being-not-a-type-of-engineer_files/programmer.jpg"></a>
+	  		<h2><a href="http://architects.dzone.com/click/139271/1">How to Stand Out at Work: 10 Tips for Programmers (Part 1)</a></h2>
+	  	</div>
+              </div>  </div>
+</div>
+<div id="block-block-3" class="block block-block">
+
+  <div class="content">
+    <div id="popularlinks"><ul class="popularlist"><h2>Popular at DZone</h2><li><a href="http://www.dzone.com/links/the_rule_i_followed_to_become_a_great_developer.html"><span class="popularlist-number popularlist-1">1:</span>The Rule I Followed to become a Great Developer</a></li>
+                <li><a href="http://www.dzone.com/links/killing_softly_your_project_team_with.html"><span class="popularlist-number popularlist-2">2:</span>Killing Softly Your Project Team With…</a></li>
+                <li><a href="http://www.dzone.com/links/applying_the_8020_rule_in_software_development.html"><span class="popularlist-number popularlist-3">3:</span>Applying the 80:20 Rule in Software Development</a></li>
+                <li><a href="http://www.dzone.com/links/a_complete_history_analysis_and_comparison_of_nos.html"><span class="popularlist-number popularlist-4">4:</span>A Complete History, Analysis and Comparison of NoSQL Databases</a></li>
+                <li><a href="http://www.dzone.com/links/you_definitely_should_use_mongodb_sometimes.html"><span class="popularlist-number popularlist-5">5:</span>You Definitely Should Use MongoDB (Sometimes)</a></li>
+                <li><a href="http://www.dzone.com/links/generating_functions_and_r.html"><span class="popularlist-number popularlist-6">6:</span>Generating Functions and R</a></li>
+                <li><a href="http://www.dzone.com/links/oracle_glassfish_and_the_nature_of_open_source.html"><span class="popularlist-number popularlist-7">7:</span>Oracle, GlassFish and the Nature of Open Source</a></li>
+                <a class="moredz" href="http://www.dzone.com/">See more popular at DZone</a><br><a class="rss" href="http://feeds.dzone.com/dzone/frontpage">Subscribe to the RSS feed</a></ul></div>  </div>
+</div>
+            </div>
+    <!-- end of right sidebar -->
+            
+<!-- Cache the footer block -->
+<div id="footer"><span class="footer-header">Around the DZone Network</span><div class="large-topics-articles"><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push(['_trackEvent','Zone Footer', 'Thumbnail Zone Link Header Click','Architects Zone']);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/big-data-beyond-mapreduce" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Thumbnail Click', '131457-Big Data Beyond MapReduce: Google's Big Data Papers']);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/February/photo_1.jpg);"></div><br>Big Data Beyond MapReduce: Google's Big Data Paper...</a></div><div class="featured-articles"><a href="http://java.dzone.com/" class="featured-domains" onclick="_gaq.push(['_trackEvent','Zone Footer', 'Thumbnail Zone Link Header Click','Javalobby']);">JAVALOBBY</a><a href="http://java.dzone.com/articles/principles-java-application" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Thumbnail Click', '130051-The Principles of Java Application Performance Tuning']);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/February/java-logo-large.png);"></div><br>The Principles of Java Application Performance Tun...</a></div><div class="featured-articles"><a href="http://architects.dzone.com/" class="featured-domains" onclick="_gaq.push(['_trackEvent','Zone Footer', 'Thumbnail Zone Link Header Click','Architects Zone']);">ARCHITECTS </a><a href="http://architects.dzone.com/articles/5-things-java-developer-should" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Thumbnail Click', '131541-5 Things a Java Developer Should Consider This Year']);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/February/Screen%20Shot%202013-02-18%20at%2011.41.12%20AM_4.png);"></div><br>5 Things a Java Developer Should Consider This Yea...</a></div><div class="featured-articles"><a href="http://java.dzone.com/" class="featured-domains" onclick="_gaq.push(['_trackEvent','Zone Footer', 'Thumbnail Zone Link Header Click','Javalobby']);">JAVALOBBY</a><a href="http://java.dzone.com/articles/there-are-only-2-roles-code" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Thumbnail Click', '134077-There Are Only 2 Roles of Code']);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/March/Code_0.png);"></div><br>There Are Only 2 Roles of Code</a></div><div class="featured-articles"><a href="http://java.dzone.com/" class="featured-domains" onclick="_gaq.push(['_trackEvent','Zone Footer', 'Thumbnail Zone Link Header Click','Javalobby']);">JAVALOBBY</a><a href="http://java.dzone.com/articles/singleton-design-pattern-%E2%80%93" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Thumbnail Click', '130325-Singleton Design Pattern – An Introspection w/ Best Practices']);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/February/Design_Pattern_small_02.jpg);"></div><br>Singleton Design Pattern – An Introspection w/ B...</a></div><div class="featured-articles last-item"><a href="http://server.dzone.com/" class="featured-domains" onclick="_gaq.push(['_trackEvent','Zone Footer', 'Thumbnail Zone Link Header Click','Server Zone']);">SERVER </a><a href="http://server.dzone.com/articles/best-best-practices-ever" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Thumbnail Click', '130499-Best Best Practices Ever']);"><div class="featured-image" style="background-image:url(/sites/all/files/preview-images/February/source%20code_3_2.jpg);"></div><br>Best Best Practices Ever</a></div></div><div class="hail_mary"><span class="block-title">You Might Also Like</span><ul class="footer-links"><li class="footer-links-item"><a href="http://server.dzone.com/articles/code-made-me-cry" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156541-The Code That Made Me Cry ']);">The Code That Made Me Cry </a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/presto-facebooks-sql-hadoop" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156621-Presto: Facebook's SQL-on-Hadoop Engine is Now Open Source']);">Presto: Facebook's SQL-on-Hadoop Engine is Now Open Source</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/4-signs-agile-declining-sequel" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156533-4 Signs That Agile is Declining: The Sequel ']);">4 Signs That Agile is Declining: The Sequel </a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/what-happened-buzz-around" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156879-What Happened to the Buzz Around NoSQL?']);">What Happened to the Buzz Around NoSQL?</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/understanding-multi-armed" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156589-Understanding Multi-Armed Bandit Algorithms']);">Understanding Multi-Armed Bandit Algorithms</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/you-definitely-shouldnt-use" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156941-You Definitely Shouldn't Use MongoDB ']);">You Definitely Shouldn't Use MongoDB </a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/how-jit-introduction" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156477-How to JIT: An introduction']);">How to JIT: An introduction</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/tdd-code-coverage-exercise" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156709-TDD is to Code Coverage as Exercise is to Weight Loss']);">TDD is to Code Coverage as Exercise is to Weight Loss</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/migration-aws-part-3" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156713-Migration to AWS, part 3']);">Migration to AWS, part 3</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/10-most-popular-db-engines-sql" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156665-The 10 Most Popular DB Engines (SQL and NoSQL)']);">The 10 Most Popular DB Engines (SQL and NoSQL)</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/google-may-be-moving-android" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156677-Google May be Moving Android from Dalvik to ART']);">Google May be Moving Android from Dalvik to ART</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/why-we-suck-building-secure" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156693-Why We Suck at Building Secure Software and What We Can Do About It']);">Why We Suck at Building Secure Software and What We Can Do About It</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/deep-dive-connection-pooling" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156535-Deep Dive into Connection Pooling']);">Deep Dive into Connection Pooling</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/best-week-nov-1-big-data-zone" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156687-The Best of the Week (Nov. 1): Big Data Zone']);">The Best of the Week (Nov. 1): Big Data Zone</a></li><li class="footer-links-item"><a href="http://server.dzone.com/articles/should-you-avoid-distributed" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Hail Mary', '156523-Should You Avoid Distributed Database Systems?']);">Should You Avoid Distributed Database Systems?</a></li></ul></div><div id="footer-articles"><div id="block-wrapper"><div id="left-block" class="footer-article-block"><span class="block-title">Popular on Architects Zone</span><ul><li><a href="http://architects.dzone.com/news/top-open-source-esbs" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '13703-Top Open Source ESB Projects']);">Top Open Source ESB Projects</a></li><li><a href="http://architects.dzone.com/news/building-multi-core-ready-java" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '2482-Building Multi-core Ready Java Applications, Part I']);">Building Multi-core Ready Java Applications, Part I</a></li><li><a href="http://architects.dzone.com/news/top-10-alm-solutions" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '13367-Top ALM Tools and Solutions Providers']);">Top ALM Tools and Solutions Providers</a></li><li><a href="http://architects.dzone.com/news/understanding-hbase-and-bigtab" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '3036-Understanding HBase and BigTable']);">Understanding HBase and BigTable</a></li><li><a href="http://architects.dzone.com/news/three-forms-resteasy-client" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '11487-Three Forms of RESTEasy Client']);">Three Forms of RESTEasy Client</a></li><li><a href="http://architects.dzone.com/news/cassandra-adds-hadoop" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '21161-Cassandra Adds Hadoop MapReduce']);">Cassandra Adds Hadoop MapReduce</a></li><li><a href="http://architects.dzone.com/news/build-multi-core-ready-java-ap-0" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '2483-Build Multi-core Ready Java Applications, Part 2']);">Build Multi-core Ready Java Applications, Part 2</a></li><li><a href="http://architects.dzone.com/news/tech-predictions-2011-edition" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Popular Current Zone Link Click', '33541-Tech Predictions, 2011 Edition']);">Tech Predictions, 2011 Edition</a></li></ul></div><div id="middle-block" class="footer-article-block"><span class="block-title">Latest Articles</span><ul><li><a href="http://architects.dzone.com/articles/were-msdn-magazine-and-were" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '156793-" we're="" from="" msdn="" magazine="" and="" here="" to="" help"="" -="" government="" special="" issue']);"="">"We're From MSDN Magazine and We're Here to Help" - MSDN Magazine Government Special Issue</a></li><li><a href="http://architects.dzone.com/articles/easynetq-consumer-cancellation" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '156791-EasyNetQ: Consumer Cancellation']);">EasyNetQ: Consumer Cancellation</a></li><li><a href="http://architects.dzone.com/articles/so-you-want-be-unity3d-game" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '157201-So you want to be a Unity3D game developer?']);">So you want to be a Unity3D game developer?</a></li><li><a href="http://architects.dzone.com/articles/creating-immutable-objects-run" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '157179-Creating Immutable Objects Run-Time']);">Creating Immutable Objects Run-Time</a></li><li><a href="http://architects.dzone.com/articles/using-packer-create-vagrant" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '157241-Using Packer to Create Vagrant Boxes']);">Using Packer to Create Vagrant Boxes</a></li><li><a href="http://architects.dzone.com/articles/when-and-how-use-threadlocal" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '157233-When and How to Use a ThreadLocal']);">When and How to Use a ThreadLocal</a></li><li><a href="http://architects.dzone.com/articles/tyrus-13-released" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '157181-Tyrus 1.3 Released']);">Tyrus 1.3 Released</a></li><li><a href="http://architects.dzone.com/articles/22-billion-heroku-log-entries" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Latest Articles Link Click', '157239-22 Billion Heroku Log Entries: Forget Big Data, It’s the Little Data That Matters!']);">22 Billion Heroku Log Entries: Forget Big Data, It’s the Little Data That Matters!</a></li></ul></div></div></div><div id="right-block" class="footer-article-spotlight-block"><h2 class="block-title">Spotlight Resources</h2><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/couchbase-apis" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Spotlight Features Thumbnail Click', '176-Essential Couchbase APIs: Open Source NoSQL Data Access from Java, Ruby, and .NET']);"><img style="float: left;" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/thumb_002.png" border="0"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/couchbase-apis" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Spotlight Features Title Click', '176-Essential Couchbase APIs: Open Source NoSQL Data Access from Java, Ruby, and .NET']);">Essential Couchbase APIs: Open Source NoSQL Data Access from Java, Ruby, and .NET</a></h3><div class="blurb" style="margin-left: 120px;"></div></div><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/essential-camel-components" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Spotlight Features Thumbnail Click', '170-Camel Essential Components']);"><img style="float: left;" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/thumb.png" border="0"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/essential-camel-components" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Spotlight Features Title Click', '170-Camel Essential Components']);">Camel Essential Components</a></h3><div class="blurb" style="margin-left: 120px;"><p>DZone's
+ 170th Refcard is an essential reference to Camel, an open-source, 
+lightweight, integration library.&nbsp; This Refcard is authored by...</p></div></div><div class="spotlight" style="margin-top: 5px; clear: both;"><div class="callout"><a href="http://refcardz.dzone.com/refcardz/dns" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Spotlight Features Thumbnail Click', '182-Practical DNS: Managing Domains for Safety, Reliability, and Speed']);"><img style="float: left;" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/thumb_003.png" border="0"></a></div><h3 style="margin-left: 120px;"><a href="http://refcardz.dzone.com/refcardz/dns" onclick="_gaq.push(['_trackEvent', 'Zone Footer', 'Spotlight Features Title Click', '182-Practical DNS: Managing Domains for Safety, Reliability, and Speed']);">Practical DNS: Managing Domains for Safety, Reliability, and Speed</a></h3><div class="blurb" style="margin-left: 120px;"></div></div></div></div>
+<!-- end of footer -->
+</div>
+<!-- end of container -->
+</div>
+<!-- end of wrapper -->
+
+<div class="subfooter fancyfont">
+    <div class="subfooter_center">
+        <div class="subfooter_top">
+            <div class="subfooter_logo">
+            </div>
+            <div class="subfooter_search">
+                <form action="/search/google" accept-charset="UTF-8" method="get" id="google-cse-searchbox-form-1">
+<div><input name="cx" id="edit-cx-1" value="010821965829155306098:ogyaz_5nsc8" type="hidden">
+<input name="cof" id="edit-cof-1" value="FORID:11" type="hidden">
+<div class="form-item" id="edit-query-1-wrapper">
+ <input maxlength="128" name="query" id="edit-query-1" size="15" title="Enter the terms you wish to search for." class="form-text" type="text">
+</div>
+<input name="op" id="edit-sa-1" value="Search" class="form-submit" type="submit">
+<input name="form_build_id" id="form-84ab61fd201e3d56b49819a90a2a3cb4" value="form-84ab61fd201e3d56b49819a90a2a3cb4" type="hidden">
+<input name="form_id" id="edit-google-cse-searchbox-form-1" value="google_cse_searchbox_form" type="hidden">
+
+</div></form>
+            </div>
+        </div>
+        <div>
+        </div>
+        <div class="subfooter_box">
+            <ul class="menu"><li class="expanded first"><a href="http://dzone.com/" title="">DZone</a><ul class="menu"><li class="leaf first"><a href="http://refcardz.dzone.com/" title="">Refcardz</a></li>
+<li class="leaf"><a href="http://books.dzone.com/" title="">Book Reviews</a></li>
+<li class="leaf"><a href="http://library.dzone.com/" title="">Tech Library</a></li>
+<li class="leaf"><a href="http://itquestions.com/index.html" title="">IT Questions</a></li>
+<li class="leaf"><a href="http://snippets.dzone.com/" title="">Snippets</a></li>
+<li class="leaf"><a href="http://dzone.com/user" title="">My Profile</a></li>
+<li class="leaf"><a href="http://www.dzone.com/links/about.jsp" title="">About DZone</a></li>
+<li class="leaf"><a href="http://www.dzone.com/corporate/advertise" title="">Advertise</a></li>
+<li class="leaf"><a href="http://www.dzone.com/links/buttons.jsp" title="">Tools &amp; Buttons</a></li>
+<li class="leaf last"><a href="http://ask.dzone.com/index.html" title="">Send Feedback</a></li>
+</ul></li>
+<li class="expanded last"><a href="http://dzone.com/mz/html5" title="">Topics</a><ul class="menu"><li class="leaf first"><a href="http://dzone.com/mz/html5" title="">HTML5</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/windowsphone7" title="">Windows Phone</a></li>
+<li class="leaf"><a href="http://cloud.dzone.com/" title="">Cloud</a></li>
+<li class="leaf"><a href="http://mobile.dzone.com/" title="">Mobile</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/dotnet" title="">.NET</a></li>
+<li class="leaf"><a href="http://java.dzone.com/" title="">Java</a></li>
+<li class="leaf"><a href="http://php.dzone.com/" title="">PHP</a></li>
+<li class="leaf"><a href="http://eclipse.dzone.com/" title="">Eclipse</a></li>
+<li class="leaf"><a href="http://dzone.com/mz/performance" title="">Performance</a></li>
+<li class="leaf"><a href="http://www.dzone.com/mz/big-data" title="">Big Data</a></li>
+<li class="leaf"><a href="http://agile.dzone.com/" title="">Agile</a></li>
+<li class="leaf last"><a href="http://dzone.com/mz/devops" title="">DevOps</a></li>
+</ul></li>
+</ul>
+            <ul class="menu">
+                <li class="expanded follow-buttons">
+                    <a href="#">Follow Us</a>
+                    <ul class="menu">
+                        <li>
+                                                    </li>
+                        <li>
+                            <a href="https://plus.google.com/+dzone/posts" class="subfooter-social subfooter-social-google">Google +</a>
+                        </li>
+                        <li>
+                            <a href="http://www.facebook.com/pages/DZone/259639764711" class="subfooter-social subfooter-social-facebook">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="http://www.linkedin.com/groups/DZone-696877" class="subfooter-social subfooter-social-linkedin">LinkedIn</a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/#%21/Dzone" class="subfooter-social subfooter-social-twitter">Twitter</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="subfooter-right">
+
+                "Starting from scratch" is seductive but disease ridden <br><span>-Pithy Advice for Programmers</span>
+
+            </div>
+
+
+        </div>
+        <div id="legal"><a href="http://architects.dzone.com/page/advertise">Advertising</a> - <a href="http://architects.dzone.com/page/tos">Terms of Service</a> - <a href="http://architects.dzone.com/page/privacy">Privacy</a> - © 1997-2012, DZone, Inc.</div>
+    </div>
+</div>
+    
+<!-- end of page wrapper -->
+</div><iframe style="width: 1px; height: 1px; position: absolute; top: -100px;" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/postmessageRelay.html" id="oauth2relay1132644224" name="oauth2relay1132644224"></iframe>
+<script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/js_1853ae2420e0b7822f0d9f171c0a5427.js"></script>
+<script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/jquery.js"></script>
+<script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/sharebar.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","fivestar":{"titleUser":"Your rating: ","titleAverage":"Average: ","feedbackSavingVote":"Saving your vote...","feedbackVoteSaved":"Your vote has been saved.","feedbackDeletingVote":"Deleting your vote...","feedbackVoteDeleted":"Your vote has been deleted."},"jstools":{"cleanurls":true,"basePath":"\/"},"activemenu":{"#block-book-0":"activemenu\/book","#block-menu-devel":"activemenu\/menu","#block-menu-menu-library-navigat":"activemenu\/menu","#block-menu-primary-links":"activemenu\/menu","#block-menu-secondary-links":"activemenu\/menu","#block-menu-menu-sections":"activemenu\/menu","#block-menu-menu-sitemap":"activemenu\/menu","#block-menu-menu-zones":"activemenu\/menu","#block-user-1":"activemenu\/menu"}});
+//--><!]]>
+</script>
+
+<script type="text/javascript">
+    if(document.title.indexOf("Page not found") != 0){
+        $('.sharebar').sharebar({horizontal:'false',swidth:'75',minwidth:1100,position:'left',leftOffset:35,rightOffset:10});
+        $('#sharebar').css('display', 'none');
+        $(parent.document).scroll(function() {
+            var scroll_position =  $(window).scrollTop();
+            if(scroll_position > 350)
+                $('#sharebar').fadeIn();
+            else
+                $('#sharebar').fadeOut();
+        });}
+</script>
+
+<script type="text/javascript">
+    SyntaxHighlighter.config.bloggerMode = true;
+    SyntaxHighlighter.config.taName = "pre";
+    SyntaxHighlighter.config.clipboardSwf = '/sites/all/themes/dzone2012/scripts/syntaxHighlighter/clipboard.swf';
+    SyntaxHighlighter.all();
+    dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+    
+<script type="text/javascript" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/js_5dc0c13b5c27146aba8b38245e272fc2.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"googleCSE":{"language":"en"}});
+//--><!]]>
+</script>
+
+<!--Track Microzones -->
+
+        <script type="text/javascript">_gaq.push(['_trackEvent','Microzone Pageviews', 'Agile Zone', "10x is a State of Being, Not a Type of Engineer"]);</script>
+            
+
+<!-- Social Tracking Scripts -->
+<script type="text/javascript">
+    fancyBoxOpen = false;
+
+    try {
+        if (FB && FB.Event && FB.Event.subscribe) {
+            FB.Event.subscribe('edge.create', function(targetUrl) {
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','Facebook', 'popup like']);
+//                    pageTracker._trackEvent('Facebook', 'popup like');
+                } else {
+                    _gaq.push(['_trackSocial', 'Facebook', 'like']);
+                }
+            });
+        }
+    } catch(e) {}
+
+    try {
+        $(window).ready(function() {
+            $('.IN-widget').click(function() {
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','LinkedIn', 'popup share']);
+//                    pageTracker._trackEvent('LinkedIn', 'popup share');
+                } else {
+                    _gaq.push(['_trackSocial','LinkedIn', 'share']);
+                }
+            });
+        });
+    } catch(e) {}
+
+    function track_plusone(gpovote) {
+        try {
+            if(fancyBoxOpen) {
+                _gaq.push(['_trackSocial','Google', 'popup +1']);
+//                pageTracker._trackEvent('Google', 'popup +1');
+            } else {
+                _gaq.push(['_trackSocial','Google', '+1']);
+            }
+        } catch (e) {}
+    }
+
+    try {
+        twttr.events.bind('tweet', function(event) {
+            if (event) {
+                var targetUrl;
+                if (event.target && event.target.nodeName == 'IFRAME') {
+                    targetUrl = extractParamFromUri(event.target.src, 'url');
+                }
+                if(fancyBoxOpen) {
+                    _gaq.push(['_trackSocial','Twitter', 'popup tweet']);
+//                    pageTracker._trackEvent('Twitter', 'popup tweet');
+                } else {
+                    _gaq.push(['_trackSocial','Twitter', 'tweet']);
+                }
+            }
+        });
+    } catch(e) {}
+
+    function extractParamFromUri(uri, paramName) {
+        if (!uri) {
+            return;
+        }
+        var uri = uri.split('#')[0];  // Remove anchor.
+        var parts = uri.split('?');  // Check for query params.
+        if (parts.length == 1) {
+            return;
+        }
+        var query = decodeURI(parts[1]);
+
+        // Find url param.
+        paramName += '=';
+        var params = query.split('&');
+        for (var i = 0, param; param = params[i]; ++i) {
+            if (param.indexOf(paramName) === 0) {
+                return unescape(param.split('=')[1]);
+            }
+        }
+    }
+
+    </script>
+
+    <div class=" fb_reset" id="fb-root"><script async="" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/all.js"></script><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/xd_arbiter.html" style="border: medium none;" tab-index="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_http" allowtransparency="true" name="fb_xdm_frame_http" scrolling="no" frameborder="0"></iframe><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/xd_arbiter_002.html" style="border: medium none;" tab-index="-1" title="Facebook Cross Domain Communication Frame" aria-hidden="true" id="fb_xdm_frame_https" allowtransparency="true" name="fb_xdm_frame_https" scrolling="no" frameborder="0"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe src="10x-is-a-state-of-being-not-a-type-of-engineer_files/ping.html" style="display: none;" allowtransparency="true" name="f7026c0cd4fcea" scrolling="no" frameborder="0"></iframe></div></div></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+
+<div style="display: block;" id="woopra_bar"><ul id="woopra_barul"><li style="display: block;" id="_woopra_visitors_widget" class="woopra_barli"><a href="#" class="woopra_tab">Online Visitors: 157</a><div class="woopra_widgetbox woopra_presence" id="box_T8OdB"><div class="wwb_head"></div><div class="wwb_content"></div></div></li><li style="display: none;" id="_woopra_chat_widget" class="woopra_barli"><a href="#" class="woopra_tab"></a><div class="woopra_widgetbox woopra_presence" id="box_wAAxe"><div class="wwb_head"></div><div class="wwb_content"></div></div></li><li style="display: none;" id="_woopra_logo" class="woopra_barli"><a class="woopra_logotab" href="http://www.woopra.com/?woo_campaign=chatbar&amp;woo_medium=widget&amp;woo_source=architects.dzone.com" target="_blank"><img style="margin: 6px 6px 0 6px" src="10x-is-a-state-of-being-not-a-type-of-engineer_files/woopra_widget.gif" alt="Woopra"></a></li></ul></div></body></html>

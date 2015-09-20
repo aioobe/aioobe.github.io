@@ -1,0 +1,1 @@
+twttr.receiveCount({"count":9,"url":"http:\/\/architects.dzone.com\/articles\/10x-state-being-not-type\/"});

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-
     {% include head.html %}
-
     <body>
-        
         <div id="page">
             <div style="position: relative;">
                 <div id="topbanner" class="bannerbox">
@@ -16,6 +13,7 @@
             <div id="content">
                 {{ content }}
             </div>
+            &nbsp; <!-- To make sure #page goes all the way to the bottom. http://stackoverflow.com/questions/6470715 -->
         </div>
     </body>
 </html>

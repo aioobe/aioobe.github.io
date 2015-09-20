@@ -1,0 +1,22 @@
+/*
+ * Theme Name: NGS Science Blogs Individual
+ * Description: A theme for the Science Blogs individual blog. Based on the Carrington theme framework.
+ * Author: Crowd Favorite
+ * Author URI: http://crowdfavorite.com
+ * Template: ngs-science-blogs/ngs-science-blogs-base
+ * Version: 1.0
+ */
+
+h1.blog-title {
+	border-bottom: 5px solid #55930c;
+	font-size: 44px;
+	font-weight: normal;
+	margin: 7px 0 42px 0;
+	padding-bottom: 7px;
+}
+
+h1.blog-title a,
+h1.blog-title a:visited,
+h1.blog-title a:hover {
+	color: #7c7c7c;
+}

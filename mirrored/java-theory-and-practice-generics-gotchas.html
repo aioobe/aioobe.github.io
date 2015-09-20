@@ -1,0 +1,1664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+
+<script type="text/javascript" src="java-theory-and-practice-generics-gotchas_files/analytics.js"></script>
+<link type="text/css" rel="stylesheet" href="java-theory-and-practice-generics-gotchas_files/banner-styles.css">
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Java theory and practice: Generics gotchas</title>
+<meta http-equiv="PICS-Label" content="(PICS-1.1 &quot;http://www.icra.org/ratingsv02.html&quot; l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) &quot;http://www.rsac.org/ratingsv01.html&quot; l gen true r (n 0 s 0 v 0 l 0) &quot;http://www.classify.org/safesurf/&quot; l gen true r (SS~~000 1))">
+<link rel="schema.DC" href="https://web.archive.org/web/20120820083752/http://purl.org/DC/elements/1.0/">
+<link rel="SHORTCUT ICON" href="https://web.archive.org/web/20120820083752im_/http://www.ibm.com/favicon.ico">
+<meta name="Owner" content="developerWorks Content/Raleigh/IBM">
+<meta name="DC.Language" scheme="rfc1766" content="en">
+<meta name="IBM.Country" content="ZZ">
+<meta name="Security" content="Public">
+<meta name="IBM.SpecialPurpose" content="SP001">
+<meta name="IBM.PageAttributes" content="sid=1003,1004">
+<meta name="Source" content="v16 Template Generator">
+<meta name="Robots" content="index,follow">
+<meta name="Abstract" content="Generic types, added in JDK 5.0, are a significant enhancement to type safety in the Java language. However, some aspects of generics may seem confusing, or even downright bizarre, to first-time users. In this month's Java theory and practice, Brian Goetz examines the common pitfalls that ensnare first-time users of generics.">
+<meta name="Description" content="Generic types, added in JDK 5.0, are a significant enhancement to type safety in the Java language. However, some aspects of generics may seem confusing, or even downright bizarre, to first-time users. In this month's Java theory and practice, Brian Goetz examines the common pitfalls that ensnare first-time users of generics.">
+<meta name="Keywords" content="Brian Goetz, Java theory and practice, generics, generic functions, generic types, covariance, type parameter, type argument, Tiger, tttjca">
+<meta name="DC.Date" scheme="iso8601" content="2005-01-25">
+<meta name="DC.Type" scheme="IBM_ContentClassTaxonomy" content="CT316">
+<meta name="DC.Subject" scheme="IBM_SubjectTaxonomy" content="TT300">
+<meta scheme="IBM_WTMCategory" name="IBM.WTMCategory" content="SOFDCJVAZZ">
+<meta name="DC.Rights" content="© Copyright&nbsp;IBM Corporation&nbsp;2005">
+<meta name="IBM.Effective" scheme="W3CDTF" content="2005-01-25">
+<meta name="title" content="Java theory and practice: Generics gotchas">
+
+<!-- HEADER_SCRIPTS_AND_CSS_INCLUDE -->
+<link href="java-theory-and-practice-generics-gotchas_files/all.css" media="all" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/screen-uas.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/screen-fonts.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/handheld.css" media="handheld" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/print.css" media="print" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/overlay.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- dW-specific CSS -->
+<link href="java-theory-and-practice-generics-gotchas_files/dw-screen.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/dw-screen-comments-ratings-signin.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<link href="java-theory-and-practice-generics-gotchas_files/jquery.css" media="screen,projection" rel="stylesheet" title="www" type="text/css">
+<!-- xM Masthead/Footer -->
+<link href="java-theory-and-practice-generics-gotchas_files/dw-mf2012-08.css" rel="stylesheet" title="www" type="text/css">
+<script src="java-theory-and-practice-generics-gotchas_files/ibmcommon.js" type="text/javascript">//</script>
+<script src="java-theory-and-practice-generics-gotchas_files/dynamicnav.js" type="text/javascript">//</script>
+<!-- dW functional JS -->
+<script language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/urltactic.js" type="text/javascript"></script>
+<!-- Rating_START -->
+<script language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/showrating.js" type="text/javascript"></script>
+<style type="text/css">
+.metavalue {
+  display: none;
+}
+</style>
+<!-- Rating_END --><!-- RESERVED_HEADER_INCLUDE -->
+<script language="javascript" src="java-theory-and-practice-generics-gotchas_files/ajax1.js" type="text/javascript"></script>
+<script language="javascript" src="java-theory-and-practice-generics-gotchas_files/search_counter-maverick.js" type="text/javascript"></script>
+<script language="javascript" src="java-theory-and-practice-generics-gotchas_files/request_referer_capture-maverick.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ setDefaultQuery('javaart');
+ //-->
+</script>
+<script language="JavaScript" type="text/javascript">
+ <!--
+ function openNewWindow(url,tar,arg){window.open(url,tar,arg);}
+ //-->
+</script>
+<!-- Include file support -->
+<script language="JavaScript" type="text/javascript">
+(function($) {
+	jQuery.extend({
+		getInc: function(u,d){
+			if(u==null)return;
+			jQuery.ajax({
+	    		type: "GET",
+			url: u,
+			dataType: "text",
+	        	success: function(t) {
+				jQuery(d).html(t);
+				ibmCommon.initShowHide(jQuery(d).children()[0]);			
+			},
+			async: true
+			});
+		}
+	});
+})(jQuery);
+</script>
+<script charset="UTF-8" src="java-theory-and-practice-generics-gotchas_files/flash-detect.js" type="text/javascript" id="flashdetect"></script><script charset="UTF-8" src="java-theory-and-practice-generics-gotchas_files/usen-utf8.js" type="text/javascript" id="mhMenu"></script><script charset="UTF-8" src="java-theory-and-practice-generics-gotchas_files/Controller" type="text/javascript" id="wiBundle"></script></head>
+
+<body id="ibm-com"><div id="wm-ipp" class="__wb_banner_div" style="display: none; position: relative; padding: 0px 5px; min-height: 70px; min-width: 800px;" lang="en">
+
+
+<div id="wm-ipp-inside" class="__wb_banner_div" style="position:fixed;padding:0!important;margin:0!important;width:97%;min-width:780px;border:5px solid #000;border-top:none;background-image:url(/static/images/toolbar/wm_tb_bk_trns.png);text-align:center;-moz-box-shadow:1px 1px 3px #333;-webkit-box-shadow:1px 1px 3px #333;box-shadow:1px 1px 3px #333;font-size:11px!important;font-family:'Lucida Grande','Arial',sans-serif!important;">
+   <table style="border-collapse:collapse;margin:0;padding:0;width:100%;"><tbody><tr>
+   <td style="padding:10px;vertical-align:top;min-width:110px;">
+   <a href="https://web.archive.org/web/" title="Wayback Machine home page" style="background-color:transparent;border:none;"><img src="java-theory-and-practice-generics-gotchas_files/wayback-toolbar-logo.png" alt="Wayback Machine" height="39" width="110" border="0"></a>
+   </td>
+   <td style="padding:0!important;text-align:center;vertical-align:top;width:100%;">
+
+       <table style="border-collapse:collapse;margin:0 auto;padding:0;width:570px;"><tbody><tr>
+       <td style="padding:3px 0;" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb" style="margin:0!important;padding:0!important;"><input name="url" id="wmtbURL" value="http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" style="width:400px;font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;" onfocus="javascript:this.focus();this.select();" type="text"><input name="type" value="replay" type="hidden"><input name="date" value="20120820083752" type="hidden"><input value="Go" style="font-size:11px;font-family:'Lucida Grande','Arial',sans-serif;margin-left:5px;width: inherit !important" type="submit"><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td style="vertical-align:bottom;padding:5px 0 0 0!important;" rowspan="2">
+           <table style="border-collapse:collapse;width:110px;color:#99a;font-family:'Helvetica','Lucida Grande','Arial',sans-serif;"><tbody>
+			
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr style="width:110px;height:16px;font-size:10px!important;">
+           	<td style="padding-right:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="https://web.archive.org/web/20120506133715/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="6 May 2012"><strong>MAY</strong></a>
+		                
+               </td>
+               <td id="displayMonthEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight:bold;text-transform:uppercase;width:34px;height:15px;padding-top:1px;text-align:center;" title="You are here: 8:37:52 Aug 20, 2012">AUG</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight:bold;text-transform:uppercase;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="https://web.archive.org/web/20121104021805/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="4 Nov 2012"><strong>NOV</strong></a>
+		                
+               </td>
+           </tr>
+
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr>
+               <td style="padding-right:9px;white-space:nowrap;overflow:visible;text-align:right!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="https://web.archive.org/web/20120506133715/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" title="13:37:15 May 6, 2012" style="background-color:transparent;border:none;"><img src="java-theory-and-practice-generics-gotchas_files/wm_tb_prv_on.png" alt="Previous capture" height="16" width="14" border="0"></a>
+		                
+               </td>
+               <td id="displayDayEl" style="background:#000;color:#ff0;width:34px;height:24px;padding:2px 0 0 0;text-align:center;font-size:24px;font-weight: bold;" title="You are here: 8:37:52 Aug 20, 2012">20</td>
+				<td style="padding-left:9px;white-space:nowrap;overflow:visible;text-align:left!important;vertical-align:middle!important;" nowrap="nowrap">
+               
+		                <a href="https://web.archive.org/web/20121104021805/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" title="2:18:05 Nov 4, 2012" style="background-color:transparent;border:none;"><img src="java-theory-and-practice-generics-gotchas_files/wm_tb_nxt_on.png" alt="Next capture" height="16" width="14" border="0"></a>
+		                
+			    </td>
+           </tr>
+
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr style="width:110px;height:13px;font-size:9px!important;">
+				<td style="padding-right:9px;font-size:11px!important;font-weight: bold;text-align:right;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+		                <a href="https://web.archive.org/web/20110806024325/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" style="text-decoration:none;color:#33f;font-weight:bold;background-color:transparent;border:none;" title="6 Aug 2011"><strong>2011</strong></a>
+		                
+               </td>
+               <td id="displayYearEl" style="background:#000;color:#ff0;font-size:11px!important;font-weight: bold;padding-top:1px;width:34px;height:13px;text-align:center;" title="You are here: 8:37:52 Aug 20, 2012">2012</td>
+				<td style="padding-left:9px;font-size:11px!important;font-weight: bold;white-space:nowrap;overflow:visible;" nowrap="nowrap">
+               
+                       2013
+                       
+				</td>
+           </tr>
+           </tbody></table>
+       </td>
+
+       </tr>
+       <tr>
+       <td style="vertical-align:middle;padding:0!important;">
+           <a href="https://web.archive.org/web/20120820083752*/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html" style="color:#33f;font-size:11px;font-weight:bold;background-color:transparent;border:none;" title="See a list of every capture for this URL"><strong>14 captures</strong></a>
+           <div class="__wb_banner_div" style="margin:0!important;padding:0!important;color:#666;font-size:9px;padding-top:2px!important;white-space:nowrap;" title="Timespan for captures of this URL">14 May 11 - 4 Nov 12</div>
+       </td>
+       <td style="padding:0!important;">
+       <a style="position:relative; white-space:nowrap; width:450px;height:27px;" href="" id="wm-graph-anchor">
+       <div class="__wb_banner_div" id="wm-ipp-sparkline" style="position:relative; white-space:nowrap; width:450px;height:27px;background-color:#fff;cursor:pointer;border-right:1px solid #ccc;" title="Explore captures for this URL">
+			<img id="sparklineImgId" style="position:absolute; z-index:9012; top:0px; left:0px;" onmouseover="showTrackers('inline');" onmouseout="showTrackers('none');" onmousemove="trackMouseMove(event,this)" alt="sparklines" src="java-theory-and-practice-generics-gotchas_files/graph.png" height="27" width="450" border="0">
+			<img id="wbMouseTrackYearImg" style="display:none; position:absolute; z-index:9010;" src="java-theory-and-practice-generics-gotchas_files/transp-yellow-pixel.png" height="27" width="25" border="0">
+			<img id="wbMouseTrackMonthImg" style="display:none; position:absolute; z-index:9011; " src="java-theory-and-practice-generics-gotchas_files/transp-red-pixel.png" height="27" width="2" border="0">
+       </div>
+		</a>
+
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td style="text-align:right;padding:5px;width:65px;font-size:11px!important;">
+       <a href="javascript:;" onclick="document.getElementById('wm-ipp').style.display='none';" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_close.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;margin-bottom:23px;background-color:transparent;border:none;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="display:block;padding-right:18px;background:url(/static/images/toolbar/wm_tb_help.png) no-repeat 100% 0;color:#33f;font-family:'Lucida Grande','Arial',sans-serif;background-color:transparent;border:none;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+
+</div>
+</div>
+
+<div id="ibm-top" class="ibm-landing-page">
+
+<!-- MASTHEAD_BEGIN -->
+<!-- MASTHEAD_BEGIN -->
+<div class="ibm-access"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#ibm-content">Skip to main content</a></div>
+<div id="ibm-masthead-dw">
+  
+    <!-- TOP ROW -->    
+    <div id="dw-masthead-top-row">
+        <ul id="ibm-mast-options-dw">
+		    <li id="dw-mast-top-0">
+				<a class="" href="https://web.archive.org/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;lang=en&amp;d=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html" title="">Sign in (or register)</a>
+			</li>
+		    <li id="dw-mast-top-1">
+				<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#SELECTLANG">English</a><img class="dw-preload" src="java-theory-and-practice-generics-gotchas_files/arrow-down-active.gif" alt="" height="7" width="8">
+			</li>
+		    <li id="dw-mast-top-2" class="dw-mf-hide">
+				<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/photo.gif" alt="PHOTO" class="dw-mast-profimg" height="20" width="20"> [userid]</a>
+			</li>
+			<li id="dw-mast-top-3">
+				<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/ibm-smlogo.gif" alt="IBM®" height="16" width="44"></a>
+			</li>
+		</ul>
+	</div>
+    
+    <!-- TOP ROW SLIDER -->
+    <div id="ibm-my-menu-dw">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+                <!-- Sign-in -->
+				<div class="dw-mast-columns">                
+					<div class="dw-mast-col-1-1">
+						<div id="dw-mast-sso">
+							<div id="signin_error_mf" class="no-display"></div>
+							<div id="dw-mast-sso-form">
+								<form id="sForm_mf" action="" method="post" name="sForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-sso-id" class="dw-mast-sso-id-en">
+										<label for="ibmid_mf">IBM ID:</label>
+										<input class="" id="ibmid_mf" name="ibmid_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,'mf');" type="text">
+									</div>
+									<div id="dw-mast-sso-pw" class="dw-mast-sso-pw-en">
+										<label for="pw_mf">Password:</label>
+										<input class="" id="pw_mf" value="" name="pw_name_mf" maxlength="100" onkeypress="handleEP(event,this.form,'mf');" type="password">
+									</div>
+									<div id="dw-mast-sso-target" class="dw-mast-sso-target-en">
+										<p class="dw-mf-perm-box">
+											<input id="perm_mf" name="perm_name_mf" type="checkbox"><label for="perm_mf"> Keep me signed in.</label>
+										</p>
+									</div>					
+									<div id="dw-mast-sso-terms">
+										<p class="dw-mast-sso-terms-en">By clicking <strong>Submit</strong>, you agree to the <a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn" name="ibm_submit_name_mf" value="Submit" onclick="signin('mf');return false;" type="submit">
+									</div>
+								</form>
+							</div>
+							<div id="dw-mast-sso-update">
+								<div id="dw-mast-sso-update-id">
+									<ul>
+										<li><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;lang=en&amp;d='+encodeURIComponent(location.href);})();">Need an IBM ID?</a></li>
+										<li><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=en_US">Forgot your IBM ID?</a></li>
+									</ul>
+								</div>
+								<div id="dw-mast-sso-update-pw">
+									<ul class="dw-mf-pwupdate">
+										<li><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="(function () {window.location='/web/20120820083752/https://www.ibm.com/account/profile?page=forgot&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(getAuthUrl())+'%3Fm%3Dloginpage%26lang%3Den_US%26d%3D'+encodeURIComponent(location.href);})();">Forgot your password?</a></li>
+										<li><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="(function () {window.location='/web/20120820083752/https://www.ibm.com/account/profile?page=chpw&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(location.href);})();">Change your password</a></li>
+									</ul>
+								</div>
+							</div>
+							<div id="dw-mast-sso-text">
+								<p>The first time you sign into developerWorks, a <strong>profile</strong> is created for you.  <strong>Select information in your developerWorks profile is displayed to the public, but you may edit the information at any time.</strong>  Your first name, last name (unless you choose to hide them), and display name will accompany the content that you post.</p>
+								<p class="dw-mf-secure">All information submitted is secure.</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+								</ul>
+							</div>							
+						</div>                    
+						<div id="dw-mast-dname" class="dw-mf-hide">
+							<p>The first time you sign in to developerWorks, a profile is 
+created for you, so you need to choose a display name.  Your display 
+name accompanies the content you post on developerworks.</p><p><strong>Please choose a display name between 3-31 characters</strong>.  Your display name must be unique in the developerWorks community and should not be your email address for privacy reasons.</p>
+							<div id="signin_dname_error_mf" class="no-display"></div>
+							<div id="dw-mast-dname-form">
+								<form id="dForm_mf" action="" method="post" name="dForm_name_mf" onsubmit="return false;">
+									<div id="dw-mast-dname-mf">
+										<label for="dname_mf">Display name:</label>
+										<input id="dname_mf" name="dname_name_mf" maxlength="31" size="25" onkeypress="handleEP(event,this.form,'mf');" type="text">
+									</div>
+									<div id="dw-mast-dname-terms">
+										<p>By clicking <strong>Submit</strong>, you agree to the <a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+									</div>
+									<div>
+										<input class="dw-mf-submit-btn" name="dname_submit_name_mf" value="Submit" onclick="signin('mf');return false;" type="submit">
+									</div>
+								</form>								
+							</div>
+							<div id="dw-mast-dname-secure">
+								<p class="dw-mf-secure">All information submitted is secure.</p>
+							</div>
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+								</ul>
+							</div>							
+						</div>
+						<div id="dw-mast-auth" class="dw-mf-hide">
+							<div>
+								<h2>My developerWorks:</h2>
+								<ul>
+									<li><a id="dw-mast-top-0-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/myProfileView.do?lang=en">My profile</a></li>
+									<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=en">My home</a></li>
+									<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/mydeveloperworks/groups/service/html/mycommunities?lang=en">My groups</a></li>
+								</ul>     
+							</div>
+							<div id="dw-mast-notify" class="dw-mf-hide">
+								<h2>My notifications:</h2>
+								<ul>
+									<li><a id="new_notify" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/mydeveloperworks/homepage?lang=en">{[num_notify] new notifications}([num_notify] new notification)</a></li>
+									<li><a id="new_invite" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/mydeveloperworks/profiles/html/wc.do?action=in&amp;requireAuth=true&amp;widgetId=friends&amp;lang=[lang]">{[num_invite] network requests}([num_invite] network request)</a></li>  
+								</ul>
+							</div>
+							<div class="dw-mast-more">
+								<ul class="ibm-link-list">
+									<li><a class="dw-more-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="signOut(); return false;"><strong>Sign out</strong></a></li>
+								</ul>
+							</div>		
+							<div class="dw-mast-close">
+								<ul>
+									<li><div class="dw-mast-close-sign"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+								</ul>
+							</div>							
+						</div>						
+					</div>                   
+                </div>
+                <!-- Language selector --> 
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2>Select a language:</h2>
+						<ul>
+							<li><a id="dw-mast-top-1-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/">English</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/cn/">中文</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/jp/">日本語</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/ru/">Русский</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/ssa/">Español</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/vn/">Việt</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-lang"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+                </div>                
+                <div class="dw-mast-columns"><!-- Authenticated --></div>
+                <!-- IBM -->
+				<div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<ul>
+							<li><a id="dw-mast-top-3-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/">IBM home</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/solutions/">Solutions</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/software/">Software</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/software/sw-services/">Software services</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-col-2-2 dw-mast-ibm">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/support/">Support</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/support/publications/us/library/index.shtml">Product information</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/redbooks/">Redbooks</a></li>
+						</ul>
+					</div>
+					<div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-ibm"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM ROW -->
+    <div id="ibm-universal-nav-dw">
+        <ul id="ibm-unav-links-dw">
+            <li id="ibm-unav-home-dwlogo">
+				<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/"><img src="java-theory-and-practice-generics-gotchas_files/dw-wordmark.gif" alt="developerWorks®" height="32" width="218"></a>
+            </li>
+        </ul>
+        <ul id="ibm-menu-links-dw">
+            <li id="dw-mast-nav-0"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/topics/">Technical topics</a></li>
+            <li id="dw-mast-nav-1"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/">Evaluation software</a></li>
+            <li id="dw-mast-nav-2"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/community/">Community</a></li>
+            <li id="dw-mast-nav-3"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/events/">Events</a></li>
+        </ul>
+			<form id="ibm-search-form" action="/web/20120820083752/http://www.ibm.com/search/csass/search/" method="get" name="form1">
+				<input name="sn" value="dw" type="hidden">
+				<input name="lang" value="en" type="hidden">
+				<input name="cc" value="US" type="hidden">
+				<input name="en" value="utf" type="hidden">
+				<input name="hpp" value="20" type="hidden">
+				<input name="dws" value="dw" type="hidden">
+				<p>
+				<label for="q"><img alt="Search developerWorks" src="java-theory-and-practice-generics-gotchas_files/c_002.gif" height="1" width="1"></label>
+				<input value="Search developerWorks" name="q" maxlength="100" id="q" type="text">
+				<input id="ibm-search" class="ibm-btn-search" name="Search" value="Search" type="submit">
+				</p>
+			</form>
+    </div>
+    
+    <!-- BOTTOM ROW SLIDER -->
+    <div id="ibm-common-menu-dw">
+        <div class="ibm-ribbon-pane-dw dw-ribbon-pane-en">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Technical topics category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-5-1">
+						<h2><a id="dw-mast-nav-0-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/topics/">Technical topics</a></h2>
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/connect/agile/">Agile transformation</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/aix/">AIX and UNIX</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/analytics/">Business analytics</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/bpm/">Business process management</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/cloud/">Cloud computing</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/commerce/">Commerce</a></li>
+						</ul>     
+                    </div>
+					<div class="dw-mast-col-5-2">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/ibmi/">IBM i</a></li>    
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/industry/">Industries</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/data/">Information management</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/">Java technology</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/linux/">Linux</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/lotus/">Lotus</a></li>
+						</ul>
+                    </div>
+					<div class="dw-mast-col-5-3">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/mobile/">Mobile development</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/opensource/">Open source</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/rational/">Rational</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/security/">Security</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/servicemanagement/">Service management</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/webservices/">SOA and web services</a></li>
+						</ul>     
+                    </div>
+                    <div class="dw-mast-col-5-4">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/tivoli/">Tivoli</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/web/">Web development</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/websphere/">WebSphere</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/xml/">XML</a></li>
+						</ul> 
+                    </div>
+                    <div class="dw-mast-col-5-5">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/library/"><strong>Technical library</strong></a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/products/"><strong>Products A to Z</strong></a></li>
+						</ul>
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-tech"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+				<!-- Evaluation software category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-2-1">
+						<h2><a id="dw-mast-nav-1-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/">Evaluation software</a></h2>
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/#data">Information management</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/#lotus">Lotus</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/#rational">Rational</a></li>
+						</ul>            
+                    </div>
+					<div class="dw-mast-col-2-2">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/#tivoli">Tivoli</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/#websphere">WebSphere</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/#more">More IBM products</a></li>
+						</ul>            
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-eval"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+				<!-- Community category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-3-1">
+						<h2><a id="dw-mast-nav-2-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/community/?lang=en">Community</a></h2>
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/homepage/?lang=en">My home</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/profiles/?lang=en">Profiles</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/groups/?lang=en">Groups</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/blogs/?lang=en">Blogs</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/bookmarks/?lang=en">Bookmarks</a></li>  
+						</ul>     
+                    </div>
+					<div class="dw-mast-col-3-2">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/forums/">Forums</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/mydeveloperworks/wikis/?lang=en">Wikis</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/files/?lang=en">Files</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/activities/?lang=en">Activities</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/podcasts/?lang=en">Podcasts</a></li>     
+						</ul>
+                    </div>
+					<div class="dw-mast-col-3-3 dw-mast-col-3-3-en">
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/champion/">IBM Champion program</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-comm"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+				<!-- Events category -->
+                <div class="dw-mast-columns">
+					<div class="dw-mast-col-1-1">
+						<h2><a id="dw-mast-nav-3-0" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/events/">Events</a></h2>
+						<ul>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/briefings/">Briefings</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/find/webcasts/">Webcasts</a></li>
+							<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/find/events/">Find events (briefings, webcasts, conferences...)</a></li>
+						</ul>            
+                    </div>
+                    <div class="dw-mast-close">
+						<ul>
+							<li><div class="dw-mast-close-event"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div id="fdiv" class="ibm-access"><embed type="application/x-shockwave-flash" src="java-theory-and-practice-generics-gotchas_files/connect.swf" id="sflash" name="sflash" quality="high" menu="false" wmode="window" movie="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/js/dw-mf/connect.swf" swliveconnect="true" allowscriptaccess="always" height="1" width="1"></div>
+<!-- MASTHEAD_END --><!-- MASTHEAD_END -->
+
+<div id="ibm-pcon">
+
+<!-- CONTENT_BEGIN -->
+<div id="ibm-content">
+
+<!-- Navigation_Trail_BEGIN -->
+<!-- &nbsp; -->
+      <div id="ibm-content-head"><ul id="ibm-navigation-trail"><li class="ibm-first"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/">developerWorks</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/topics/">Technical topics</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/">Java technology</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/">Technical library</a></li></ul></div>
+<!-- Navigation_Trail_END -->
+
+<!-- dW_Summary Area_START -->
+<div id="dw-summary-article">
+
+<div class="dw-content-head">
+<h1>Java theory and practice: Generics gotchas</h1><p><em>Identify and avoid some of the pitfalls in learning to use generics</em></p>
+</div>
+
+<div class="ibm-container-body ibm-two-column">
+
+<div class="ibm-column ibm-first">
+<div class="author"><a title="" class="dwauthor" rel="#authortip1" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#author1">Brian Goetz</a> (<a href="mailto:brian@quiotix.com?subject=Generics%20gotchas">brian@quiotix.com</a>), Principal Consultant, Quiotix</div><div style="display: none;" id="authortip1" class="dwauthor-onload-state ibm-no-print">Brian
+ Goetz has been a professional software developer for over 17 years. 
+He is a Principal Consultant at Quiotix, a software development and 
+consulting firm located in Los Altos, California, and he serves on 
+several JCP Expert Groups. See Brian's <a href="https://web.archive.org/web/20120820083752/http://www.briangoetz.com/pubs.html">published and upcoming articles</a> in popular industry publications.</div>
+<p></p>
+<p><strong>Summary:</strong>&nbsp; Generic types, added in JDK 5.0, are a
+ significant enhancement to type safety in the Java language. However, 
+some aspects of generics may seem confusing, or even downright bizarre, 
+to first-time users. In this month's <em>Java theory and practice</em>, Brian Goetz examines the common pitfalls that ensnare first-time users of generics.</p>
+<p class="ibm-no-print"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/views/java/libraryview.jsp?search_by=practice:">View more content in this series</a></p>
+<div id="dw-tag-content" class="ibm-no-print"></div><div id="dw-moretags-access" class="ibm-access"></div>
+<p class="ibm-no-print"></p><div id="dw-tag-this" class="ibm-no-print"><a class="ibm-external-link" onclick="jQuery.launchTagThisWindow(); return false;" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Tag this!</a></div><div id="interestShow" class="ibm-no-print"><div id="dw-interest-anon"><a id="intAnonBtn" class="ibm-external-link" href="">Update My dW interests</a> (<a class="dw-interest" href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&amp;d=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html">Log in</a> | <a class="dw-interest" href="#overlay" onclick="ibmCommon.Overlays.show('dwmyinterestadd', this);return false;">What's this?</a>) <a class="ibm-access" href="#dwmyinterestaddhelp">Skip to help for Update My dW interests</a></div></div><p></p>
+</div>
+
+<div class="ibm-column ibm-second">
+<p class="leading"><strong>Date:</strong>&nbsp; 25 Jan 2005
+<br><strong>Level: </strong>&nbsp;Introductory
+
+<br><strong>Also available in:&nbsp;</strong>
+
+
+&nbsp;<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/ru/library/j-jtp01255/">Russian</a> 
+&nbsp;<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/jp/java/library/j-jtp01255/">Japanese</a> 
+
+
+
+<br>
+<br><strong>Activity:</strong>&nbsp; 37329 views
+<br><strong>Comments:</strong> &nbsp; <span id="nCmts">0&nbsp;(<a class="dw-view-comment" href="#icomments">View</a>&nbsp;|&nbsp;<a onclick="showSignIn();return false;" href="#">Add comment</a> - Sign in)</span>
+<!-- Rating_Area_Begin -->
+</p><div id="art-rating-summary"><a class="dw-view-comment" href="#iratings">Rate this article</a></div>
+<!-- Rating_Area_End -->
+<p></p>
+</div>
+
+</div>
+</div>
+<!-- dW_Summary_Area_END -->
+
+<!-- CONTENT_BODY -->
+<div id="ibm-content-body">
+
+<!-- MAIN_COLUMN_BEGIN -->
+<div id="ibm-content-main">
+
+<!-- Related_Searches_Area -->
+<!-- Related_Searches_Area_Begin -->
+<script type="text/javascript" language="javascript">
+	     capture_referrer();
+</script>
+
+<div id="dw-related-searches-article" style="display:none">
+<div class="ibm-container ibm-alternate-two">
+<div class="ibm-container-body">
+
+<!--  START : HTML FOR ARTICLE SEARCH -->
+  <div id="article_results" style="display:block"></div>
+<!--  END : HTML FOR ARTICLE SEARCH -->
+
+</div>
+</div>
+</div>
+<!-- Related_Searches_Area_End -->
+<!-- MAIN_COLUMN_CONTAINER_BEGIN -->
+<div class="ibm-container">
+
+<!-- MAIN_COLUMN_CONTENT_BEGIN -->
+<p>
+Generic types (or generics) bear a superficial resemblance to templates
+in C++, both in their syntax and in their expected use cases (such as
+container classes). But the similarity is only skin-deep -- generics in
+the Java language are implemented almost entirely in the compiler,
+which performs type checking and type inference, and then generates
+ordinary, non-generic bytecodes. This implementation technique, called
+<em>erasure</em> (where the compiler uses the generic type information to
+ensure type safety, but then erases it before generating the
+bytecode), has some surprising, and sometimes confusing,
+consequences. While generics are a big step forward for type safety in
+Java classes, learning to use generics will almost certainly provide
+some opportunity for head-scratching (and sometimes cursing) along the
+way.
+</p>
+
+<p><em><strong>Note:</strong> This article assumes familiarity with the basics of generics in JDK 5.0. </em></p>
+
+<p><a name="1.0"><span class="atitle">Generics are not covariant</span></a></p>
+
+<p>While you might find it helpful to think of collections as being an abstraction of
+arrays, they have some special properties that collections do
+not.  Arrays in the Java language are covariant -- which means that if
+<code>Integer</code> extends <code>Number</code> (which it does), then
+not only is an <code>Integer</code> also a <code>Number</code>, but an
+<code>Integer[]</code> is also a <code>Number[]</code>, and you are
+free to pass or assign an <code>Integer[]</code> where a
+<code>Number[]</code> is called for. (More formally, if
+<code>Number</code> is a supertype of <code>Integer</code>, then
+<code>Number[]</code> is a supertype of <code>Integer[]</code>.) You
+might think the same is true of generic types as well -- that
+<code>List&lt;Number&gt;</code> is a supertype of
+<code>List&lt;Integer&gt;</code>, and that you can pass a
+<code>List&lt;Integer&gt;</code> where a
+<code>List&lt;Number&gt;</code> is expected. Unfortunately, it doesn't
+work that way.
+</p>
+
+<p>
+It turns out there's a good reason it doesn't work that way: It would break the type safety generics were supposed to
+provide. Imagine you could assign a
+<code>List&lt;Integer&gt;</code> to a
+<code>List&lt;Number&gt;</code>. Then the following code would allow
+you to put something that wasn't an <code>Integer</code> into a
+<code>List&lt;Integer&gt;</code>:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">List&lt;Integer&gt; li = new ArrayList&lt;Integer&gt;();
+List&lt;Number&gt; ln = li; // illegal
+ln.add(new Float(3.1415));
+</pre></td></tr></tbody></table><br>
+
+<p>
+Because <code>ln</code> is a <code>List&lt;Number&gt;</code>, adding a
+<code>Float</code> to it seems perfectly legal. But if <code>ln</code>
+were aliased with <code>li</code>, then it would break the type-safety
+promise implicit in the definition of <code>li</code> -- that it is a
+list of integers, which is why generic types cannot be covariant.
+</p>
+
+<p><a name="1.1"><span class="smalltitle">More covariance troubles</span></a></p>
+
+<p>
+Another consequence of the fact that arrays are covariant but generics
+are not is that you cannot instantiate an array of a generic type
+(<code>new List&lt;String&gt;[3]</code> is illegal), unless the type
+argument is an unbounded wildcard (<code>new List&lt;?&gt;[3]</code>
+is legal). Let's see what would happen if you were allowed to declare
+arrays of generic types:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">List&lt;String&gt;[] lsa = new List&lt;String&gt;[10]; // illegal
+Object[] oa = lsa;  // OK because List&lt;String&gt; is a subtype of Object
+List&lt;Integer&gt; li = new ArrayList&lt;Integer&gt;();
+li.add(new Integer(3));
+oa[0] = li; 
+String s = lsa[0].get(0); 
+</pre></td></tr></tbody></table><br>
+ 
+<p>
+The last line will throw a <code>ClassCastException</code>, because
+you've managed to cram a <code>List&lt;Integer&gt;</code> into what
+should have been a <code>List&lt;String&gt;</code>. Because array
+covariance would have allowed you to subvert the type safety of
+generics, instantiating arrays of generic types (except for types
+whose type arguments are unbounded wildcards, like
+<code>List&lt;?&gt;</code>) has been disallowed.
+</p>
+
+<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#ibm-pcon" class="ibm-anchor-up-link">Back to top</a></p><p><a name="2.0"><span class="atitle">Construction delays</span></a></p>
+
+<p>
+Because of erasure, <code>List&lt;Integer&gt;</code> and
+<code>List&lt;String&gt;</code> are the same class, and the compiler
+only generates one class when compiling <code>List&lt;V&gt;</code> (unlike in C++). As a result, the compiler doesn't know what type is
+represented by <code>V</code> when compiling the
+<code>List&lt;V&gt;</code> class, and so you can't do certain things
+with a type parameter (the <code>V</code> in
+<code>List&lt;V&gt;</code>) within the class definition of
+<code>List&lt;V&gt;</code> that you could do if you knew what class
+was being represented.
+</p>
+
+<p>
+Because the runtime cannot tell a <code>List&lt;String&gt;</code> from
+a <code>List&lt;Integer&gt;</code> (at runtime, they're both just
+<code>List</code>s), constructing variables whose type is identified
+by a generic type parameter is problematic. This lack of type
+information at runtime poses a problem for generic container classes
+and for generic classes that want to make defensive copies.
+</p>
+
+<p>
+Consider the generic class <code>Foo</code>:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">class Foo&lt;T&gt; { 
+  public void doSomething(T param) { ... }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+Suppose the <code>doSomething()</code> method wants to make a
+defensive copy of the <code>param</code> argument on entry? You don't
+have many options. You'd like to implement <code>doSomething()</code>
+like this:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">public void doSomething(T param) { 
+  T copy = new T(param);  // illegal
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+But you cannot use a type parameter to access a constructor because,
+at compile time, you don't know what class is being constructed and
+therefore what constructors are available. There's no way to express a
+constraint like "<code>T</code> must have a copy constructor" (or even
+a no-arg constructor) using generics, so accessing constructors for
+classes represented by generic type parameters is out.
+</p>
+
+<p>
+What about <code>clone()</code>? Let's say <code>Foo</code> was
+defined to make <code>T</code> extend <code>Cloneable</code>:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">class Foo&lt;T extends Cloneable&gt; { 
+  public void doSomething(T param) {
+    T copy = (T) param.clone();  // illegal 
+  }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+Unfortunately, you still can't call <code>param.clone()</code>. Why?
+Because <code>clone()</code> has protected access in
+<code>Object</code> and, to call <code>clone()</code>, you have to
+call it through a reference to a class that has overridden
+<code>clone()</code> to be public. But <code>T</code> is not known to
+redeclare <code>clone()</code> as public, so cloning is also out.
+</p>
+
+<p><a name="2.1"><span class="smalltitle">Constructing wildcard references</span></a></p>
+
+<p>
+OK, so you can't copy a reference to a type whose class is totally
+unknown at compile time. What about wildcard types? Suppose you want
+to make a defensive copy of a parameter whose type is
+<code>Set&lt;?&gt;</code>. You know that <code>Set</code> has a copy
+constructor. You've also been told it's better to use
+<code>Set&lt;?&gt;</code> instead of the raw type <code>Set</code>
+when you don't know the type of the set's contents, because that
+approach is likely to emit fewer unchecked conversion warnings. So you
+try this:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">class Foo {
+  public void doSomething(Set&lt;?&gt; set) {
+    Set&lt;?&gt; copy = new HashSet&lt;?&gt;(set);  // illegal
+  }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+Unfortunately, you can't invoke a generic constructor with a wildcard
+type argument, even though you know such a constructor
+exists. However, you can do this:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">class Foo {
+  public void doSomething(Set&lt;?&gt; set) {
+    Set&lt;?&gt; copy = new HashSet&lt;Object&gt;(set);  
+  }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+This construction is not the most obvious, but it is type-safe and
+will do what you think <code>new HashSet&lt;?&gt;(set)</code> would do.
+</p>
+
+<p><a name="2.2"><span class="smalltitle">Constructing arrays</span></a></p>
+
+<p>
+How would you implement <code>ArrayList&lt;V&gt;</code>? The
+<code>ArrayList</code> class is supposed to manage an array of
+<code>V</code>, so you might expect the constructor for
+<code>ArrayList&lt;V&gt;</code> to create an array of <code>V</code>:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">class ArrayList&lt;V&gt; {
+  private V[] backingArray;
+  public ArrayList() {
+    backingArray = new V[DEFAULT_SIZE]; // illegal
+  }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+But this code does not work -- you cannot instantiate an array of a
+type represented by a type parameter. The compiler doesn't know what
+type <code>V</code> really represents, so it cannot instantiate an
+array of <code>V</code>.
+</p>
+
+<p>
+The Collections classes use an ugly trick to get around this problem,
+one that generates an unchecked conversion warning when the
+Collections classes are compiled. The constructor for the real
+implementation of <code>ArrayList</code> looks likes this:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">class ArrayList&lt;V&gt; {
+  private V[] backingArray;
+  public ArrayList() {
+    backingArray = (V[]) new Object[DEFAULT_SIZE]; 
+  }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+Why does this code not generate an <code>ArrayStoreException</code>
+when <code>backingArray</code> is accessed? After all, you can't
+assign an array of <code>Object</code> to an array of
+<code>String</code>. Well, because generics are implemented by
+erasure, the type of <code>backingArray</code> is actually
+<code>Object[]</code>, because <code>Object</code> is the erasure of
+<code>V</code>. This means that the class is really expecting
+<code>backingArray</code> to be an array of <code>Object</code>
+anyway, but the compiler does extra type checking to ensure that it contains only objects of type <code>V</code>. So this approach will
+work, but it's ugly, and not really something to emulate (even the
+authors of the generified Collections framework say so -- see <a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#resources">Resources</a>).
+</p>
+
+<p>
+An alternate approach would have been to declare
+<code>backingArray</code> as an array of <code>Object</code>, and cast
+it to <code>V[]</code> everywhere it is used. You would still get
+unchecked conversion warnings (as you do with the previous approach),
+but it would have made some unstated assumptions (such as the fact
+that <code>backingArray</code> should not escape the implementation of
+<code>ArrayList</code>) more clear.
+</p>
+
+<p><a name="2.3"><span class="smalltitle">The road not taken</span></a></p>
+
+<p>
+The best approach would be to pass a class literal
+(<code>Foo.class</code>) into the constructor, so that the
+implementation could know, at runtime, the value of
+<code>T</code>. The reason this approach was not taken was for
+backward compatibility -- then the new generified collection classes
+would not be compatible with previous versions of the Collections
+framework.
+</p>
+
+<p>
+Here's how <code>ArrayList</code> would have looked under this approach:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">public class ArrayList&lt;V&gt; implements List&lt;V&gt; {
+  private V[] backingArray;
+  private Class&lt;V&gt; elementType;
+
+  public ArrayList(Class&lt;V&gt; elementType) {
+    this.elementType = elementType;
+    backingArray = (V[]) Array.newInstance(elementType, DEFAULT_LENGTH);
+  }
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+But wait! There's still an ugly, unchecked cast there when calling
+<code>Array.newInstance()</code>. Why? Again, it's because of backward
+compatibility. The signature of <code>Array.newInstance()</code> is:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">public static Object newInstance(Class&lt;?&gt; componentType, int length)
+</pre></td></tr></tbody></table><br>
+
+<p>
+instead of the type-safe:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">public static&lt;T&gt; T[] newInstance(Class&lt;T&gt; componentType, int length)
+</pre></td></tr></tbody></table><br>
+
+<p>
+Why was <code>Array</code> generified this way? Again, the frustrating
+answer is to preserve backward compatibility. To create an array of a
+primitive type, such as <code>int[]</code>, you call
+<code>Array.newInstance()</code> with the <code>TYPE</code> field from
+the appropriate wrapper class (in the case of <code>int</code>, you
+would pass <code>Integer.TYPE</code> as the class
+literal). Generifying <code>Array.newInstance()</code> with a
+parameter of <code>Class&lt;T&gt;</code> instead of <code>Class&lt;?&gt;</code>
+would have been more type-safe for reference types, but would have
+made it impossible to use <code>Array.newInstance()</code> to create
+an instance of a primitive array. Perhaps in the future, an alternate
+version of <code>newInstance()</code> will be provided for reference
+types so you can have it both ways.
+</p>
+
+<p>
+You may see a pattern beginning to emerge here -- many of the problems,
+or compromises, associated with generics are not issues with generics
+themselves, but side effects of the requirement to preserve backward
+compatibility with existing code.  
+</p>
+
+<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#ibm-pcon" class="ibm-anchor-up-link">Back to top</a></p><p><a name="3.0"><span class="atitle">Generifying existing classes</span></a></p>
+
+<p>
+Converting existing library classes to work smoothly with generics was
+no small feat, but as is often the case, backward-compatibility does
+not come for free. I've already talked about two examples where
+backward compatibility limited the generification of the class
+libraries.
+</p>
+
+<p>
+Another method that would probably have been generified differently
+had backward compatibility not been an issue is
+<code>Collections.toArray(Object[])</code>. The array passed into <code>toArray()</code> serves
+two purposes -- if the collection is small enough to fit in the array
+provided, the contents will simply be placed in that array. Otherwise,
+a new array of the same type will be created, using reflection, to
+receive the results. If the Collections framework were being rewritten
+from scratch, it is likely that the argument to <code>Collections.toArray()</code>
+would not be an array, but instead a class literal:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">interface Collection&lt;E&gt; { 
+  public T[] toArray(Class&lt;T super E&gt; elementClass);
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+Because the Collections framework is widely emulated as an example of
+good class design, it is worth noting the areas in which its
+design was constrained by backwards compatibility, so that those
+aspects are not emulated blindly.
+</p>
+
+<p>
+One element of the generifed Collections API that is often confusing
+at first is the signatures of <code>containsAll()</code>,
+<code>removeAll()</code>, and <code>retainAll()</code>. You might
+expect the signatures for <code>remove()</code> and
+<code>removeAll()</code> to be:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">interface Collection&lt;E&gt; { 
+  public boolean remove(E e);  // not really
+  public void removeAll(Collection&lt;? extends E&gt; c);  // not really
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+But it is in fact: 
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">interface Collection&lt;E&gt; { 
+  public boolean remove(Object o);  
+  public void removeAll(Collection&lt;?&gt; c);
+}
+</pre></td></tr></tbody></table><br>
+
+<p>
+Why is this? Again, the answer lies in backward compatibility. The
+interface contract of <code>x.remove(o)</code> means "if
+<code>o</code> is contained in <code>x</code>, remove it; otherwise, do
+nothing." If <code>x</code> is a generic collection, <code>o</code>
+does not have to be type-compatible with the type parameter of
+<code>x</code>. If <code>removeAll()</code> were generified to only be
+callable if its argument was type-compatible (<code>Collection&lt;?
+extends E&gt;</code>), then certain sequences of code that were legal
+before generics would become illegal, like this one:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">// a collection of Integers
+Collection c = new HashSet();
+// a collection of Objects
+Collection r = new HashSet();
+c.removeAll(r);
+</pre></td></tr></tbody></table><br>
+
+<p>
+If the above fragment were generified in the obvious way (making
+<code>c</code> a <code>Collection&lt;Integer&gt;</code> and
+<code>r</code> a <code>Collection&lt;Object&gt;</code>), then the code
+above would not compile if the signature of <code>removeAll()</code>
+required its argument to be a <code>Collection&lt;? extends
+E&gt;</code>, instead of being a no-op. One of the key goals of
+generifying the class libraries was to not break or change the
+semantics of existing code, so <code>remove()</code>,
+<code>removeAll()</code>, <code>retainAll()</code>, and
+<code>containsAll()</code> had to be defined with a weaker type
+constraint than they might have had they been redesigned from scratch
+for generics.
+</p>
+
+<p>
+Existing classes that were designed before generics may have semantics
+that resist the "obvious" generification approach. In these cases, you
+will probably make compromises like the ones described here, but when
+designing new generic classes from scratch, it is valuable to
+understand which idioms from the Java class libraries are the result
+of backward compatibility, so they are not emulated inappropriately.
+</p>
+
+<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#ibm-pcon" class="ibm-anchor-up-link">Back to top</a></p><p><a name="4.0"><span class="atitle">Implications of erasure</span></a></p>
+
+<p>
+Because generics are implemented almost entirely in the Java compiler,
+and not in the runtime, nearly all type information about generic
+types has been "erased" by the time the bytecode is generated. In
+other words, the compiler generates pretty much the same code you
+would have written by hand without generics, casts and all, after
+checking the type-safety of your program. Unlike in C++,
+<code>List&lt;Integer&gt;</code> and <code>List&lt;String&gt;</code>
+are the same class (although they are different types, both subtypes
+of <code>List&lt;?&gt;</code> -- a distinction that is more important
+in JDK 5.0 than in previous versions of the language).
+</p>
+
+<p>
+One of the implications of erasure is that a class cannot implement
+both <code>Comparable&lt;String&gt;</code> and
+<code>Comparable&lt;Number&gt;</code>, because both of these are in
+fact the same interface, specifying the same <code>compareTo()</code>
+method. It might seem sensible to want to declare a
+<code>DecimalString</code> class that is comparable to both
+<code>String</code>s and <code>Number</code>s, but to the Java
+compiler, you would be trying to declare the same method twice:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">public class DecimalString implements Comparable&lt;Number&gt;, Comparable&lt;String&gt; { ... } // nope
+</pre></td></tr></tbody></table><br>
+
+<p>
+Another consequence of erasure is that using casts or
+<code>instanceof</code> with generic type parameters doesn't make any
+sense. The following code will not improve the type safety of your
+code at all:
+</p>
+
+<table summary="This table contains a code listing." width="100%" cellpadding="0" cellspacing="0" border="0"><tbody><tr><td class="code-outline"><pre class="displaycode">public &lt;T&gt; T naiveCast(T t, Object o) { return (T) o; }
+</pre></td></tr></tbody></table><br>
+
+<p>
+The compiler will simply emit an unchecked conversion warning, because
+it doesn't know if the cast is safe or not. The
+<code>naiveCast()</code> method will not in fact do any casting at all
+-- <code>T</code> will simply be replaced with its erasure
+(<code>Object</code>), and the object passed in will be cast to <code>Object</code>
+-- not what was intended.
+</p>
+
+<p>
+Erasure is also responsible for the construction issues described
+above -- that you cannot create an object of generic type because the
+compiler doesn't know what constructor to call. If your generic class
+needs to be constructing objects whose type is specified by generic
+type parameters, its constructors should take a class literal
+(<code>Foo.class</code>) and store it so that instances can be created with
+reflection.
+</p>
+
+<div class="ibm-alternate-rule"><hr></div><p class="ibm-ind-link ibm-back-to-top"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#ibm-pcon" class="ibm-anchor-up-link">Back to top</a></p><p><a name="5.0"><span class="atitle">Summary</span></a></p>
+
+<p>
+Generics are a big step forward in the type-safety of the Java
+language, but the design of the generics facility, and the
+generification of the class library, were not without
+compromises. Extending the virtual machine instruction set to support
+generics was deemed unacceptable, because that might make it
+prohibitively difficult for JVM vendors to update their
+JVM. Accordingly, the approach of erasure, which could be implemented
+entirely in the compiler, was adopted. Similarly, in generifying the
+Java class libraries, the desire to maintain backward compatibility
+placed many constraints on how the class libraries could be
+generified, resulting in some confusing and frustrating constructions
+(like <code>Array.newInstance()</code>). These are not problems with
+generics per se, but with the practicality of language evolution and
+compatibility. But they can make generics a little more confusing, and
+frustrating, to learn and use.
+</p>
+
+
+<!-- CMA ID: 33360 --> <!-- Site ID: 1 --> <!-- XSLT stylesheet used to transform this file: dw-document-html-6.0.xsl -->
+<br>
+<p><a name="resources"><span class="atitle">Resources</span></a></p><ul><li>Get a more complete introduction to generic types in Brian Goetz' "<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/edu/j-dw-java-generics-i.html?S_TACT=105AGX02">Introduction
+to generic types in JDK 5.0</a>" (developerWorks, December 2004).<br><br></li><li>Eric Allen's four-part series, "<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-djc02113.html">Java
+generics without the pain</a>," describes the evolution of support for
+generic functions in the Java language (developerWorks, February 2003 thru May 2003).<br><br></li><li>The specification for generics, including the changes to the Java
+Language Specification, was developed through the Java Community
+Process under <a href="https://web.archive.org/web/20120820083752/http://www.jcp.org/en/jsr/detail?id=14">JSR 14</a>.<br><br></li><li>Angelika Langer has put together a wonderful <a href="https://web.archive.org/web/20120820083752/http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html">FAQ</a>
+on generics.<br><br></li><li>Gilad Bracha, the principal architect of generic type support in
+the Java language, has written a <a href="https://web.archive.org/web/20120820083752/http://java.sun.com/j2se/1.5/pdf/generics-tutorial.pdf">tutorial
+on generics</a> (PDF).  <br><br></li><li>Find hundreds more Java technology resources on the 
+<a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/">developerWorks Java technology zone</a>.<br><br></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/apps/SendTo?bookstore=safari">Browse for books</a> on these and other technical topics.<br><br></li></ul>
+<p><a name="author"><span class="atitle">About the author</span></a></p><div class="ibm-container ibm-portrait-module ibm-alternate-two"><div class="ibm-container-body"><p><a name="author1"> </a>Brian
+ Goetz has been a professional software developer for over 17 years. 
+He is a Principal Consultant at Quiotix, a software development and 
+consulting firm located in Los Altos, California, and he serves on 
+several JCP Expert Groups. See Brian's <a href="https://web.archive.org/web/20120820083752/http://www.briangoetz.com/pubs.html">published and upcoming articles</a> in popular industry publications.</p></div></div>
+<!-- MAIN_COLUMN_CONTENT_END -->
+
+<!-- OVERLAYS_START -->
+<!-- Report_Abuse_Start -->
+<div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlay">
+   <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Close [x]</a></p></div>
+   <div class="ibm-body">
+      <div class="ibm-main">
+         <a class="ibm-access" name="reportabuseoverlay">Report abuse help</a>   
+         <div class="ibm-title"><h1>Report abuse</h1></div>
+         <div class="ibm-container ibm-alternate">
+            <p><strong>Thank you.</strong>  This entry has been flagged for moderator attention.</p>
+            <div class="ibm-overlay-rule"><hr></div>
+            <div class="ibm-buttons-row">
+               <input onclick="ibmCommon.Overlays.hide('reportabuseoverlay');return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="Close" type="button">
+            </div>
+         </div>
+      </div> 
+   </div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Report_Abuse_Error_Start -->
+<div class="ibm-common-overlay ibm-no-print" id="reportabuseoverlayerror">
+   <div class="ibm-head"><p><a class="ibm-common-overlay-close" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Close [x]</a></p></div>
+   <div class="ibm-body">
+      <div class="ibm-main">
+         <a class="ibm-access" name="reportabuseoverlayerror">Report abuse help</a>   
+         <div class="ibm-title"><h1>Report abuse</h1></div>
+         <div class="ibm-container ibm-alternate">
+            <p class="ibm-ind-error"><strong>Report abuse submission failed.  Please try again later.</strong></p>
+            <div class="ibm-overlay-rule"><hr></div>
+            <div class="ibm-buttons-row">
+               <input onclick="ibmCommon.Overlays.hide('reportabuseoverlayerror');return false;" class="ibm-btn-cancel-sec dw-btn-cancel-sec" name="ibm-cancel" value="Close" type="button">
+            </div>
+         </div>
+      </div> 
+   </div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Sign in OVERLAY STARTS HERE --> 
+<div class="ibm-common-overlay" id="signin_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="clearForm();">Close [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title ibm-subtitle">
+<h1>developerWorks: Sign in</h1>
+<div id="ibm-overlay-error-signin" class="no-display"></div>
+</div>
+
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<form class="ibm-column-form" id="sFormId" action="" method="post" name="sForm" onsubmit="return false;">
+<p><label for="ibmid">IBM ID:</label><span><input name="ibm-id" id="ibmid" size="25" class="required" onkeypress="handleEP(event,this.form);" type="text"><br><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="(function () {window.location='/developerworks/dwwi/DWAuthRouter?m=reg&amp;d='+encodeURIComponent(location.href);})();">Need an IBM ID?</a><br><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/dwwi/jsp/WSHelp.jsp?lang=en_US">Forgot your IBM ID?</a>   
+</span></p> 
+<p><label for="password">Password:</label><span><input name="password" id="password" size="25" value="" class="required" onkeypress="handleEP(event,this.form);" type="password"><br><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="(function () {window.location='/web/20120820083752/https://www.ibm.com/account/profile?page=forgot&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(getAuthUrl())+'%3Fm%3Dloginpage%26lang%3Den_US%26d%3D'+encodeURIComponent(location.href);})();">Forgot your password?</a><br><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="(function () {window.location='/web/20120820083752/https://www.ibm.com/account/profile?page=chpw&amp;lang=en_US&amp;appname=ibm&amp;required=null&amp;d='+encodeURIComponent(location.href);})();">Change your password</a></span></p>
+ 
+<p class="dw-perm-box">
+	<span><input id="perm" name="perm_name" type="checkbox"><label for="perm"> Keep me signed in.</label></span>
+</p>
+<p>By clicking <strong>Submit</strong>, you agree to the <a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="Submit" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="Cancel" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide('signin_overlay');return false;" type="button"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<p>The first time you sign into developerWorks, a <strong>profile</strong> is created for you.  <strong>Select information in your developerWorks profile is displayed to the public, but you may edit the information at any time</strong>. Your first name, last name (unless you choose to hide them), and display name will accompany the content that you post.</p>
+<div class="dw-overlay-legal"><p>All information submitted is secure.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Sign in OVERLAY ENDS HERE --> 
+ 
+
+<!-- Display name OVERLAY STARTS HERE --> 
+<div class="ibm-common-overlay" id="displayname_overlay">
+<div class="ibm-head">
+<p><a class="ibm-common-overlay-close" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#" onclick="clearForm();">Close [x]</a></p>
+</div>
+<div class="ibm-body">
+<div class="ibm-main">
+<div class="ibm-title ibm-subtitle">
+<h1>Choose your display name</h1>
+<div id="ibm-overlay-error-dname" class="no-display"></div>
+</div>
+<div class="ibm-container ibm-alternate ibm-buttons-last">
+<div class="ibm-container-body">
+<p class="ibm-overlay-intro">The first time you sign in to 
+developerWorks, a profile is created for you, so you need to choose a 
+display name.  Your display name accompanies the content you post on 
+developerWorks.</p>
+<p><strong>Please choose a display name between 3-31 characters</strong>. Your display name must be unique in the developerWorks community and should not be your email address for privacy reasons.</p>
+<form id="dFormId" method="post" action="" name="dForm" onsubmit="return false;" class="ibm-column-form">
+<p><label for="displayname">Display name:</label><span><input name="displayname" id="displayname" size="25" onkeypress="handleEP(event,this.form);" type="text"></span><span class="ibm-form-note">(Must be between 3 – 31 characters.)</span>
+</p>
+<p>By clicking <strong>Submit</strong>, you agree to the <a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/terms/">developerWorks terms of use</a>.</p>
+<div class="ibm-buttons-row">
+   <p><input class="ibm-btn-arrow-pri" name="ibm-submit" value="Submit" onclick="signin();return false;" type="submit"><span class="ibm-sep">&nbsp;</span>
+<input value="Cancel" name="ibm-cancel" class="ibm-btn-cancel-sec" onclick="clearForm();ibmCommon.Overlays.hide('displayname_overlay');return false;" type="button"></p>
+</div>
+</form>
+<div class="ibm-overlay-rule"><hr></div>
+<div class="dw-overlay-legal"><p>All information submitted is secure.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Display name OVERLAY ENDS HERE -->
+<!-- OVERLAYS_END -->
+
+<!-- RATINGS START -->
+<p class="ibm-no-print"><span class="atitle"><a name="iratings">Rate this article</a></span></p>
+<input id="art-rating" name="ratinga" value="0" type="hidden"><div id="art-rating-module"><p id="submitErr" class="ibm-ind-error" style="display: none;"><strong>Error: Submission failed. Please try again.</strong></p><p><span id="ratingSectUI"></span></p><div class="ibm-container" id="ratingForm"><div class="ibm-container-body dw-container-ratings"><form class="dw-ratings-form" onsubmit="artRating.submitRating(); return false;"><input name="ratingstars" id="rat-1" value="1" type="radio"><label class="rating-label" id="star1" for="rat-1">1 star</label><img id="rat-1-img" alt="1 star" title="1 star" src="java-theory-and-practice-generics-gotchas_files/stars120x20-1w.jpg" class="rating-image"><span class="dw-rating-text">1 star</span><br><input name="ratingstars" id="rat-2" value="2" type="radio"><label class="rating-label" id="star2" for="rat-2">2 stars</label><img id="rat-2-img" alt="2 stars" title="2 stars" src="java-theory-and-practice-generics-gotchas_files/stars120x20-2w.jpg" class="rating-image2"><span class="dw-rating-text">2 stars</span><br><input name="ratingstars" id="rat-3" value="3" type="radio"><label class="rating-label" id="star3" for="rat-3">3 stars</label><img id="rat-3-img" alt="3 stars" title="3 stars" src="java-theory-and-practice-generics-gotchas_files/stars120x20-3w.jpg" class="rating-image2"><span class="dw-rating-text">3 stars</span><br><input name="ratingstars" id="rat-4" value="4" type="radio"><label class="rating-label" id="star4" for="rat-4">4 stars</label><img id="rat-4-img" alt="4 stars" title="4 stars" src="java-theory-and-practice-generics-gotchas_files/stars120x20-4w.jpg" class="rating-image2"><span class="dw-rating-text">4 stars</span><br><input name="ratingstars" id="rat-5" value="5" type="radio"><label class="rating-label" id="star5" for="rat-5">5 stars</label><img id="rat-5-img" alt="5 stars" title="5 stars" src="java-theory-and-practice-generics-gotchas_files/stars120x20-5w.jpg" class="rating-image2"><span class="dw-rating-text">5 stars</span><div class="ibm-buttons-row"><p class="ibm-first"><input value="Submit" name="ibm-submit" class="ibm-btn-arrow-pri dw-ratings-submit" type="submit"></p></div></form></div></div></div>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+   // widget div id and article id as args
+   window.artRating.init('art-rating-module','art-rating-summary');
+// ]]>
+</script>
+<!-- RATINGS END -->
+
+<!-- INLINE_COMMENTS_START -->
+<p class="ibm-no-print"><span class="atitle"><a name="icomments">Comments</a></span></p>
+<div id="threadShow"><div id="cmtTog" style=""><div class="ibm-container ibm-alternate-two dw-commentbox dw-noborder"><p id="cmtHead"><label for="newCmt"><strong>Add comment:</strong></label></p><div class="ibm-container-body dw-commentbox dw-noborder"><p id="signInSect"> <a onclick="showSignIn();return false;" href="#">Sign in</a> or <a href="https://web.archive.org/developerworks/dwwi/DWAuthRouter?m=register&amp;lang=en&amp;d=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html%23icomments">register</a>  to leave a comment.</p><p>Note: HTML elements are not supported within comments.</p><span id="infoCmt"></span><form focus="name" enctype="multipart/form-data" method="post" action="" name="form" class="ibm-column-form"><p><textarea disabled="disabled" cols="120" rows="5" name="newCmt" id="newCmt" class="dw-inoperable"></textarea><br></p><span class="ibm-input-group"><input value="1" name="comment_notification" id="comment_notification" disabled="disabled" type="checkbox"><label id="notifyText" class="ibm-form-note dw-btn-cancel-sec" for="comment_notification">Notify me when a comment is added</label></span><span class="ibm-form-note dw-btn-cancel-sec notifySection" id="maxCharsCount"><span id="charCount">1000</span> characters left</span><br><br><p></p><p class="ibm-buttons-row"><input disabled="disabled" value="Post" jquery1275054459750="11" name="postCmt" id="postCmt" class="ibm-btn-arrow-sec dw-btn-arrow-sec" alt="Post your comment" type="button"><br><br></p></form></div></div><div id="topControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display: none;"><div class="ibm-container-body"><form id="selectComments" method="get" action=""><p><span class="dw-comment-totals-label"><strong>Total comments (<span id="numCmts">0</span>)</strong></span><span><img src="java-theory-and-practice-generics-gotchas_files/c.gif" alt="" height="10" width="100"></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts"><label for="howManyComments">Show:</label>&nbsp;<select name="comments" id="howManyComments" class="dw-how-many-comments"><option selected="selected" value="recent">Most recent comments   </option></select><input class="ibm-btn-go" name="ibm-go" value="Go" src="java-theory-and-practice-generics-gotchas_files/short-btn.gif" alt="Go" type="image"><br></span></p></form></div></div><div id="cmtSect"><div class="comment"><div class="dw-icomment-container"><table class="dw-icomment-body" width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td><p>There is a problem in retrieving the comments.  Please refresh the page later.</p></td></tr></tbody></table></div></div></div></div><div id="bottomControl" class="ibm-container ibm-alternate-two dw-comment-totals" style="display:none"><div class="ibm-container-body"><form id="selectComments2" method="get" action=""><p><span class="dw-comment-totals-label"><strong>Total comments (<span id="numCmts2">0</span>)</strong></span><span><img src="java-theory-and-practice-generics-gotchas_files/c.gif" alt="" height="10" width="100"></span><span class="dw-how-many-comments-label" style="display:none" id="dropdownCmts2"><label for="howManyComments2">Show:</label>&nbsp;<select name="comments" id="howManyComments2" class="dw-how-many-comments"><option selected="selected" value="recent">Most recent comments   </option></select><input class="ibm-btn-go" name="ibm-go" value="Go" src="java-theory-and-practice-generics-gotchas_files/short-btn.gif" alt="Go" type="image"><br></span></p></form></div></div></div>
+<!-- INLINE_COMMENTS_END -->
+
+<p class="ibm-ind-link ibm-back-to-top"><a class="ibm-anchor-up-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#ibm-pcon">Back to top</a></p>
+
+<!-- Overlays -->
+<!-- Zone/Leaf_Interest_Overlay_Start -->
+<div class="ibm-common-overlay ibm-no-print" id="dwmyinterestadd">
+<div class="ibm-head"><p><a class="ibm-common-overlay-close" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#close">Close [x]</a></p></div>
+<div class="ibm-body">
+<div class="ibm-main">
+<a class="ibm-access" name="dwmyinterestaddhelp">Help: Update or add to My dW interests</a>   
+<div class="ibm-title"><h1>What's this?</h1></div>
+<div class="ibm-container ibm-alternate">
+<p>This little timesaver lets you update your My developerWorks profile 
+with just one click!  The general subject of this content (AIX and UNIX,
+ Information Management, Lotus, Rational, Tivoli, WebSphere, Java, 
+Linux, Open source, SOA and Web services, Web development, or XML) will 
+be added to the interests section of your profile, if it's not there 
+already.  You only need to be logged in to My developerWorks.</p>
+<p>And what's the point of adding your interests to your profile?  
+That's how you find other users with the same interests as yours, and 
+see what they're reading and contributing to the community.  Your 
+interests also help us recommend relevant developerWorks content to you.</p>
+<p><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/mydeveloperworks/profiles/home.do?lang=en">View your My developerWorks profile</a></p>
+<p class="ibm-access"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#interestShow">Return from help</a></p>
+</div> 
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+
+<div class="ibm-common-overlay ibm-no-print" id="dwmyinterestremove">
+<div class="ibm-head"><p><a class="ibm-common-overlay-close" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#close">Close [x]</a></p></div>
+<div class="ibm-body">
+<div class="ibm-main">
+<a class="ibm-access" name="dwmyinterestremovehelp">Help: Remove from My dW interests</a> 
+<div class="ibm-title"><h1>What's this?</h1></div>
+<div class="ibm-container ibm-alternate">
+<p>Removing this interest does not alter your profile, but rather 
+removes this piece of content from a list of all content for which 
+you've indicated interest.  In a future enhancement to My 
+developerWorks, you'll be able to see a record of that content.</p>
+<p><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/mydeveloperworks/profiles/home.do?lang=en">View your My developerWorks profile</a></p>
+<p class="ibm-access"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#interestShow">Return from help</a></p>
+</div> 
+</div>
+</div>
+<div class="ibm-footer"></div>
+</div>
+<!-- Zone/Leaf_Interest_Overlay_End --></div>
+<!-- MAIN_COLUMN_CONTAINER_END -->
+
+<!-- Rating_Meta_BEGIN -->
+<!--Rating_Meta_BEGIN--><div class="metavalue">static.content.url=http://www.ibm.com/developerworks/js/artrating/</div><div class="metavalue">SITE_ID=1</div><div class="metavalue">Zone=Java technology</div><div class="metavalue">ArticleID=33360</div><div class="metavalue">ArticleTitle=Java theory and practice: Generics gotchas</div><div class="metavalue">publish-date=01252005</div><script language="javascript" type="text/javascript">document.write('<div class="metavalue">url='+location.href.replace(/</g,  '%3C')+'></div>');</script><div class="metavalue">url=https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html&gt;</div><!--Rating_Meta_END-->
+<!-- Rating_Meta_END -->
+
+</div>
+<!-- MAIN_COLUMN_END-->
+
+<!-- RIGHT_COLUMN_BEGIN -->
+<div id="ibm-content-sidebar">
+
+<!-- RIGHT_COLUMN_CONTENT_BEGIN --> 
+<div class="ibm-container"><h2>Table of contents</h2><div class="ibm-container-body"><img alt="" src="java-theory-and-practice-generics-gotchas_files/c_003.gif" height="1" width="1"><ul class="ibm-bullet-list"><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#1.0">Generics are not covariant</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#2.0">Construction delays</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#3.0">Generifying existing classes</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#4.0">Implications of erasure</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#5.0">Summary</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#resources">Resources</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#author">About the author</a></li><li><a class="ibm-feature-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#icomments">Comments</a></li></ul></div></div>
+
+<!-- Tagging_Start -->
+<div id="dw-tag-cloud-container" class="ibm-container dw-hidetag"><h2>Tags</h2>
+<div id="dw-tag-help"><a class="dwauthor" rel="#tagtip" id="dwtagtip"><img alt="Help" src="java-theory-and-practice-generics-gotchas_files/help_icon.gif" height="16" width="16" align="top"></a></div>
+<div style="display: none;" id="tagtip" class="dwauthor-onload-state ibm-no-print">Use the <strong>search field</strong> to find all types of content in My developerWorks with that tag.<p>Use the <strong>slider bar</strong> to see more or fewer tags.</p><p>For articles in technology zones (such as Java technology, Linux, Open source, XML), <strong>Popular tags</strong> shows the top tags 
+for <em>all technology zones</em>.  For articles in product zones (such as Info Mgmt, Rational, WebSphere), <strong>Popular tags</strong> shows the top tags for <em>just that product zone</em>.</p><p>For articles in technology zones (such as Java technology, Linux, Open source, XML), <strong>My tags</strong> shows your tags for <em>all technology zones</em>.  For articles in product zones (such as Info Mgmt, Rational, WebSphere), <strong>My tags</strong> shows your tags for <em>just that product zone</em>.</p></div>
+<div class="ibm-access">Use the search field to find all types of content in My developerWorks with that tag.  <em>Popular tags</em> shows the top tags for this particular content zone (for example, Java technology, Linux, WebSphere).  <em>My tags</em> shows your tags for this particular content zone (for example, Java technology, Linux, WebSphere).</div>
+<div class="ibm-container-body">
+<div class="dw-tag-search"><form action="/web/20120820083752/http://www.ibm.com/developerworks/mydeveloperworks/bookmarks/html?lang=en" method="get" id="actualtagform" onsubmit="popupform(this, 'join')">
+<p><label for="tagfield"><strong>Search all tags</strong></label><input id="tagfield" name="tag" maxlength="20" size="17" type="text">&nbsp;<input src="java-theory-and-practice-generics-gotchas_files/short-btn_002.gif" class="ibm-btn-view" alt="submit search" title="submit search" value="Search" type="image"></p></form></div>
+<div class="ibm-rule"><hr></div>
+<div id="dw-tag-select">
+<div id="dw-tag-select-popular"><p><strong>Popular article tags</strong>&nbsp;|&nbsp;<br><a id="a-my" href="javascript:;">My article tags</a><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#dw-tag-access" class="ibm-access">Skip to tags list</a></p></div>
+<div id="dw-tag-select-my" class="dw-hidetag"><p><a id="a-popular" href="javascript:;">Popular article tags</a>&nbsp;|&nbsp;<br><strong>My article tags</strong></p><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#dw-tag-access" class="ibm-access">Skip to tags list</a></div>
+<div id="dw-tag-cloud"></div>  
+</div>   
+</div>
+</div>
+<!-- Tagging_End -->
+<!-- Dig_Deeper -->
+<div class="ibm-container"><h2>Dig deeper into Java on developerWorks</h2><div class="ibm-container-body"><ul class="ibm-link-list"><li class="ibm-first"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/" class="ibm-forward-link">Overview</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/newto/" class="ibm-forward-link">New to Java programming</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/find/downloads/" class="ibm-forward-link">Downloads and products</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/find/projects/" class="ibm-forward-link">Open source projects</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/find/standards/" class="ibm-forward-link">Standards</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/" class="ibm-forward-link">Technical library (articles, tutorials, and more)</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/forums/dw_jforums.jsp" class="ibm-forward-link">Forums</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/find/events/" class="ibm-forward-link">Events</a></li><li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/newsletter/" class="ibm-forward-link">Newsletter</a></li></ul></div></div>
+<!-- High_Visibility_Offer -->
+<!--XSLT stylesheet used to transform this content: s-highvisibilityoffer.xsl--><div class="ibm-container"><h2>Try IBM PureSystems. No charge.</h2><div class="ibm-container-body"><img alt="IBM PureSystems on a kaleideoscope background" src="java-theory-and-practice-generics-gotchas_files/hiviz-168x64-troy.jpg" height="70" width="188" border="0"><p>Experience today!</p><div class="ibm-rule"><hr></div><p class="ibm-ind-link"><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/puresystems/try/?ca=dti-hivis-troy" class="ibm-forward-link">Get started with the cloud-based trial and pattern development kit.</a></p></div></div>
+<!-- Special_Offers -->
+<div class="ibm-container"><h2>Special offers</h2><div class="ibm-container-body"><p class="dw-special-offers"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/demos/"><img src="java-theory-and-practice-generics-gotchas_files/tile_v16_ondemanddemos.gif" alt="On demand demos: An easy way to watch and learn" height="50" width="158" border="0"></a></p><p class="dw-special-offers"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/aboutdw/dwa/?ca=dti-dwarp"><img src="java-theory-and-practice-generics-gotchas_files/tile_v16_dwaarp.gif" alt="Get recognized! W Author Program" height="50" width="158" border="0"></a></p><p class="dw-special-offers"><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/cloud/index.html?ca=dti-cloudzone"><img src="java-theory-and-practice-generics-gotchas_files/tile_v16_cloudzoneA.gif" alt="Cloud Computing resources for IT professionals" height="50" width="158" border="0"></a></p><div class="ibm-rule"><hr></div><p class="ibm-ind-link"><a class="ibm-forward-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/downloads/?ca=dti-tilemoreoffers">Trial software offers</a></p></div></div>
+<!-- RIGHT_COLUMN_CONTENT_END -->
+
+</div>
+<!-- RIGHT_COLUMN_END -->
+
+<!-- CONTENT_BODY_END -->
+</div>
+
+</div>
+<!-- CONTENT_END -->
+
+ <!-- END_IBM-PCON -->
+</div>
+
+<!-- FOOTER_BEGIN -->
+<div id="ibm-footer">
+<!-- IBM footer container; disabled -->
+</div>
+
+<div id="ibm-page-tools-dw">
+	<div id="dw-footer-top-row">
+		<ul id="dw-foot-options">
+			<li id="dw-print"><a class="ibm-print-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Print this page</a></li>
+		</ul>
+		<ul id="ibm-foot-options-dw">
+			<li id="dw-foot-0"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Share this page</a></li>
+			<li id="dw-foot-1"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Follow developerWorks</a></li>
+		</ul>
+	</div>
+
+	<!-- TOP ROW SLIDER -->
+    <div id="dw-page-tools-menu">    
+        <div class="ibm-ribbon-pane-dw">
+            <div class="ibm-ribbon-section-dw">
+				<!-- Share this page -->			
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-3-1">
+                        <h2>Share this page:</h2>                       
+						<ul class="ibm-link-list">
+							<li><a id="dw-foot-0-0" class="ibm-facebook-link" href="http://www.facebook.com/sharer.php?u=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html&amp;t=Java%20theory%20and%20practice%3A%20Generics%20gotchas">Facebook</a></li>
+							<li><a class="ibm-linkedin-link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html&amp;title=Java%20theory%20and%20practice%3A%20Generics%20gotchas">LinkedIn</a></li>
+							<li><a class="ibm-twitter-link" href="http://twitter.com/home?status=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html%20-%20Java%20theory%20and%20practice%3A%20Generics%20gotchas">Twitter</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-3-2">
+						<ul class="ibm-link-list">
+							<li><a class="ibm-delicious-link" href="http://delicious.com/post?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html&amp;title=Java%20theory%20and%20practice%3A%20Generics%20gotchas">Delicious</a></li>
+							<li><a class="ibm-digg-link" href="http://digg.com/submit?phase=2&amp;url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html&amp;title=Java%20theory%20and%20practice%3A%20Generics%20gotchas">Digg</a></li>
+							<li><a class="ibm-stumbleupon" href="http://www.stumbleupon.com/submit?url=https%3A%2F%2Fweb.archive.org%2Fweb%2F20120820083752%2Fhttp%3A%2F%2Fwww.ibm.com%2Fdeveloperworks%2Fjava%2Flibrary%2Fj-jtp01255%2Findex.html&amp;title=Java%20theory%20and%20practice%3A%20Generics%20gotchas">StumbleUpon</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-col-3-3">
+						<ul class="ibm-link-list">
+							<li><a class="ibm-email-link" href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#">Email this page</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-share"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+                <!-- Follow developerWorks -->
+                <div class="dw-footer-columns">
+                    <div class="dw-footer-col-1-1">
+                        <h2>Follow developerWorks:</h2>
+						<ul class="ibm-link-list">
+							<li><a id="dw-foot-1-0" class="ibm-facebook-link" href="https://web.archive.org/web/20120820083752/http://www.facebook.com/developerworks">Facebook</a></li>
+							<li><a class="ibm-twitter-link" href="https://web.archive.org/web/20120820083752/http://twitter.com/developerWorks">Twitter</a></li>
+						</ul>
+                    </div>
+                    <div class="dw-footer-close">
+						<ul>
+							<li><div class="dw-footer-close-follow"><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/java/library/j-jtp01255/index.html#"><img src="java-theory-and-practice-generics-gotchas_files/c_002.gif" alt="Close [x]" height="10" width="20" border="0"></a></div></li>
+						</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ibm-footer-module-dw">
+	<div class="dw-footer-columns">
+		<div class="dw-footer-col-6-1">
+			<ul>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/aboutdw/">About</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/feedback">Help</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/aboutdw/contacts.html">Contact us</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/ideas">Submit content</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-2">
+			<ul>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/feeds/">Feeds and apps</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/newsletter/">Newsletters</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-3">
+			<ul>
+				<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/report/">Report abuse</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/https://www.ibm.com/developerworks/community/terms/">Terms of use</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/privacy/">IBM privacy</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/accessibility/">IBM accessibility</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-4">
+			<ul>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/university/academicinitiative/">Faculty</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/developerworks/university/students/">Students</a></li>
+				<li><a href="https://web.archive.org/web/20120820083752/http://www.ibm.com/isv/">Business Partners</a></li>
+			</ul>
+		</div>
+		<div class="dw-footer-col-6-5">
+		</div>
+		<div class="dw-footer-col-6-6">
+		</div>
+	</div>
+	<!-- Language selector no-script -->
+	<noscript>
+	<div id="dw-footer-selectlang">
+		<h2><a name="SELECTLANG">Select a language:</a></h2>
+		<ul>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/">English</a></li>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/cn/">中文</a></li>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/jp/">日本語</a></li>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/ru/">Русский</a></li>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/br/">Português (Brasil)</a></li>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/ssa/">Español</a></li>
+			<li><a href="/web/20120820083752/http://www.ibm.com/developerworks/vn/">Việt</a></li>
+		</ul>
+	</div>
+	</noscript>
+</div><!-- FOOTER_END -->
+
+ <!-- END_IBM-TOP -->
+<div id="ibm-overlay-top"></div></div>
+ 
+ <!-- SCRIPTS_INCLUDE_BEGIN -->
+<!-- JQuery start -->
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/jquery_002.js"></script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/jquery_004.js"></script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/ui_002.js"></script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/ui.js"></script>
+<!-- xM Masthead/Footer -->
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/jquery_005.js">//</script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/jquery_003.js">//</script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/dw_v16.js">//</script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/flash-detect_002.js">//</script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/dwsi.js">//</script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/dwjquerytags.js"></script>
+<script type="text/javascript" language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/showcomments.js">//</script>
+<script language="JavaScript" type="text/javascript">
+// <![CDATA[
+ jQuery('threadShow').showComments('95%',5,'nCmts','icomments');
+// ]]>
+</script>
+
+<script type="text/javascript" language="JavaScript">
+	jQuery.noConflict();     
+	// Put all your code in your document ready area
+	jQuery(document).ready(function(jQuery) {
+	// Do jQuery stuff using jQuery 
+	jQuery('a.dwauthor').cluetip({
+		local: true,
+		showTitle: false,
+		positionBy: 'bottomTop',
+		sticky: true,	
+		mouseOutClose: true,
+		closeText: '<img src="//dw1.s81c.com/developerworks/js/jquery/cluetip98/i/x.gif" alt="Close" />',
+		arrows: false,
+		dropShadow: true,
+		cluetipClass: 'dwbasic'
+		});
+
+		//tagging
+		login="false";
+		userid="";
+		whichTags = "init";
+		pCont = "";
+		mCont = "";
+		signInMCont = "";
+		accessCont = "";
+		pValue = 0;
+		mValue = 0;
+
+		rBHash = null;
+		rBHash = new Object();
+		rBHash['viperLang'] = 'en';
+		rBHash['urlLang'] = 'en';
+		rBHash['tagThisWinTitle'] = 'Tagit';
+		rBHash['pTags1'] = 'Popular tags';
+		rBHash['pTags2'] = 'End of Popular tags';
+		rBHash['mTags1'] = 'My tags';
+		rBHash['mTags2'] = 'End of My tags';
+		rBHash['alt1'] = 'Loading Content';
+		rBHash['noATags'] = 'No active tags';
+		rBHash['signIn1'] = 'Please ';
+		rBHash['signIn2'] = 'sign in';
+		rBHash['signIn3'] = ' to access';
+		rBHash['signIn4'] = 'My Tags';
+		rBHash['signIn5'] = 'To access My Tags, please ';
+		rBHash['signIn6'] = 'sign in';
+		rBHash['signIn7'] = 'Read Popular tags';
+
+		zoneHash = new Object();
+		zoneHash['aix'] = 'AIX and UNIX zone';
+		zoneHash['ibmi'] = 'IBM i zone';
+		zoneHash['data'] = 'Information Management zone';
+		zoneHash['lotus'] = 'Lotus zone';
+		zoneHash['rational'] = 'Rational zone';
+		zoneHash['tivoli'] = 'Tivoli zone';
+		zoneHash['websphere'] = 'WebSphere zone';
+		zoneHash['architecture'] = 'Technical library';
+		zoneHash['autonomic'] = 'Technical library';
+		zoneHash['java'] = 'Technical library';
+		zoneHash['cloud'] = 'Technical library';
+		zoneHash['industry'] = 'Technical library';
+		zoneHash['library'] = 'Technical library';
+		zoneHash['linux'] = 'Technical library';
+		zoneHash['opensource'] = 'Technical library';
+		zoneHash['power'] = 'Technical library';
+		zoneHash['webservices'] = 'Technical library';
+		zoneHash['web'] = 'Technical library';
+		zoneHash['xml'] = 'Technical library';
+		zoneHash['wireless'] = 'Technical library';
+		jQuery.checkRB();
+		jQuery.getPopularTags("/developerworks/dwtags/dwjquerytabtags?lang=" + rBHash['viperLang'] + "&base=" + jQuery.getNormalizedZoneUrl(location.href));
+		jQuery.getUserTags();
+		if(jQuery.isTutorial(location.href) == "true") {
+			jQuery.getTagsForContent("/developerworks/tagging/UseCaseServlet?lang=" + rBHash['viperLang'] + "&format=maverick&cType=tutorials&use_case=geturltags&action=gettags&url=" + jQuery.normalizeUrl(location.href));
+		}
+		else {
+			jQuery.getTagsForContent("/developerworks/tagging/UseCaseServlet?lang=" + rBHash['viperLang'] + "&format=maverick&cType=articles&use_case=geturltags&action=gettags&url=" + jQuery.normalizeUrl(location.href));
+
+		}
+		
+		// si
+		initSI();
+	});
+ </script>
+ <!-- JQuery end -->
+ <!-- Overlay js -->
+<script language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/overlay.js" type="text/javascript"></script>
+<!-- My dW Interest article -->
+<script language="JavaScript" src="java-theory-and-practice-generics-gotchas_files/showinterest.js" type="text/javascript">//</script>
+<script language="JavaScript" type="text/javascript">
+        // <![CDATA[
+			var contentId = '';
+			var contentAreas = '';
+			var caArr = [];
+			contentId = '33360';
+			contentAreas = 'java';
+			if(contentAreas != ''){caArr = contentAreas.split(',');}
+			var topNames = [
+							"General programming",
+							"Tiger"
+			];
+			
+			var loginLink = '/web/20120820083752/https://www.ibm.com/developerworks/dwwi/DWAuthRouter?m=loginpage&d=' + encodeURIComponent(window.location);jQuery('interestShow').showInterest(contentId,'dw-article',{'int_topnames':topNames,'int_prods':[], 'int_prod_fam':[],'int_cont_area':caArr},
+'<div id="dw-interest-anon"><a id="intAnonBtn" class="ibm-external-link" href="">Update My dW interests</a> (<a class="dw-interest" href="' + loginLink + '">Log in</a> | <a class="dw-interest" href="#overlay" onclick="ibmCommon.Overlays.show(\'dwmyinterestadd\', this);return false;">What\'s this?</a>) <a class="ibm-access" href="#dwmyinterestaddhelp">Skip to help for Update My dW interests</a></div>',
+'<div id="dw-interest-add"><a id="intSelectBtn" class="ibm-external-link" href="">Add to My dW interests</a> (<a class="dw-interest" href="#overlay" onclick="ibmCommon.Overlays.show(\'dwmyinterestadd\', this);return false;">What\'s this?</a>) <a class="ibm-access" href="#dwmyinterestaddhelp">Skip to help for Add to My dW interests</a></div>',
+'<div id="dw-interest-remove">Added to My dW interests (<a class="dw-interest" href="/web/20120820083752/https://www.ibm.com/developerworks/mydeveloperworks/profiles/html/myProfileView.do?lang=en">Edit</a>)</div>'
+);
+// ]]>
+</script><!-- BEGIN: Use this section to set page specific variables for the Unica Page Tag -->
+<script language="JavaScript">var NTPT_PGEXTRA="ibmSkillLevel=2&ibmAdoptPhase=667&ibmRole=710&ibmCmaId=33360";</script>
+<!--END --><!-- SCRIPTS_INCLUDE_END -->
+
+<div id="ibm-metrics">
+<script src="java-theory-and-practice-generics-gotchas_files/stats.html" type="text/javascript">//</script>
+</div>
+
+
+
+
+
+
+
+
+<div style="position: absolute; z-index: 95; display: none;" id="cluetip-waitimage"></div><div style="z-index: 96; display: none; position: absolute;" id="cluetip"><div style="z-index: 95; opacity: 0.1; top: 1px; left: 1px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 94; opacity: 0.1; top: 2px; left: 2px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 93; opacity: 0.1; top: 3px; left: 3px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 92; opacity: 0.1; top: 4px; left: 4px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 91; opacity: 0.1; top: 5px; left: 5px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="z-index: 90; opacity: 0.1; top: 6px; left: 6px; position: absolute; background-color: rgb(0, 0, 0);"></div><div style="position: relative; z-index: 97;" id="cluetip-outer"><div id="cluetip-title"></div><div id="cluetip-inner"></div></div><div id="cluetip-extra"></div><div style="z-index: 97;" id="cluetip-arrows" class="cluetip-arrows"></div></div></body></html>
+<!--
+     FILE ARCHIVED ON 8:37:52 Aug 20, 2012 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 13:01:40 Nov 16, 2013.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->

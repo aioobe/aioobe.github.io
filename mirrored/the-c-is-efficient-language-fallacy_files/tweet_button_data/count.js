@@ -1,0 +1,1 @@
+twttr.receiveCount({"count":4,"url":"http:\/\/scienceblogs.com\/goodmath\/2006\/11\/02\/the-c-is-efficient-language-fa\/"});
