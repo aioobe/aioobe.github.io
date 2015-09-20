@@ -11,25 +11,25 @@ whatsup:
     date: "Mar 26, 2014"
 
 featured:
+  - posttitle: "QR"
   - title: "Why is executing Java code in comments with certain Unicode characters allowed?"
     url: http://stackoverflow.com/q/30727515/276052
     date: "Jun 9, 2015"
-  - title: "How to convert byte size into human readable format in java?"
-    url: http://stackoverflow.com/q/3758606/276052
-    date: "Sep 21, 2010"
-  - title: "Handling InterruptedException in Java"
-    url: http://stackoverflow.com/q/3976344/276052
-    date: "Oct 20, 2010"
-  - title: "Why must wait() always be in synchronized block"
-    url: http://stackoverflow.com/q/2779484/276052
-    date: "May 6, 2010"
-  - title: "Do interfaces inherit from Object class in Java"
-    url: http://stackoverflow.com/q/6056124/276052
-    date: "Jun 3, 2011"
   - title: "What is sjavac, who is it for and how do I use it?"
     url: http://stackoverflow.com/q/26424759/276052
     date: "Oct 17, 2014"
-  - posttitle: "QR"
+  - title: "Do interfaces inherit from Object class in Java"
+    url: http://stackoverflow.com/q/6056124/276052
+    date: "Jun 3, 2011"
+  - title: "Handling InterruptedException in Java"
+    url: http://stackoverflow.com/q/3976344/276052
+    date: "Oct 20, 2010"
+  - title: "How to convert byte size into human readable format in java?"
+    url: http://stackoverflow.com/q/3758606/276052
+    date: "Sep 21, 2010"
+  - title: "Why must wait() always be in synchronized block"
+    url: http://stackoverflow.com/q/2779484/276052
+    date: "May 6, 2010"
 ---
 <h2>What&rsquo;s up?</h2>
 <ul>
@@ -101,7 +101,7 @@ featured:
                 {% for post in site.posts %}
                     {% if post.title contains featured.posttitle %}
                         <span class="label" style="float: right">{{ post.date | date: "%b %-d, %Y" }}</span>
-                        <a href="{{ post_url post.url }}">{{ post.title }}</a>
+                        <a href="{{ post.url }}">{{ post.title }}</a>
                     {% endif %}
                 {% endfor %}
             {% endif %}

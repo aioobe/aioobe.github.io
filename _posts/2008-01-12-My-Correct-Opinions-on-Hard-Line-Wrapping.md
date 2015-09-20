@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "My (Correct) Opinions on Hard Line-Wrapping"
-date: 208-01-12
+date: 2008-01-12
 assetsdir: line-wrapping
 ---
 
