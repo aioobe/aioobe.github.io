@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:og="http://ogp.me/ns#">
+  <head>
+    <link rel="image_src" href="icon.png" />
+    <meta charset="UTF-8">
+    <meta property="og:title" content="Skicka inte .docx!" />
+    <meta property="og:description" content="6 skäl att inte skicka meddelanden i form av .docx filer." />
+    <title>Skicka inte .docx</title>
+    <style>
+      body {
+        background-color: #eeeeee;
+        font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+        font-size: 150%;
+      }
+      li {
+        margin: 1em 0em;
+      }
+      a {
+        color: #555555;
+      }
+
+      .triangle-isosceles.left:after {
+        border-color: transparent #ffffff;
+        border-width: 10px 30px 10px 0;
+        bottom: auto;
+        left: -30px;
+        top: 16px;
+      }
+      .triangle-isosceles:after {
+        border-color: #ffffff transparent;
+        border-style: solid;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        content: "";
+        display: block;
+        left: 50px;
+        position: absolute;
+        width: 0;
+      }
+      .triangle-isosceles.left {
+        background: none repeat scroll 0 0 #ffffff;
+      }
+      .triangle-isosceles {
+        border-radius: 10px;
+        color: #000;
+        padding: 1em;
+        position: relative;
+      }
+      .triangle-isosceles.right:after {
+        border-color: transparent #ffffff;
+        border-width: 10px 0 10px 30px;
+        bottom: auto;
+        left: auto;
+        right: -30px;
+        top: 16px;
+      }
+      .triangle-isosceles:after {
+        border-color: #ffffff transparent;
+        border-style: solid;
+        border-width: 15px 15px 0;
+        bottom: -15px;
+        content: "";
+        display: block;
+        left: 50px;
+        position: absolute;
+        width: 0;
+      }
+      .triangle-isosceles.right {
+        background: none repeat scroll 0 0 #ffffff;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <?php include_once("../analyticstracking.php") ?>        
+    <div style="max-width: 1000px; width: 80%; margin: auto;">
+      <h1 style="text-align: center; font-size: 350%;">Skicka inte .docx!</h1>
+      <p>Du har förmodligen fått en länk till den här sidan för att du skickat ut information i form av bifogade .docx-filer.</p>
+      
+      <h2 class="triangle-isosceles left">Varför ska jag inte skicka .docx-filer?</h2>
+      
+      <div class="triangle-isosceles right">
+        <ol>
+          <li>Microsoft-dokument kan bära på <a href="http://en.wikipedia.org/wiki/Macro_virus">macrovirus</a></li>
+          <li>Det blir besvärlig att söka efter information ifall det man söker efter ligger i en bifogad fil</li>
+          <li>Alla har inte Microsoft Office...
+            <p><img src="office.png" style="float: right" />Det billigaste Officepaketet jag han hitta i skrivande stund kostar 995:-. Att anta att alla valt att köpa Officepaketet är dumt. Gratisalternativ finns, men det är lite si och så med kompatibiliteten. Ränka inte med att en .docx fil ser likadan ut på min dator som på din dator.</p>
+          <li>...och även om mottagaren har Officepaketet så kanske det är en äldre version än den du har och då kanske dokumentet inte går att öppna</li>
+          <li>Det kan vara besvärligt att läsa bifogade filer på mobila enheter</li>
+          <li>Det är oftast helt onödigt. (Se nedan.)</li>
+        </ol>
+      </div>
+      <h2 class="triangle-isosceles left">Okej, vad ska jag göra istället då?</h2>
+      <div class="triangle-isosceles right">Krångla inte till det: Skriv det du vill ha sagt direkt i mejlet.</div>
+      
+      <h2 class="triangle-isosceles left">Men jag vill använda <span style="color: red">f</span><span style="color: magenta">ä</span><span style="color: blue">r</span><span style="color: #13b6b6;">g</span><span style="color: green">e</span><span style="color: orange">r</span> och bilder! <img src="flower.png" style="height: 1em"/></h2>
+      <div class="triangle-isosceles right">
+        <div style="float: right;">
+          <div><img src="html.png" /></div>
+          <div style="text-align: center; margin: 1em;"><img src="pdf.png" style="text-align: center; height: 3em;" /></div>
+        </div>
+        Om du verkligen <em>måste</em> ha färger och bilder så rekommenderar jag att du slår på HTML-formatering i ditt epostprogram. Alla vanliga epostprogrammen kan både skicka och ta emot HTML-formaterad epost.<br /><br />
+        
+        Det näst bästa alternativet är att använda ett standardiserat format som garanterat fungerar på alla plattformar och som inte bär på virus, till exempel PDF.<br /><br />
+        
+        <a href="http://office.microsoft.com/en-001/word-help/save-as-pdf-HA010064992.aspx">Denna sida</a> förklarar hur du sparar ditt Word-dokument som PDF.
+      </div>
+      
+      <h2 class="triangle-isosceles left">Tack!</h2>
+    </div>
+  </body>
+  
+</html> 
