@@ -25,7 +25,7 @@ We start by focusing on the left most piece:
 
 {% include blog_img.html img="left-piece.png" %}
 
-What's the probability that this piece ends up being more than half of the full length? That happens precisely when both cuts are on the right half of the straw. Since each cut ends up on the right half with 50% probability, we conclude that the left most piece will be more than half the straw with probability 25%.
+What's the probability that this piece ends up being more than half of the full length? That happens precisely when both cuts are on the right half of the straw. Since each cut ends up on the right half with 50% probability, we conclude that the left most piece will be more than half the straw with 25% probability.
 
 Now to tackle the middle and right part, we take a step back and note that two random cuts on a straight straw, can just as well be seen as three random cuts on a circle. Just prentend that the first cut is used to straighten out the circle.
 
