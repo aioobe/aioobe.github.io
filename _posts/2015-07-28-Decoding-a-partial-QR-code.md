@@ -134,7 +134,7 @@ The value of the `ref` param was apparantly `hl`! I put that exact URL in my QR 
 
 {% include blog_img.html img="result.jpg" caption="The original image and the reconstructed QR code!" %}
         
-Unfortunately no link to a secret webpage and <strike>no prize to collect</strike> (see below!) But it was extremely satisfying to finally crack it! :-) Now, back to the real challenge; teaching my daughter the letters&hellip; ;-)
+Unfortunately no link to a secret webpage and <strike>no prize to collect</strike> (see below!) But it was extremely satisfying to finally crack it! :-) Now, back to the original challenge; teaching my daughter the letters&hellip; ;-)
 
 <hr />
 **P.S.** I posted link to this page on the publishers webpage. They repsonded with this:
