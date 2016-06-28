@@ -22,9 +22,9 @@ like this
 
 {% highlight java %}
 return conditionA ? a
-     : conditionB ? b
-     : conditionC ? c
-     : null;
+      : conditionB ? b
+      : conditionC ? c
+      : null;
 {% endhighlight %}
 
 But sometimes the last part actually looks like
@@ -36,13 +36,20 @@ But sometimes the last part actually looks like
 }
 {% endhighlight %}
 
-in which case you can't directly translate the whole thing to a conditional expression.
+in which case you can't directly translate the whole thing to a conditional expression, since this doesn't compile:
+
+{% highlight java %}
+     ...
+     : throw new AssertionError("Unexpected condition");
+{% endhighlight %}
+
+   
 
 Here's where this little utility method comes in handy:
 
 {% highlight java %}
-public static <T> T fail(RuntimeException exc) {
-    throw exc;
+public static <R, T extends Throwable> R fail(T t) throws T {
+    throw t;
 }
 {% endhighlight %}
 
@@ -50,9 +57,9 @@ which allows you to write
 
 {% highlight java %}
 return conditionA ? a
-     : conditionB ? b
-     : conditionC ? c
-     : fail(new AssertionError("Unexpected condition");
+      : conditionB ? b
+      : conditionC ? c
+      : fail(new AssertionError("Unexpected condition");
 {% endhighlight %}
 
-The generic return type ensures that the method always fits in as an expression. Unfortunately JUnits Assert.fail doesn't follow this pattern.
+The generic return type ensures that the method always fits in as an expression. Unfortunately JUnits `Assert.fail` doesn't follow this pattern!
