@@ -20,12 +20,14 @@ An inheritance relation on the other hand, is an *"is-a"* relation, as in
 
 > A cat *is an* animal
 
-It does't make sense to say that an animal is *the parent* of a cat (at least not when there's only one cat around). In the case of inheritance, there's a better terminology: Super-class and sub-class. So, instead of saying
+It does't make sense to say that an animal is *the parent* of a cat or that a cat is *a child* of an animal (at least not when there's only one cat around). A parent and a child doesn't have an *is a* relation with each other.
+
+In the case of inheritance there's always a better terminology: Superclass and subclass. So, instead of saying for instance
 
 > Animal is a parent of Cat
 
 say
 
-> Animal is a super-class of Cat
+> Animal is a superclass of Cat
 
 &lt;/rant&gt;
