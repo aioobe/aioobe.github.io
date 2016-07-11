@@ -24,10 +24,10 @@ It does't make sense to say that an animal is *the parent* of a cat or that a ca
 
 In the case of inheritance there's always a better terminology: Superclass and subclass. So, instead of saying for instance
 
-> Animal is a parent of Cat
+> Animal is the parent of Cat
 
 say
 
-> Animal is a superclass of Cat
+> Animal is the superclass of Cat
 
 &lt;/rant&gt;
