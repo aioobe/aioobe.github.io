@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A generic assert method"
+title:  "A generic fail method"
 date:   2016-06-28
 ---
 
