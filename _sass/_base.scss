@@ -80,13 +80,14 @@ a {
     text-decoration: none;
 }
 
-.label {
+.dateLabel {
     font-family: "Source Sans Pro","Open Sans","Helvetica Neue","Arial",sans-serif;
     color: #D9D9D9;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 70%;
     padding-left: 1em;
+    float: right;
 }
 
 ul {

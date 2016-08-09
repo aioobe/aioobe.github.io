@@ -40,7 +40,7 @@ featured:
 <ul>
     {% for item in page.whatsup %}
         <li>
-            <span class="label" style="float: right">{{ item.date }}</span>
+            <span class="dateLabel">{{ item.date }}</span>
             {{ item.title }}
         </li>
     {% endfor %}
@@ -92,7 +92,7 @@ featured:
 
 <p>When he&rsquo;s not writing code he&rsquo;s going to programming meetups, practicing juggling or spending time with his wife and two daugters.</p>
 
-<p><a href="resume.pdf">R&eacute;sum&eacute;</a> (updated March 2, 2016) and <a href="/papers/list.html">list of publications</a>.</p>
+<p><a href="resume.html">R&eacute;sum&eacute;</a> (updated {% for page in site.pages %}{% if page.is_resume_page %}{{ page.modification_time }}{% break %}{% endif %}{% endfor %}) and <a href="/papers/list.html">list of publications</a>.</p>
 
 <h2>Blog&thinsp;/&thinsp;Stack Overflow</h2>
 <p>Featured blog entries and Stack Overflow answers.</p>
@@ -100,12 +100,12 @@ featured:
     {% for featured in page.featured %}
         <li>
             {% if featured.title %}
-                <span class="label" style="float: right">{{ featured.date }}</span>
+                <span class="dateLabel">{{ featured.date }}</span>
                 <a href="{{ featured.url }}">{{ featured.title }}</a>
             {% else %}
                 {% for post in site.posts %}
                     {% if post.title contains featured.posttitle %}
-                        <span class="label" style="float: right">{{ post.date | date: "%b %-d, %Y" }}</span>
+                        <span class="dateLabel">{{ post.date | date: "%b %-d, %Y" }}</span>
                         <a href="{{ post.url }}">{{ post.title }}</a>
                     {% endif %}
                 {% endfor %}
