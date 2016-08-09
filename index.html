@@ -92,7 +92,7 @@ featured:
 
 <p>When he&rsquo;s not writing code he&rsquo;s going to programming meetups, practicing juggling or spending time with his wife and two daugters.</p>
 
-<p><a href="resume.html">R&eacute;sum&eacute;</a> (updated {% for page in site.pages %}{% if page.is_resume_page %}{{ page.modification_time }}{% break %}{% endif %}{% endfor %}) and <a href="/papers/list.html">list of publications</a>.</p>
+<p><a href="resume.html">R&eacute;sum&eacute;</a> (updated {% for p in site.pages %}{% if p.is_resume_page %}{{ p.modification_time }}{% break %}{% endif %}{% endfor %}) and <a href="papers/">list of publications</a>.</p>
 
 <h2>Blog&thinsp;/&thinsp;Stack Overflow</h2>
 <p>Featured blog entries and Stack Overflow answers.</p>
