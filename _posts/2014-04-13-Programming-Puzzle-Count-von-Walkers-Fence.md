@@ -5,7 +5,7 @@ date: 2014-04-13
 assetsdir: count-von-walker
 ---
 
-> This problem was selected as one of eight problems in [KTH Challenge 2014](http://challenge.csc.kth.se/2014/). The full set of problems for this competition can be found {% include blog_link.html text="here" url="kth-challenge-2014-problems.pdf" %}.
+> Here's a programming puzzle I came up with. It was selected as one of eight problems in [KTH Challenge 2014](http://challenge.csc.kth.se/2014/). The full set of problems for this competition can be found {% include blog_link.html text="here" url="kth-challenge-2014-problems.pdf" %}.
 
 The old Count von Walker ponders along the fence of his backyard. The fence has a repeating pattern with poles in the ground at equal distances. Since von Walker has nothing better to do, he counts the number of steps he takes between each pole.
 

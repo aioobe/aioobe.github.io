@@ -5,7 +5,7 @@ date: 2015-10-11
 assetsdir: icar
 ---
 
-> This problem was selected as one of eight problems in [The 2015 Nordic Collegiate Programming Contest](https://icpc.baylor.edu/regionals/finder/nordic-2015). The full set of problems for this competition can be found {% include blog_link.html text="here" url="ncpc2015problems.pdf" %} and the solutions {% include blog_link.html text="here" url="ncpc2015slides.pdf" %}.
+> Here's a programming puzzle I came up with. It was selected as one of eight problems in [The 2015 Nordic Collegiate Programming Contest](https://icpc.baylor.edu/regionals/finder/nordic-2015). The full set of problems for this competition can be found {% include blog_link.html text="here" url="ncpc2015problems.pdf" %} and the solutions {% include blog_link.html text="here" url="ncpc2015slides.pdf" %}.
 
 You are at home and about to drive to work. The road you will take is a straight line with no speed limit. There are, however, traffic lights precisely every kilometer, and you can not pass a red light. The lights change instantaneously between green and red, and you can pass a light whenever it is green. You can also pass through a light at the exact moment of changing colour. There are no traffic lights at the start or the end of the road.
 
