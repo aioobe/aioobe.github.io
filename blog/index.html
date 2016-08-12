@@ -6,7 +6,7 @@ layout: page
 <ul>
     {% for post in site.posts %}
     <li>
-        <div class="label" style="float: right">{{ post.date | date: "%b %-d, %Y" }}</div>
+        <div class="dateLabel">{{ post.date | date: "%b %-d, %Y" }}</div>
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
     </li>
     {% endfor %}
