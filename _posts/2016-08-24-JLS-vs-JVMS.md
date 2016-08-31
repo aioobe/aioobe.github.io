@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Explaining Java semantics by looking at bytecode"
+title: "Why it's wrong to explain Java semantics by looking at bytecode"
 date: 2016-08-24
 ---
 
