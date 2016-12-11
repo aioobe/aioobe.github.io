@@ -1,0 +1,8 @@
+echo
+echo
+echo
+echo "SERVING AT: http://localhost:8765"
+echo
+echo
+echo
+bundle exec jekyll serve --port 8765
