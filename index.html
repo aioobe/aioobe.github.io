@@ -50,6 +50,7 @@ featured:
     {% endfor %}
 </ul>
 
+
 <h2>Contact</h2>
 <div class="tbl" style="margin-top: .8em">
     <div>
@@ -80,11 +81,12 @@ featured:
 
 
 <h2>Bio &amp; R&eacute;sum&eacute;</h2>
-<p>Andreas Lundblad is a software developer with a passion for high quality code. He got his PhD in computer science in 2013 and has since then been developing the javac compiler and other language tools at Oracle. Currently his focus is on the sjavac wrapper that aims to bring incremental and parallel compilation to javac. Andreas is the 77th top user on StackOverflow.com and was recently selected as one of Swedens top 10 developers under 30 in the 30under30 competition.</p>
+<p>Andreas Lundblad is a software developer with a passion for quality and correctness. After he got his PhD in computer science he joined Oracle to develop javac compiler and other language tools. In 2016 he joined Palantir as a forward deployed engineer. Andreas is the 77th top user on StackOverflow.com and was recently selected as one of Swedens top 10 developers under 30 in the 30under30 competition.</p>
 
-<p>When he&rsquo;s not writing code he&rsquo;s going to programming meetups, practicing juggling or spending time with his wife and two daugters.</p>
+<p>When he&rsquo;s not writing code he&rsquo;s attending programming meetups, practicing juggling or spending time with his wife and two daugters.</p>
 
 <p><a href="resume.html">R&eacute;sum&eacute;</a> (updated {% for p in site.pages %}{% if p.is_resume_page %}{{ p.modification_time }}{% break %}{% endif %}{% endfor %}) and <a href="papers/">list of publications</a>.</p>
+
 
 <h2>Blog&thinsp;/&thinsp;Stack Overflow</h2>
 <p>Featured blog entries and Stack Overflow answers.</p>
@@ -106,8 +108,6 @@ featured:
     {% endfor %}
 </ul>
 <p>View <a href="http://stackoverflow.com/users/276052/aioobe?tab=answers">all my answers</a> on Stack Overflow, view <a href="blog/">all blog entries</a> or subscribe to the blog <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>.</p>
-
-
 
 
 <h2>My favorite talks&thinsp;/&thinsp;articles</h2>
