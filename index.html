@@ -1,16 +1,18 @@
 ---
 layout: default
 whatsup:
+  - title: "Published <a href='https://github.com/aioobe/dead-simple-jekyll-comments'>Dead Simple Jekyll Comments</a> on Github"
+    date: "Jun 26, 2018"
   - title: "Launched <a href='http://programming.guide'>Programming.Guide</a>"
     date: "Oct 29, 2016"
   - title: "Joined Palantir Technologies as a Forward Deployed Engineer"
     date: "Oct 10, 2016"
   - title: "Gave a talk, <i>Lesser known features of the Java language</i>, at the <a href='http://www.meetup.com/Stockholm-Java-User-Group/events/230682111/'>Stockholm Java User Group</a> meetup."
     date: "May 17, 2016"
-  - title: "Created a new Meetup Group: <a href='http://www.meetup.com/Stockholm-Language-Runtime-VM-Meetup'>Stockholm Language Runtime & VM Meetup</a>"
-    date: "Sep 2, 2015"
-  - title: "Launched <a href='http://stackrating.com'>StackRating.com</a> &ndash; an Elo based rating system for Stack Overflow users."
-    date: "May 2, 2015"
+#  - title: "Created a new Meetup Group: <a href='http://www.meetup.com/Stockholm-Language-Runtime-VM-Meetup'>Stockholm Language Runtime & VM Meetup</a>"
+#    date: "Sep 2, 2015"
+#  - title: "Launched <a href='http://stackrating.com'>StackRating.com</a> &ndash; an Elo based rating system for Stack Overflow users."
+#    date: "May 2, 2015"
 #  - title: "Took over development of a tool called <a href='http://stackoverflow.com/q/26424759/276052'>sjavac</a>."
 #    date: "Apr 22, 2014"
 #  - title: "Selected as one of Swedens top-10 developers under 30 in the <a href='30under30.io'>30under30</a> competition."
@@ -87,6 +89,16 @@ featured:
 
 <p><a href="resume.html">R&eacute;sum&eacute;</a> (updated {% for p in site.pages %}{% if p.is_resume_page %}{{ p.modification_time }}{% break %}{% endif %}{% endfor %}) and <a href="papers/">list of publications</a>.</p>
 
+
+<h2>Projects</h2>
+<dl>
+    <dt><a href="https://programming.guide">Programming.Guide</a></dt>
+    <dd>Hundreds of articles on various programming topics include Java, go and general computing. The articles are concise and provide examples up front.</dd>
+    <dt><a href="https://stackrating.com">StackRating.com</a></dt>
+    <dd>A site that tracks <em>Elo rating</em> for Stack Overflow users. As opposed to reputation, which is a cumulative measure of how much the community has appreciated a users contributions, the rating is a relative measure of a users "skill" compared to other users.</dd>
+    <dt><a href="https://github.com/aioobe/dead-simple-jekyll-comments">Dead Simple Jekyll Comments</a></dt>
+    <dd>A DIY comment system for Jekyll sites. It uses webhook to intercept comment submissions and writes them to a comment file which is commited and pushed in a separate branch.</dd>
+</dl>
 
 <h2>Blog&thinsp;/&thinsp;Stack Overflow</h2>
 <p>Featured blog entries and Stack Overflow answers.</p>
