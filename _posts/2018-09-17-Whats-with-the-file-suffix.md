@@ -6,7 +6,7 @@ date: 2018-09-17
 
 We have `Dockerfile`, `Makefile`, `Caddyfile`, `Gemfile`, `Rakefile`, `Vagrantfile`, `Cakefile` and probably a lot more that `…file` files that I've yet to come across.
 
-Dear config file inventor: _I know they are files!_ My terminal even show directories in a different color!
+Dear config file inventor: _I know they are files!_ My terminal even shows directories in a different color!
 
 What's wrong with traditional file extensions? How about `docker.conf`?
 
