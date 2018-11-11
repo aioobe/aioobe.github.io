@@ -23,7 +23,7 @@ Implementation
 </applet>
 
 
-How to obtain the source code
+How to obtain the application, and its source code
 --
 A stand-alone application (including source code) is released as [postcardware](http://en.wikipedia.org/wiki/Postcardware). To obtain a copy you simply send me a greeting from your hometown in the form of a postcard. My home address is available [here](/). Remember to include the email address to which you wish to receive the application. Demo video below.
 
