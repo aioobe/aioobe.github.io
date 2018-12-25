@@ -1,6 +1,6 @@
 ---
 layout: default
-modification_time: "August 10, 2016"
+modification_time: "December 25, 2018"
 
 # To uniquely identify this page in index.html
 is_resume_page: true
@@ -22,7 +22,10 @@ Tensta Gymnasium, Stockholm
 
 Work Experience
 ---------
-<span class="dateLabel">2013--present</span>**Senior Member of Technical Staff**, _Oracle_<br />
+<span class="dateLabel">2016--present</span>**Forward Deployed Engineer**, _Palantir Technologies_<br />
+Deploying and adapting Palantir software at various customer sites. Software deployed is used to assist users in mission critical operations. My responsibilities include everything from installation of operating system, databases and Palantir software, to adapting/developing new backend and frontend components.
+
+<span class="dateLabel">2013--2016</span>**Senior Member of Technical Staff**, _Oracle_<br />
 Member of the Langtools team which is responsible for tools such as javac, javap, javah and javadoc as well as parts of the core API. My work has mainly been focused on javac and a wrapper for javac called sjavac which adds support for incremental and parallel compilation.
 
 <span class="dateLabel">2011--present</span>**Co-founder**, _Comparific_<br />
@@ -43,7 +46,6 @@ Primary advisor of three master's theses: _ADAPT: Automatically Distributed Anon
 <span class="dateLabel">2003-2006</span>**Programmer**, _SAAB Technologies, Electronic Warfare Systems Division_<br />
 Work included implementation of automatic tests and software development for anti-radar systems. Participated in meetings with the Italian Air force in Pratica de Mare, Italy.
 
-
 Honors and Awards
 -----------------
 **30under30 Contest of 2014**: Selected as one of Swedens top 30 tech executors / top 10 developers under the age of 30.
@@ -51,7 +53,6 @@ Honors and Awards
 **The Dragon of Enlightenment**: Awarded for meritorious work in undergraduate education during 2011.
   
 **Honor Grant**: Awarded to best M.Sc. student among Computer Science graduates of 2007 at Royal Institute of Technology, KTH.
-
 
 Achievements
 ------------
@@ -67,18 +68,15 @@ Achievements
 
 **Best student** in the course _Problem Solving and Programming under Pressure_.
 
-
 Technical skills
 ----------------
-Know all the ins and outs of the Java language and the core API. I've worked with the following frameworks and APIs: Wicket, Jersey, Hibernate, JPA, Guice, Jackson, Jongo, Apache POI, ASM, JFlex/JavaCUP, LiftWeb, Apache Commons, Guava. I also have experience with C/C++, Scala, Python, Prolog, Matlab, PHP, HTML, SQL, MongoDB, Mercurial, Git and Subversion.
+Used various Linux distributions almost exclusively for the past 20 years. Both privately and professionally, and both online and air gapped. Know all the ins and outs of the Java language and the core API. Also experienced with JavaScript, TypeScript, shell scripting, C/C++, Scala, Python, Prolog, Matlab, PHP, CSS3, SQL. Used Gradle, NPM/yarn, Maven. Use Docker for all my private projects.
 
-More importantly though: I'm always eager to pick up a book and learn something new!
-
+Above all, always eager to pick up a book and learn something new.
 
 Interests
 ---------
-Apart from spending time with my wife and two daughters, I enjoy solving programming puzzles and participate in programming contests. I occasionally practice juggling and long distance running.
-
+Spending time with my wife and two daughters, organizing and going to programming meetups, programming puzzles and participating in programming contests, both as a competitor and problem author. Was head coach for my daughters soccer team and assistant coach in a local Judo club. Practice juggling, long distance running and swimming.
 
 Scientific Publications
 -----------------------
@@ -95,7 +93,6 @@ Scientific Publications
 </div>
 {% endfor %}
 {% break %}{% endif %}{% endfor %}
-
 
 References
 ----------
