@@ -9,4 +9,4 @@ github_username: aioobe
 markdown: kramdown
 exclude:
   - vendor  # Fix: Invalid date '0000-00-00': Post '/vendor/...' does not have a valid date in the filename.
-  
+

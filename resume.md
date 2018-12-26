@@ -1,6 +1,6 @@
 ---
 layout: default
-modification_time: "December 25, 2018"
+modification_time: "december 25, 2018"
 
 # To uniquely identify this page in index.html
 is_resume_page: true

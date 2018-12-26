@@ -40,7 +40,22 @@ featured:
     date: "Sep 21, 2010"
   - title: "Why must wait() always be in synchronized block"
     url: http://stackoverflow.com/q/2779484/276052
-    date: "May 6, 2010"
+date: "May 6, 2010"
+
+bestClips:
+  - url: https://youtu.be/6K-gH0sDQEw
+    title: penguingm1 vs Leela Chess Zero (Self Learning AI) Match
+    desc: Andrew Tang finally beats Leela Chess Bot in ultra bullet (at <a href="https://youtu.be/zBQLF2YVavI?t=7291">at 2:01:32</a>)
+  - url: https://youtu.be/IvUU8joBb1Q
+    title: Wintergatan - Marble Machine (music instrument using 2000 marbles)
+    desc: The amazing Marble Machine built by Swedish musician Martin Molin
+  - url: https://youtu.be/BgAlQuqzl8o
+    title: Cello Wars (Star Wars Parody) Lightsaber Duel - The Piano Guys
+  - url: https://youtu.be/e1ot85K0C_A
+    title: Mike Hughey solves 7x7x7 cube blindfolded
+  - url: https://youtu.be/Y1aAHqLxaoY
+    title: US Nationals and Open - Mike Hughey 15/15 multi blind
+    desc: Final moments of Mike Hugheys amazing 15 3x3x3 blind solve
 ---
 <h2>Recent Highlights</h2>
 <ul>
@@ -147,3 +162,12 @@ featured:
         <a href="http://blog.jessitron.com/2017/06/the-most-productive-circumstances-for.html?m=1">Hyperproductive development</a>, article by Jessica Kerr
     </li>
 </ol>
+
+<h2>Some amazing video clips</h2>
+<ul>
+    {% for item in page.bestClips %}
+        <li>
+            <a href="{{ item.url }}">{{ item.title }}</a><br />{{ item.desc }}
+        </li>
+    {% endfor %}
+</ul>
