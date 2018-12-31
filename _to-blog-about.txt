@@ -1,0 +1,75 @@
+Incompatible patterns: Decorating classes and instanceof checks
+===============================================================
+
+Incompatible patterns: Decorating classes and polymorphism
+==========================================================
+
+En Counter (med en add och en subtract).
+En InstrumentedCounter som räknar anrop till add.
+
+
+Mitt tangentbord / min mus
+==========================
+- svg av layouten
+- Förklaring av alla features. Först hur bekvämt det är med siffrorna, sedan att siffrorna är frigjorda för programmeringssymboler.
+- film på när jag skriver
+    - gör en översättning av text så man ser qwerty-motsvarigheten.
+    - Gör röda "flashes" när man kommer långt bort. det ska tydligt synas hur qwerty-varianten flashar mer.
+    - gärna både på dell laptopen och på kinesis
+- vill *inte* växla mellan olika layouter för chatt / programmering.
+
+
+
+Spaces vs tabs
+ - https://www.youtube.com/watch?v=SsoOG6ZeyUI
+ - http://programmers.stackexchange.com/questions/57/tabs-versus-spaces-what-is-the-proper-indentation-character-for-everything-in-e/72#72
+ - https://blogs.oracle.com/tor/entry/code_advice_3_no_tabs
+ - https://blogs.oracle.com/tor/entry/tabs_are_evil_part_2
+ - https://blogs.oracle.com/tor/entry/tabs_are_evil_part_3
+
+
+How to tackle the expression problem in Java
+
+    - Visitor pattern
+    - With annotation processing
+        - With static checks on correct code
+        - With code generation
+
+The decorator pattern looks appealing, but you're closing a lot of doors. For instance the ability to call overridable methods from overridable methods and use of instanceof.
+
+Pros'n'Cons of zero-instance enum as utility class:
+Kolla SO.
+Plus:
+    Pros: Less error prone construction prevention
+    Cons: Cluttered method name space. java.lang.Math.values() ??
+
+
+
+----------- Exceptions: --------------
+Java chose to go with checked/unchecked exceptions. C# chose not to.
+
+I think the idea behind checked exceptions is good: Signal an extra type of outcome of the method.
+
+Most argument I've seen as to why C# did not include checked exceptions was that
+
+
+fRom: http://www.artima.com/intv/handcuffs2.html
+The throws clause, at least the way it's implemented in Java, doesn't necessarily force you to handle the exceptions, but if you don't handle them, it forces you to acknowledge precisely which exceptions might pass through. It requires you to either catch declared exceptions or put them in your own throws clause. To work around this requirement, people do ridiculous things. For example, they decorate every method with, "throws Exception." That just completely defeats the feature, and you just made the programmer write more gobbledy gunk. That doesn't help anybody.
+
+
+I simply don't buy that argument. It's like saying "..."
+
+What *does* bother me about checked exceptions is the following:
+
+Checked exceptions should signal a forseable outcome of an operation. An execution has taken a bad turn due to external factors. Factors that are not due to a problem in the code or a fault of the programmer, the file was simply not found. (And we didn't want return `null` in this case, because try / catch is cleaner than littering the code with `if (file == null)` checkes.)
+
+RuntimExceptions typically indicates an error in the code. (You don't need to declare throws for them, because it would punish programmers that write correct code! It doesn't make sense to force some one to declare `throws NullPointerException` just because he's calling a method on a `String`. Perhaps the programmer *knwos* that the string is non-null.)
+
+Here's what bothers me: There are exceptions to the above rules. In both ways.
+
+There are runtime exceptions that typically depend on external factors, such as `NumberFormatException` and there are checked exceptinos that more often than not indicate errors in the code (...).
+
+In other words, it is rather *how* the exceptions are used and what the underlying reason for the exception is that should determine if the 
+
+A program may be written so that an IOException DOES in fact reflect an error in the code. (Or someone dropped the laptop on the floor and the harddrive broke.) Now by making IOException checked, all such code is forced to handle the exception. The writer of IOException chose the intent for you! This means that even if it's safe to read from an InputStream (perhaps the data comes from a `byte[]`) you can't use it easily in a lambda for instance.
+----------------------------------------
