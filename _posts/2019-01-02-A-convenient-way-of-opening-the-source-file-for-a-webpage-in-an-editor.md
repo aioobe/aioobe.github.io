@@ -5,7 +5,9 @@ date: 2019-01-02
 assetsdir: custom-edit-page-scheme
 ---
 
+<br />
 {% include blog_img.html img="demo.gif" %}
+<br />
 
 If you work with static site generators such as [Jekyll](https://jekyllrb.com/) or [Hugo](https://gohugo.io/) you're probably familiar with the non-zero threshold of for example correcting a typo in a blog post.
 
@@ -118,8 +120,4 @@ My workflow is typically:
 
 Improvements
 ------------
-That's what I use at the moment, and should be enough to get you up and running. Here are some suggestions for further improvements:
-
-- Autodetecting if the `.html` file seems to be backed by a `.html` or a `.md`
-- Translating blog post URLs to `_posts` path properly
-- Translating URLs that end with `/` to `index{.html,.md}`
+That's what I use at the moment, and should be enough to get you up and running. An obvious improvement would be to decode custom URLs like blog post pages for example.
