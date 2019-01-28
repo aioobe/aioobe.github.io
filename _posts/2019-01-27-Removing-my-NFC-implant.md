@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Removing my NFC implant"
-date: 2018-12-05
+date: 2019-01-17
 assetsdir: rfid-implants
 ---
 
