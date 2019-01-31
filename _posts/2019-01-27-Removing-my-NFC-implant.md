@@ -19,9 +19,9 @@ I'm quite sure I was just unlucky and got what we in Sweden call a "monday unit"
 
 Extracting the chip
 -------------------
-At first I was a bit disappointed and sad. My wonderful little toy that had offered me so much fun the past weeks had died! After a couple of days I got over it (shit happens, life's life) and started to get a little excited over the procedure of taking it out.
+At first I was a bit disappointed and sad. My wonderful little toy that had offered me so much fun the past weeks had died! After a couple of days I got over it. Shit happens. Life's life. I started to think about how to get it out.
 
-I watched [this video](https://www.youtube.com/watch?v=_FEWrnPHFPw) and it looked pretty easy. I had read somewhere that it would cost about $200 at a piercing studio to get it out. I wasn't too keen on paying that money for someone to do a 2 mm cut and squeeze it out for me. Instead I talked my colleague into doing it.
+I watched [this video](https://www.youtube.com/watch?v=_FEWrnPHFPw) and it looked pretty easy. I had read somewhere that it would cost about $200 at a piercing studio to get it out. I wasn't too keen on paying that money for someone to do a 2 mm cut and squeeze it out. Instead I talked my colleague into doing it.
 
 Here's what I bought:
 
@@ -37,4 +37,4 @@ Spoiler: Colleagues were awesome, the whole procedure was a success. Big thanks 
 
 What's up with that access card?!
 ---------------------------------
-The chip was placed in away so that I couldn't push it forward (direction of my fingers). It was too deep under the skin for me to get my finger tips underneath it. I could however push the chip backward (direction towards my arm). Unfortunately it then only went deeper into my hand. To squeeze it out through the skin it had to be forced "outwards". This was achieved by pushing it over an access card as shown in the video. In the end this was quite successful and I don't know how we would have done it if I hadn't come up with that little trick.
+The chip was placed in away so that I couldn't push it forward (direction of my fingers). It was too deep under the skin for me to get my finger tips underneath it. I could however push the chip backward (direction towards my arm). Unfortunately it then only went deeper into my hand. To squeeze it out through the skin it had to be forced "outwards". This was achieved by pushing it over an access card as shown in the video. This turned out to be quite successful and I don't know how we would have managed if I hadn't come up with that little trick.
