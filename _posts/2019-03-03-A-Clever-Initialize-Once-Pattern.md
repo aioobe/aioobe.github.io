@@ -40,4 +40,4 @@ With the above code, the stack trace you receive from the customer will include 
 
 Is this a dirty hack?
 ---------------------
-You could argue both ways: Since this is not the traditional way a caused-by exception is wrapped, it violates the principle of least astonishment and may confuse fellow developers. On the other hand, you can argue that the caused-by argument is correct semantically; the first call to initialize is indeed the _cause_ for the error raised in the second call.
+You could argue both ways: Since this is not the traditional way a caused-by exception is wrapped, it violates the principle of least astonishment and may confuse fellow developers. On the other hand, you can argue that the first call is indeed the _cause_ for the second call to fail, and that the use of the caused-by constructor is semantically correct.
