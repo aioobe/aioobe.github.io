@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Aioobe's Double Elimination Tornament System"
+title: "Aioobe's Double Elimination Tournament System"
 date: 2009-02-19
 assetsdir: tournament
 ---
