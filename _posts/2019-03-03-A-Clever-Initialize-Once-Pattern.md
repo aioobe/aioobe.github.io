@@ -4,7 +4,7 @@ title: "A Clever Initialize-Once Pattern"
 date: 2019-03-03
 ---
 
-Initialization methods should most often only be called once per run of the application, per session, per request, etc. Once it has been called, subsequent calls can be ignored or, if you want to enforce clean and tide control flow, consider them as errors:
+Initialization methods should most often only be called once per run of the application, per session, per request, etc. Once it has been called, subsequent calls can be ignored or, if you want to enforce clean and tidy control flow, consider them as errors:
 
     public void initialize() {
         if (initialized) {
