@@ -52,7 +52,7 @@ This means that whenever I `{% raw %}{% include ... %}{% endraw %}` a file, I ri
 
 No Object Literals
 ------------------
-There is a concept of objects / maps, but there's no way to create them yourself. An expression like `{{ x | inspect }}` might give you
+There is a concept of objects / maps, but there's no way to create them yourself. An expression like `{% raw %}{{ x | inspect }}{% endraw %}` might give you
 
     { "a" => "b" }
 
