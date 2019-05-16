@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                font-weight: bold;
+            }
+            #label {
+                color: red;
+            }
+            #score-box {
+                padding: 1em;
+            }
+        </style>
+        <script>
+            var scores = []
+            function render() {
+                var sum = scores.reduce(function(a, b) { return a + b; }, 0);
+                document.getElementById("score").innerHTML = sum;
+                document.getElementById("total").innerHTML = scores.length;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="score-box">
+            <span id="label">Score:</span> <span id="score">0</span> / <span id="total">0</span>
+        </div>
+
+        <div>
+            <button onClick="scores.push(1);  render();">Win</button>
+            <button onClick="scores.push(.5); render();">Drew</button>
+            <button onClick="scores.push(0);  render();">Lost</button>
+            <button onClick="scores.pop();    render();">Undo</button>
+        </div>
+    </body>
+</html>
