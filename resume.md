@@ -28,7 +28,7 @@ Deploying and adapting Palantir software at various customer sites. Software dep
 <span class="dateLabel">2013--2016</span>**Senior Member of Technical Staff**, _Oracle_<br />
 Member of the Langtools team which is responsible for tools such as javac, javap, javah and javadoc as well as parts of the core API. My work has mainly been focused on javac and a wrapper for javac called sjavac which adds support for incremental and parallel compilation.
 
-<span class="dateLabel">2011--present</span>**Co-founder**, _Comparific_<br />
+<span class="dateLabel">2011--2014</span>**Co-founder / Backend Dev**, _Comparific_<br />
 Back-end developer for the Android application _Comparific_ which is used to find the best cell-phone price plans based on call history, texts and data usage. Currently analyzes over 200 price plans and add-ons. Challenges include combinatorial explosion of add-on combinations and designing the code to be simple and easy to maintain while still being able to handle all the different price plan variants (contracts, prepaid, pay as you go etc).
 
 <span class="dateLabel">2008--present</span>**Founder**, _Aioobe Software_<br />
@@ -48,6 +48,8 @@ Work included implementation of automatic tests and software development for ant
 
 Honors and Awards
 -----------------
+**Best of Tutors.com 2020**:  Chosen as a Top 10 tutor at tutors.com.
+
 **30under30 Contest of 2014**: Selected as one of Swedens top 30 tech executors / top 10 developers under the age of 30.
 
 **The Dragon of Enlightenment**: Awarded for meritorious work in undergraduate education during 2011.
