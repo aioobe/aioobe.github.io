@@ -105,7 +105,7 @@ I had no idea where the string ended (except that after around 42 characters the
 The padding bytes!
 --
 
-I turned back to the spec and noted that it [mandated that the data was to be padded with `0x17 0xEC 0x17 0xEC`&hellip;](http://www.thonky.com/qr-code-tutorial/data-encoding). Indeed the bit sequence ended with the these bits:
+I turned back to the spec and noted that it [mandated that the data was to be padded with `0x11 0xEC 0x11 0xEC`&hellip;](http://www.thonky.com/qr-code-tutorial/data-encoding). Indeed the bit sequence ended with the these bits:
         
 <center><code>01100101 011001100 011110___ _________ ______000 <b>11101100 00010001</b></code></center>
 
