@@ -67,15 +67,15 @@ Achievements
 
 <!-- **No Combat Fatigue**, a real time strategy game with classical objectives such as mining resources, building bases, producing units and combat. Uses the DirectX API and implements an A* path finding algorithm with path caching and a basic AI. Written in C++ at the age of 18. -->
 
-**Contributions at StackOverflow.com**. Contributed with over 3.000 answers in the _Java_, _C++_, _Android_, _Regex_, _algorithms_ and _multithreading_ tags since 2010. With a current rating of 242k, I belong to the top 100 (top 0.03%) users.
-  
+**Contributions at StackOverflow.com**. Contributed with over 3.000 answers in the _Java_, _C++_, _Android_, _Regex_, _algorithms_ and _multithreading_ tags since 2010. With a current rating of 242k, I belong to the top 100 (top 0.01%) users.
+
 **StackRating.com**, a Elo based rating system for Stack Overflow users. Features include live monitoring of new posts through the StackExchange REST API and an a custom in-memory data model for fast page generation.
 
 **Best student** in the course _Problem Solving and Programming under Pressure_.
 
 Technical skills
 ----------------
-Used various Linux distributions almost exclusively for the past 20 years. Both privately and professionally, and both online and air gapped. Know all the ins and outs of the Java language and the core API. Also experienced with JavaScript, TypeScript, shell scripting, C/C++, Scala, Python, Prolog, Matlab, PHP, CSS3, SQL. Used Gradle, NPM/yarn, Maven. Use Docker for all my private projects.
+Used various Linux distributions almost exclusively for the past 20 years. Both privately and professionally, and both online and air gapped. Know all the ins and outs of the Java language and the core API. Also proficient with JavaScript, TypeScript, shell scripting, C/C++, Scala, Python, Prolog, Matlab, PHP, CSS and SQL, Gradle, npm/yarn and Maven. I use Docker for all my private projects.
 
 Above all, always eager to pick up a book and learn something new.
 
