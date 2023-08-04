@@ -22,6 +22,9 @@ Tensta Gymnasium, Stockholm
 
 Work Experience
 ---------
+<span class="dateLabel">2023--present</span>**Founder**, _Aioobe Software AB_<br />
+Currently focusing on _Plan A_, which is a web application for generation of school schedules. Work includes constraint solving, backend (Java) and frontend (TypeScript / React).
+
 <span class="dateLabel">2016--present</span>**Forward Deployed Engineer**, _Palantir Technologies_<br />
 Deploying and adapting Palantir software at various customer sites. Software deployed is used to assist users in mission critical operations. My responsibilities include everything from installation of operating system, databases and Palantir software, to adapting/developing new backend and frontend components.
 
