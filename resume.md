@@ -81,7 +81,7 @@ Above all, always eager to pick up a book and learn something new.
 
 Interests
 ---------
-Spending time with my wife and two daughters, organizing and going to programming meetups, programming puzzles and participating in programming contests, both as a competitor and problem author. Was head coach for my daughters soccer team and assistant coach in a local Judo club. Practice juggling, long distance running and swimming.
+Spending time with my wife and children, organizing and going to programming meetups, programming puzzles and participating in programming contests, both as a competitor and problem author. Was head coach for my daughters soccer team and assistant coach in a local Judo club. Practice juggling, long distance running and swimming.
 
 Scientific Publications
 -----------------------
