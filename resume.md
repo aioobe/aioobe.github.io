@@ -1,6 +1,6 @@
 ---
 layout: default
-modification_time: "maj 17, 2020"
+modification_time: "jan 15, 2025"
 
 # To uniquely identify this page in index.html
 is_resume_page: true
@@ -22,8 +22,11 @@ Tensta Gymnasium, Stockholm
 
 Work Experience
 ---------
+<span class="dateLabel">2024--present</span>**PM / Developer**, _Meitner AB_<br />
+Responsible for Meitner Schema, which is a web application for generation of school schedules. I wear many hats: PM, customer support, sale support, and lead dev. Tech includes constraint solving, webbackend written in Java, and frontend written in TypeScript / React.
+
 <span class="dateLabel">2023--present</span>**Founder**, _Aioobe Software AB_<br />
-Currently focusing on _Plan A_, which is a web application for generation of school schedules. Work includes constraint solving, backend (Java) and frontend (TypeScript / React).
+Developed _Plan A_ which was later acquired by Meitner and rebranded as Meitner Schema mentioned above.
 
 <span class="dateLabel">2016--present</span>**Forward Deployed Engineer**, _Palantir Technologies_<br />
 Deploying and adapting Palantir software at various customer sites. Software deployed is used to assist users in mission critical operations. My responsibilities include everything from installation of operating system, databases and Palantir software, to adapting/developing new backend and frontend components.
