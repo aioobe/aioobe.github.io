@@ -6,6 +6,10 @@ modification_time: "jan 15, 2025"
 is_resume_page: true
 ---
 
+Summary
+-------
+Accomplished software engineer with 25+ years of experience spanning academia, startups, and global tech companies. Proven expertise in backend and frontend development, runtime verification, and constraint-solving. Skilled in delivering mission-critical solutions, leading cross-functional teams, and developing innovative tools used globally.
+
 Education
 ---------
 <span class="dateLabel">2007–2013</span>
@@ -23,13 +27,13 @@ Tensta Gymnasium, Stockholm
 Work Experience
 ---------
 <span class="dateLabel">2024--present</span>**PM / Developer**, _Meitner AB_<br />
-Responsible for Meitner Schema, which is a web application for generation of school schedules. I wear many hats: PM, customer support, sale support, and lead dev. Tech includes constraint solving, webbackend written in Java, and frontend written in TypeScript / React.
+Responsible for Meitner Schema, which is a web application for generation of school schedules. I wear many hats: PM, customer support, sale support, and lead dev. Tech includes constraint-solving, webbackend written in Java, and frontend written in TypeScript / React.
 
 <span class="dateLabel">2023--present</span>**Founder**, _Aioobe Software AB_<br />
-Developed _Plan A_ which was later acquired by Meitner and rebranded as Meitner Schema mentioned above.
+Developed _Plan A_, a constraint-solving web application for school scheduling. Later acquired by Meitner and rebranded as Meitner Schema mentioned above.
 
 <span class="dateLabel">2016--present</span>**Forward Deployed Engineer**, _Palantir Technologies_<br />
-Deploying and adapting Palantir software at various customer sites. Software deployed is used to assist users in mission critical operations. My responsibilities include everything from installation of operating system, databases and Palantir software, to adapting/developing new backend and frontend components.
+Delivered mission-critical software adaptations across various sectors, including defense and public safety. Apart from technical responsibillities such as installation and management of operating system, databases and Palantir software, work included developing new functionality and leading a team of five engineers.
 
 <span class="dateLabel">2013--2016</span>**Senior Member of Technical Staff**, _Oracle_<br />
 Member of the Langtools team which is responsible for tools such as javac, javap, javah and javadoc as well as parts of the core API. My work has mainly been focused on javac and a wrapper for javac called sjavac which adds support for incremental and parallel compilation.
