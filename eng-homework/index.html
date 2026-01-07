@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Cities Quiz</title>
+    <title>Bella's US Geography Quiz</title>
     <style>
         * {
             margin: 0;
@@ -50,7 +50,7 @@
         .question {
             font-size: 1.5em;
             font-weight: bold;
-            color: #667eea;
+            color: #ff18b8;
         }
 
         .score {
@@ -211,7 +211,7 @@
 <body>
     <canvas id="confetti-canvas"></canvas>
     <div class="container">
-        <h1 id="title">US Geography Quiz</h1>
+        <h1 id="title">Bella's US Geography Quiz</h1>
 
         <div id="game-area">
             <div class="quiz-info">
@@ -226,6 +226,11 @@
                 <div class="map-wrapper" id="map-wrapper">
                     <img src="usa-map.png" alt="US Map" class="map-image" id="map-image">
                     <svg viewBox="0 0 100 100" id="us-map" preserveAspectRatio="none">
+                        <defs>
+                            <pattern id="glitter-pattern" patternUnits="userSpaceOnUse" width="2" height="2">
+                                <image href="glitter.png" x="0" y="0" width="2" height="2" preserveAspectRatio="xMidYMid slice"/>
+                            </pattern>
+                        </defs>
                         <!-- Cities will be added dynamically -->
                         <g id="cities"></g>
                     </svg>
@@ -255,7 +260,7 @@
             { name: "Dallas", x: 49, y: 71, state: "TX" },
             { name: "Houston", x: 50, y: 83, state: "TX" },
             { name: "Las Vegas", x: 15, y: 51, state: "NV" },
-            { name: "Los Angeles", x: 11, y: 55, state: "CA" },
+            { name: "Los Angeles", x: 7, y: 57, state: "CA" },
             { name: "Miami", x: 86, y: 91, state: "FL" },
             { name: "Nashville", x: 68, y: 58, state: "TN" },
             { name: "New York City", x: 90, y: 34, state: "NY" },
@@ -355,7 +360,7 @@
                 circle.setAttribute('cx', item.x);
                 circle.setAttribute('cy', item.y);
                 circle.setAttribute('r', '2');
-                circle.setAttribute('fill', '#ff6b6b');
+                circle.setAttribute('fill', 'url(#glitter-pattern)');
                 circle.setAttribute('class', 'city-dot');
                 circle.setAttribute('data-item-index', index);
 
