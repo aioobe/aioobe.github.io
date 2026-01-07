@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Cities Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .quiz-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        .question {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .score {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .map-container {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .city-dot {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .city-dot:hover {
+            r: 2.5;
+            filter: brightness(1.2);
+        }
+
+        .city-dot.correct {
+            fill: #4CAF50;
+            r: 3;
+        }
+
+        .city-dot.incorrect {
+            fill: #f44336;
+            r: 3;
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feedback.correct {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffcdd2;
+            color: #c62828;
+        }
+
+        .feedback.hidden {
+            opacity: 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .game-over {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .game-over h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .final-score {
+            font-size: 3em;
+            color: #333;
+            margin: 20px 0;
+            white-space: pre-line;
+        }
+
+        .coordinates-display {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9em;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .coordinates-display.hidden {
+            display: none;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="confetti-canvas"></canvas>
+    <div class="container">
+        <h1 id="title">US Geography Quiz</h1>
+
+        <div id="game-area">
+            <div class="quiz-info">
+                <div class="question"><span id="round-info">Round 1 - Cities:</span> <span id="city-name"></span></div>
+                <div class="score">Score: <span id="score">0</span> / <span id="total">0</span></div>
+            </div>
+
+            <div class="feedback hidden" id="feedback"></div>
+
+            <div class="map-container">
+                <div class="coordinates-display hidden" id="coordinates">x: 0, y: 0</div>
+                <div class="map-wrapper" id="map-wrapper">
+                    <img src="usa-map.png" alt="US Map" class="map-image" id="map-image">
+                    <svg viewBox="0 0 100 100" id="us-map" preserveAspectRatio="none">
+                        <!-- Cities will be added dynamically -->
+                        <g id="cities"></g>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="next-btn" style="display: none;">Next City</button>
+                <button id="restart-btn" style="display: none;">Play Again</button>
+            </div>
+        </div>
+
+        <div id="game-over-screen" style="display: none;">
+            <div class="game-over">
+                <h2>Quiz Complete!</h2>
+                <div class="final-score" id="final-score"></div>
+                <button id="play-again-btn">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // US Cities with coordinates as percentages (0-100)
+        const cities = [
+            { name: "Boston", x: 93, y: 22, state: "MA" },
+            { name: "Chicago", x: 66, y: 35, state: "IL" },
+            { name: "Dallas", x: 49, y: 71, state: "TX" },
+            { name: "Houston", x: 50, y: 83, state: "TX" },
+            { name: "Las Vegas", x: 15, y: 51, state: "NV" },
+            { name: "Los Angeles", x: 11, y: 55, state: "CA" },
+            { name: "Miami", x: 86, y: 91, state: "FL" },
+            { name: "Nashville", x: 68, y: 58, state: "TN" },
+            { name: "New York City", x: 90, y: 34, state: "NY" },
+            { name: "Orlando", x: 83, y: 85, state: "FL" },
+            { name: "Salt Lake City", x: 25, y: 40, state: "UT" },
+            { name: "San Francisco", x: 2, y: 42, state: "CA" },
+            { name: "Seattle", x: 9, y: 23, state: "WA" },
+            { name: "Washington DC", x: 86, y: 42, state: "DC" },
+        ];
+
+        // US States with coordinates as percentages (0-100) - centered in each state
+        const states = [
+            { name: "Alabama", x: 70, y: 70 },
+            { name: "Arizona", x: 20, y: 60 },
+            { name: "California", x: 8, y: 50 },
+            { name: "Florida", x: 85, y: 88 },
+            { name: "Kansas", x: 48, y: 50 },
+            { name: "Maine", x: 94, y: 15 },
+            { name: "Montana", x: 30, y: 14 },
+            { name: "Minnesota", x: 55, y: 25 },
+            { name: "New York", x: 87, y: 24 },
+            { name: "Nevada", x: 14, y: 39 },
+            { name: "Utah", x: 23, y: 43 },
+            { name: "Texas", x: 50, y: 75 },
+            { name: "Washington", x: 12, y: 8 },
+            { name: "Mississippi", x: 62, y: 68 },
+        ];
+
+        let currentRound = 1;
+        let currentItemIndex = 0;
+        let score = 0;
+        let itemsAsked = [];
+        let currentItem = null;
+        let hasAnswered = false;
+        let currentData = cities;
+        let lastFailedRound = 1;
+
+        const itemNameEl = document.getElementById('city-name');
+        const roundInfoEl = document.getElementById('round-info');
+        const scoreEl = document.getElementById('score');
+        const totalEl = document.getElementById('total');
+        const feedbackEl = document.getElementById('feedback');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const itemsGroup = document.getElementById('cities');
+        const gameArea = document.getElementById('game-area');
+        const gameOverScreen = document.getElementById('game-over-screen');
+        const finalScoreEl = document.getElementById('final-score');
+        const playAgainBtn = document.getElementById('play-again-btn');
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function initGame(round = 1) {
+            currentRound = round;
+            score = 0;
+            currentItemIndex = 0;
+            hasAnswered = false;
+
+            // Set data based on round
+            if (currentRound === 1) {
+                currentData = cities;
+                roundInfoEl.textContent = 'Round 1 - Cities:';
+                nextBtn.textContent = 'Next City';
+            } else {
+                currentData = states;
+                roundInfoEl.textContent = 'Round 2 - States:';
+                nextBtn.textContent = 'Next State';
+            }
+
+            itemsAsked = shuffleArray(currentData);
+
+            scoreEl.textContent = score;
+            totalEl.textContent = currentData.length;
+            feedbackEl.className = 'feedback hidden';
+            feedbackEl.textContent = '';
+            nextBtn.style.display = 'none';
+            restartBtn.style.display = 'none';
+            gameArea.style.display = 'block';
+            gameOverScreen.style.display = 'none';
+
+            renderItems();
+            loadNextItem();
+        }
+
+        function renderItems() {
+            itemsGroup.innerHTML = '';
+
+            currentData.forEach((item, index) => {
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', item.x);
+                circle.setAttribute('cy', item.y);
+                circle.setAttribute('r', '2');
+                circle.setAttribute('fill', '#ff6b6b');
+                circle.setAttribute('class', 'city-dot');
+                circle.setAttribute('data-item-index', index);
+
+                circle.addEventListener('click', handleItemClick);
+
+                itemsGroup.appendChild(circle);
+            });
+        }
+
+        function loadNextItem() {
+            if (currentItemIndex >= itemsAsked.length) {
+                endGame();
+                return;
+            }
+
+            currentItem = itemsAsked[currentItemIndex];
+            itemNameEl.textContent = currentItem.name;
+            hasAnswered = false;
+            feedbackEl.className = 'feedback hidden';
+            nextBtn.style.display = 'none';
+
+            // Reset all dots
+            document.querySelectorAll('.city-dot').forEach(dot => {
+                dot.classList.remove('correct', 'incorrect');
+            });
+        }
+
+        function handleItemClick(event) {
+            if (hasAnswered) return;
+
+            const clickedIndex = parseInt(event.target.getAttribute('data-item-index'));
+            const clickedItem = currentData[clickedIndex];
+
+            hasAnswered = true;
+
+            if (clickedItem.name === currentItem.name) {
+                // Correct answer
+                score++;
+                scoreEl.textContent = score;
+                event.target.classList.add('correct');
+
+                if (currentRound === 1 && currentItem.state) {
+                    feedbackEl.textContent = `Correct! ${currentItem.name} is in ${currentItem.state}`;
+                } else {
+                    feedbackEl.textContent = `Correct! ${currentItem.name}`;
+                }
+                feedbackEl.className = 'feedback correct';
+            } else {
+                // Incorrect answer
+                event.target.classList.add('incorrect');
+
+                // Highlight the correct item
+                document.querySelectorAll('.city-dot').forEach(dot => {
+                    const dotIndex = parseInt(dot.getAttribute('data-item-index'));
+                    if (currentData[dotIndex].name === currentItem.name) {
+                        dot.classList.add('correct');
+                    }
+                });
+
+                feedbackEl.textContent = `Wrong! You clicked ${clickedItem.name}. ${currentItem.name} is here.`;
+                feedbackEl.className = 'feedback incorrect';
+            }
+
+            currentItemIndex++;
+
+            if (currentItemIndex >= itemsAsked.length) {
+                setTimeout(() => {
+                    endGame();
+                }, 2000);
+            } else {
+                nextBtn.style.display = 'block';
+            }
+        }
+
+        function endGame() {
+            // Check if perfect score in round 1 - advance to round 2
+            if (currentRound === 1 && score === cities.length) {
+                feedbackEl.textContent = `Perfect score! Moving to Round 2 - States!`;
+                feedbackEl.className = 'feedback correct';
+                launchConfetti();
+                setTimeout(() => {
+                    initGame(2);
+                }, 2000);
+                return;
+            }
+
+            // Show game over screen
+            gameArea.style.display = 'none';
+            gameOverScreen.style.display = 'block';
+
+            const percentage = Math.round((score / currentData.length) * 100);
+            const isPerfectScore = score === currentData.length;
+
+            let message;
+            if (currentRound === 2 && isPerfectScore) {
+                // Perfect score on round 2 - all rounds complete
+                message = `All Rounds Complete!\nRound 2 Score: ${score} / ${currentData.length} (${percentage}%)`;
+                playAgainBtn.textContent = 'Play Again';
+                lastFailedRound = 1; // Reset to start from beginning
+                launchConfetti();
+            } else {
+                // Failed round - need to try again
+                const roundName = currentRound === 1 ? 'Cities' : 'States';
+                message = `Round ${currentRound} - ${roundName}\n${score} / ${currentData.length} (${percentage}%)`;
+                playAgainBtn.textContent = 'Try Again';
+                lastFailedRound = currentRound; // Remember which round failed
+            }
+
+            finalScoreEl.textContent = message;
+        }
+
+        nextBtn.addEventListener('click', loadNextItem);
+        playAgainBtn.addEventListener('click', () => initGame(lastFailedRound));
+
+        // Confetti effect
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const confettiCtx = confettiCanvas.getContext('2d');
+        let confettiParticles = [];
+        let confettiAnimationId = null;
+
+        function resizeConfettiCanvas() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+        resizeConfettiCanvas();
+        window.addEventListener('resize', resizeConfettiCanvas);
+
+        function createConfetti() {
+            const colors = ['#FF1493', '#FF69B4', '#FFB6C1', '#FFC0CB', '#FF85C1', '#FF1AAD', '#C71585'];
+            const particleCount = 5000;
+
+            for (let i = 0; i < particleCount; i++) {
+                confettiParticles.push({
+                    x: Math.random() * confettiCanvas.width,
+                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
+                    r: Math.random() * 8 + 3,
+                    d: Math.random() * particleCount,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.floor(Math.random() * 10) - 10,
+                    tiltAngleIncremental: Math.random() * 0.15 + 0.1,
+                    tiltAngle: 0,
+                    vx: Math.random() * 6 - 3,
+                    vy: Math.random() * 15 + 12
+                });
+            }
+        }
+
+        function drawConfetti() {
+            confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+            for (let i = 0; i < confettiParticles.length; i++) {
+                const p = confettiParticles[i];
+                confettiCtx.save();
+                confettiCtx.translate(p.x, p.y);
+                confettiCtx.rotate(p.tiltAngle);
+                confettiCtx.fillStyle = p.color;
+
+                // Draw glittery rectangle
+                confettiCtx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r);
+
+                // Add sparkle effect
+                if (Math.random() > 0.6) {
+                    confettiCtx.fillStyle = 'rgba(255, 255, 255, 1)';
+                    confettiCtx.fillRect(-p.r / 4, -p.r / 4, p.r / 2, p.r / 2);
+                }
+
+                confettiCtx.restore();
+            }
+
+            updateConfetti();
+        }
+
+        function updateConfetti() {
+            let allOffScreen = true;
+
+            for (let i = 0; i < confettiParticles.length; i++) {
+                const p = confettiParticles[i];
+                p.tiltAngle += p.tiltAngleIncremental;
+                p.x += Math.sin(p.d) + p.vx;
+                p.y += Math.cos(p.d) + p.vy;
+                p.tilt = Math.sin(p.tiltAngle) * 15;
+
+                if (p.x > -10 && p.x < confettiCanvas.width + 10 && p.y < confettiCanvas.height + 10) {
+                    allOffScreen = false;
+                }
+            }
+
+            if (allOffScreen) {
+                confettiParticles = [];
+                cancelAnimationFrame(confettiAnimationId);
+                confettiAnimationId = null;
+            } else {
+                confettiAnimationId = requestAnimationFrame(drawConfetti);
+            }
+        }
+
+        function launchConfetti() {
+            confettiParticles = [];
+            createConfetti();
+            drawConfetti();
+        }
+
+        // Coordinate display for development
+        const mapWrapper = document.getElementById('map-wrapper');
+        const coordinatesDisplay = document.getElementById('coordinates');
+
+        mapWrapper.addEventListener('mousemove', (event) => {
+            const rect = mapWrapper.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            // Calculate percentage coordinates (0-100)
+            const xPercent = Math.round((x / rect.width) * 100);
+            const yPercent = Math.round((y / rect.height) * 100);
+
+            coordinatesDisplay.textContent = `x: ${xPercent}, y: ${yPercent}`;
+            coordinatesDisplay.classList.remove('hidden');
+        });
+
+        mapWrapper.addEventListener('mouseleave', () => {
+            coordinatesDisplay.classList.add('hidden');
+        });
+
+        // Start the game
+        initGame();
+    </script>
+</body>
+</html>
