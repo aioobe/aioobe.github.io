@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slideshow</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    cursor: none;
+  }
+  .slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  .slide.visible {
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+<img class="slide" id="slideA" alt="">
+<img class="slide" id="slideB" alt="">
+<script>
+  const IMAGES = [
+    "2026-06-12_10.35.07.jpg",
+    "2026-06-12_10.49.27.jpg",
+    "2026-06-12_10.49.32.jpg",
+    "2026-06-12_11.23.49.jpg",
+    "2026-06-12_11.23.50.jpg",
+    "2026-06-12_11.23.56.jpg",
+    "2026-06-12_11.36.25.jpg",
+    "2026-06-12_11.39.05.jpg",
+    "2026-06-12_11.58.18.jpg",
+    "2026-06-12_11.58.57.jpg",
+    "2026-06-12_12.06.29.jpg",
+    "2026-06-12_12.06.42.jpg",
+    "2026-06-12_12.06.51.jpg",
+    "2026-06-12_12.07.30.jpg",
+    "2026-06-12_12.07.44.jpg",
+    "2026-06-12_12.07.53.jpg",
+    "2026-06-12_12.07.55.jpg",
+    "2026-06-12_12.08.10.jpg",
+    "2026-06-12_12.08.12.jpg",
+    "2026-06-12_12.08.18.jpg",
+    "2026-06-12_12.08.19.jpg",
+    "2026-06-12_12.08.22-1.jpg",
+    "2026-06-12_12.08.22.jpg",
+    "2026-06-12_12.08.28.jpg",
+    "2026-06-12_12.08.30.jpg",
+    "2026-06-12_12.08.37.jpg",
+    "2026-06-12_12.10.38.jpg",
+    "2026-06-12_12.10.39.jpg",
+    "2026-06-12_12.10.40.jpg",
+    "2026-06-12_12.10.49.jpg",
+    "2026-06-12_12.10.52.jpg",
+    "2026-06-12_12.10.54.jpg",
+    "2026-06-12_12.11.19.jpg",
+    "2026-06-12_12.11.22.jpg",
+    "2026-06-12_12.11.35.jpg",
+    "2026-06-12_12.11.37.jpg",
+    "2026-06-12_12.13.33.jpg",
+    "2026-06-12_12.13.35.jpg",
+    "2026-06-12_12.14.14.jpg",
+    "2026-06-12_12.14.16.jpg",
+    "2026-06-12_12.14.17.jpg",
+    "2026-06-12_12.14.21.jpg",
+    "2026-06-12_12.15.56.jpg",
+    "2026-06-12_12.16.34.jpg",
+    "2026-06-12_12.19.25.jpg",
+    "2026-06-12_12.34.07.jpg",
+    "2026-06-12_12.34.09.jpg",
+    "2026-06-12_12.34.10.jpg",
+    "2026-06-12_12.34.11.jpg",
+    "2026-06-12_12.34.13.jpg",
+    "2026-06-12_12.35.25.jpg",
+    "2026-06-12_12.35.26.jpg",
+    "2026-06-12_12.35.28.jpg",
+    "2026-06-12_12.35.41.jpg",
+    "2026-06-12_12.52.55.jpg",
+    "2026-06-12_12.53.16.jpg",
+    "2026-06-12_12.53.18.jpg",
+    "2026-06-12_12.53.20.jpg",
+    "2026-06-12_12.53.58.jpg",
+    "2026-06-12_12.54.01.jpg",
+    "2026-06-12_12.54.14.jpg",
+    "2026-06-12_12.54.31.jpg",
+    "2026-06-12_13.00.24.jpg",
+    "2026-06-12_13.00.26.jpg",
+    "2026-06-12_15.53.24.jpg",
+    "2026-06-12_15.53.32.jpg"
+  ];
+
+  const SLIDE_DURATION_MS = 4000;
+  const slides = [document.getElementById("slideA"), document.getElementById("slideB")];
+
+  let index = 0;
+  let active = 0;
+
+  function srcFor(i) {
+    return "photos/" + encodeURIComponent(IMAGES[i % IMAGES.length]);
+  }
+
+  function showNext() {
+    const incoming = slides[1 - active];
+    const outgoing = slides[active];
+    incoming.src = srcFor(index);
+
+    const swap = () => {
+      incoming.classList.add("visible");
+      outgoing.classList.remove("visible");
+      active = 1 - active;
+      index = (index + 1) % IMAGES.length;
+      setTimeout(showNext, SLIDE_DURATION_MS);
+    };
+
+    // Wait for the image to load (or fail) so we never fade in a blank frame.
+    if (incoming.complete && incoming.naturalWidth > 0) {
+      swap();
+    } else {
+      incoming.onload = swap;
+      incoming.onerror = () => {
+        index = (index + 1) % IMAGES.length;
+        showNext();
+      };
+    }
+  }
+
+  showNext();
+</script>
+</body>
+</html>
